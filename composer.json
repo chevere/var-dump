@@ -1,6 +1,6 @@
 {
     "name": "chevere/var-dump",
-    "description": "A chevere var-dump abstraction.",
+    "description": "A chevere var-dump component.",
     "homepage": "https://chevere.org",
     "type": "library",
     "license": "Apache-2.0",
