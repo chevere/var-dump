@@ -41,13 +41,13 @@ trait ProcessorTrait
     public function typeHighlighted(): string
     {
         return $this->varDumper->format()
-            ->highlight($this->type(), $this->type());
+            ->getHighlight($this->type(), $this->type());
     }
 
     public function highlightOperator(string $string): string
     {
         return $this->varDumper->format()
-            ->highlight(
+            ->getHighlight(
                 VarDumperInterface::OPERATOR,
                 $string
             );
@@ -55,7 +55,7 @@ trait ProcessorTrait
 
     public function highlightParentheses(string $string): string
     {
-        return $this->varDumper->format()->emphasis("(${string})");
+        return $this->varDumper->format()->getEmphasis("(${string})");
     }
 
     public function circularReference(): string

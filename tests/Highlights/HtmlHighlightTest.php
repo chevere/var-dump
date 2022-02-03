@@ -31,7 +31,7 @@ final class HtmlHighlightTest extends TestCase
         $dump = 'string';
         foreach (VarDumpHighlightInterface::KEYS as $key) {
             $wrapper = new VarDumpHtmlHighlight($key);
-            $wrapped = $wrapper->highlight($dump);
+            $wrapped = $wrapper->getHighlight($dump);
             $this->assertTrue(strlen($wrapped) > strlen($dump));
         }
     }

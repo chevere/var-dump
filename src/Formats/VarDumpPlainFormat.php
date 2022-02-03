@@ -13,22 +13,22 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Formats;
 
-use Chevere\VarDump\Formats\Traits\FilterEncodedCharsTrait;
-use Chevere\VarDump\Formats\Traits\IndentTrait;
+use Chevere\VarDump\Formats\Traits\GetFilterEncodedCharsTrait;
+use Chevere\VarDump\Formats\Traits\GetIndentTrait;
 use Chevere\VarDump\Interfaces\VarDumpFormatInterface;
 
 final class VarDumpPlainFormat implements VarDumpFormatInterface
 {
-    use IndentTrait;
+    use GetIndentTrait;
 
-    use FilterEncodedCharsTrait;
+    use GetFilterEncodedCharsTrait;
 
-    public function highlight(string $key, string $string): string
+    public function getHighlight(string $key, string $string): string
     {
         return $string;
     }
 
-    public function emphasis(string $string): string
+    public function getEmphasis(string $string): string
     {
         return $string;
     }

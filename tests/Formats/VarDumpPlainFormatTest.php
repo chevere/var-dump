@@ -22,28 +22,28 @@ final class VarDumpPlainFormatTest extends TestCase
     public function testIndent(): void
     {
         $indent = 5;
-        $indented = (new VarDumpPlainFormat())->indent($indent);
+        $indented = (new VarDumpPlainFormat())->getIndent($indent);
         $this->assertSame($indent, strlen($indented));
     }
 
     public function testEmphasis(): void
     {
         $string = 'string';
-        $emphasized = (new VarDumpPlainFormat())->emphasis($string);
+        $emphasized = (new VarDumpPlainFormat())->getEmphasis($string);
         $this->assertSame($string, $emphasized);
     }
 
     public function testFilterEncodedChars(): void
     {
         $string = 'string</a>';
-        $filtered = (new VarDumpPlainFormat())->filterEncodedChars($string);
+        $filtered = (new VarDumpPlainFormat())->getFilterEncodedChars($string);
         $this->assertSame($string, $filtered);
     }
 
     public function testHighlight(): void
     {
         $string = 'string';
-        $highlighted = (new VarDumpPlainFormat())->highlight(VarDumpHighlightInterface::KEYS[0], $string);
+        $highlighted = (new VarDumpPlainFormat())->getHighlight(VarDumpHighlightInterface::KEYS[0], $string);
         $this->assertSame($string, $highlighted);
     }
 }

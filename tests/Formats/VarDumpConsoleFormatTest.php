@@ -22,21 +22,21 @@ final class VarDumpConsoleFormatTest extends TestCase
     public function testIndent(): void
     {
         $indent = 5;
-        $indented = (new VarDumpConsoleFormat())->indent($indent);
+        $indented = (new VarDumpConsoleFormat())->getIndent($indent);
         $this->assertSame($indent, strlen($indented));
     }
 
     public function testEmphasis(): void
     {
         $string = 'string';
-        $emphasized = (new VarDumpConsoleFormat())->emphasis($string);
+        $emphasized = (new VarDumpConsoleFormat())->getEmphasis($string);
         $this->assertTrue(strlen($emphasized) >= strlen($string));
     }
 
     public function testFilterEncodedChars(): void
     {
         $string = 'string</a>';
-        $filtered = (new VarDumpConsoleFormat())->filterEncodedChars($string);
+        $filtered = (new VarDumpConsoleFormat())->getFilterEncodedChars($string);
         $this->assertSame($string, $filtered);
     }
 
@@ -44,7 +44,7 @@ final class VarDumpConsoleFormatTest extends TestCase
     {
         $string = 'string';
         $highlighted = (new VarDumpConsoleFormat())
-            ->highlight(VarDumpHighlightInterface::KEYS[0], $string);
+            ->getHighlight(VarDumpHighlightInterface::KEYS[0], $string);
         $this->assertTrue(strlen($highlighted) >= strlen($string));
     }
 }

@@ -23,27 +23,27 @@ final class VarDumpHtmlFormat implements VarDumpFormatInterface
 
     public const HTML_EMPHASIS = '<em>%s</em>';
 
-    public function indent(int $indent): string
+    public function getIndent(int $indent): string
     {
         return str_repeat(self::HTML_INLINE_PREFIX, $indent);
     }
 
-    public function emphasis(string $string): string
+    public function getEmphasis(string $string): string
     {
         return sprintf(
             self::HTML_EMPHASIS,
             (new VarDumpHtmlHighlight(VarDumperInterface::EMPHASIS))
-                ->highlight($string)
+                ->getHighlight($string)
         );
     }
 
-    public function filterEncodedChars(string $string): string
+    public function getFilterEncodedChars(string $string): string
     {
         return htmlspecialchars($string);
     }
 
-    public function highlight(string $key, string $string): string
+    public function getHighlight(string $key, string $string): string
     {
-        return (new VarDumpHtmlHighlight($key))->highlight($string);
+        return (new VarDumpHtmlHighlight($key))->getHighlight($string);
     }
 }

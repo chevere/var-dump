@@ -23,7 +23,7 @@ final class VarDumpHtmlFormatTest extends TestCase
     {
         $baseIndent = strip_tags(VarDumpHtmlFormat::HTML_INLINE_PREFIX);
         $indent = 5;
-        $indented = (new VarDumpHtmlFormat())->indent($indent);
+        $indented = (new VarDumpHtmlFormat())->getIndent($indent);
         $stripped = strip_tags($indented);
         $expected = str_repeat($baseIndent, $indent);
         $this->assertSame($expected, $stripped);
@@ -32,21 +32,21 @@ final class VarDumpHtmlFormatTest extends TestCase
     public function testEmphasis(): void
     {
         $string = 'string';
-        $emphasized = (new VarDumpHtmlFormat())->emphasis($string);
+        $emphasized = (new VarDumpHtmlFormat())->getEmphasis($string);
         $this->assertTrue(strlen($emphasized) > strlen($string));
     }
 
     public function testFilterEncodedChars(): void
     {
         $string = 'string</a>';
-        $filtered = (new VarDumpHtmlFormat())->filterEncodedChars($string);
+        $filtered = (new VarDumpHtmlFormat())->getFilterEncodedChars($string);
         $this->assertTrue(strlen($filtered) > strlen($string));
     }
 
     public function testHighlight(): void
     {
         $string = 'string';
-        $highlighted = (new VarDumpHtmlFormat())->highlight(VarDumpHighlightInterface::KEYS[0], $string);
+        $highlighted = (new VarDumpHtmlFormat())->getHighlight(VarDumpHighlightInterface::KEYS[0], $string);
         $this->assertTrue(strlen($highlighted) > strlen($string));
     }
 }

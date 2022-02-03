@@ -92,7 +92,7 @@ final class VarDumpArrayProcessor implements VarDumpProcessorInterface
             $this->varDumper->writer()->write(
                 implode(' ', [
                     "\n" . $this->varDumper->indentString() .
-                    $this->varDumper->format()->filterEncodedChars((string) $key),
+                    $this->varDumper->format()->getFilterEncodedChars((string) $key),
                     $operator,
                     '',
                 ])

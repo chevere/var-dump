@@ -32,7 +32,7 @@ abstract class VarDumpAbstractOutput implements VarDumpOutputInterface
             $this->writer->write(
                 "\n"
                 . $format
-                    ->highlight(
+                    ->getHighlight(
                         '_file',
                         $item['file'] . ':' . $item['line']
                     )

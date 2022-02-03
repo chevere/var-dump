@@ -21,22 +21,22 @@ interface VarDumpFormatInterface
     /**
      * Get indent for the given `$indent` size.
      */
-    public function indent(int $indent): string;
+    public function getIndent(int $indent): string;
 
     /**
      * Get emphasis for the given `$string`.
      */
-    public function emphasis(string $string): string;
+    public function getEmphasis(string $string): string;
 
     /**
      * Get `$string` without encoded chars.
      */
-    public function filterEncodedChars(string $string): string;
+    public function getFilterEncodedChars(string $string): string;
 
     /**
      * Get highlighted `$string` identified by `$key`.
      *
      * @see VarDumpHighlightInterface
      */
-    public function highlight(string $key, string $string): string;
+    public function getHighlight(string $key, string $string): string;
 }

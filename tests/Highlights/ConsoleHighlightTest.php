@@ -66,7 +66,7 @@ final class ConsoleHighlightTest extends TestCase
         $color = new Color();
         foreach (VarDumpHighlightInterface::KEYS as $key) {
             $highlight = new VarDumpConsoleHighlight($key);
-            $string = $highlight->highlight($dump);
+            $string = $highlight->getHighlight($dump);
             $expected = $expect[$key];
             if ($color->isSupported() === false) {
                 $expected = (new Str($expected))->withStripANSIColors()

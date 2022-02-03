@@ -62,13 +62,13 @@ final class VarDumpObjectProcessor implements VarDumpProcessorInterface
     {
         $this->varDumper->writer()->write(
             $this->varDumper->format()
-                ->highlight(
+                ->getHighlight(
                     VarDumperInterface::CLASS_REG,
                     $this->className
                 )
             .
             $this->varDumper->format()
-                ->highlight(
+                ->getHighlight(
                     VarDumperInterface::OPERATOR,
                     '#' . strval($this->objectId)
                 )
@@ -147,14 +147,14 @@ final class VarDumpObjectProcessor implements VarDumpProcessorInterface
         $this->varDumper->writer()->write(
             implode(' ', [
                 "\n" . $this->varDumper->indentString(),
-                $this->varDumper->format()->highlight(
+                $this->varDumper->format()->getHighlight(
                     VarDumperInterface::MODIFIERS,
                     $modifiers
                 ),
                 $this->varDumper->format()
-                    ->highlight(
+                    ->getHighlight(
                         VarDumperInterface::VARIABLE,
-                        '$' . $this->varDumper->format()->filterEncodedChars($name)
+                        '$' . $this->varDumper->format()->getFilterEncodedChars($name)
                     ),
                 '',
             ])

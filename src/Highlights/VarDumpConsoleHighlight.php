@@ -39,7 +39,7 @@ final class VarDumpConsoleHighlight implements VarDumpHighlightInterface
     /**
      * @infection-ignore-all
      */
-    public function highlight(string $dump): string
+    public function getHighlight(string $dump): string
     {
         foreach ($this->style as $style) {
             try {

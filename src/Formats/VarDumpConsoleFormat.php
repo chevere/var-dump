@@ -13,29 +13,29 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Formats;
 
-use Chevere\VarDump\Formats\Traits\FilterEncodedCharsTrait;
-use Chevere\VarDump\Formats\Traits\IndentTrait;
+use Chevere\VarDump\Formats\Traits\GetFilterEncodedCharsTrait;
+use Chevere\VarDump\Formats\Traits\GetIndentTrait;
 use Chevere\VarDump\Highlights\VarDumpConsoleHighlight;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use Chevere\VarDump\Interfaces\VarDumpFormatInterface;
 
 final class VarDumpConsoleFormat implements VarDumpFormatInterface
 {
-    use IndentTrait;
+    use GetIndentTrait;
 
-    use FilterEncodedCharsTrait;
+    use GetFilterEncodedCharsTrait;
 
-    public function emphasis(string $string): string
+    public function getEmphasis(string $string): string
     {
         return
             (new VarDumpConsoleHighlight(VarDumperInterface::EMPHASIS))
-                ->highlight($string);
+                ->getHighlight($string);
     }
 
-    public function highlight(string $key, string $string): string
+    public function getHighlight(string $key, string $string): string
     {
         return
             (new VarDumpConsoleHighlight($key))
-                ->highlight($string);
+                ->getHighlight($string);
     }
 }
