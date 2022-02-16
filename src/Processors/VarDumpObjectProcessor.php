@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Processors;
 
-use Chevere\Str\StrBool;
+use Chevere\Str\StrCondition;
 use Chevere\Type\Interfaces\TypeInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use Chevere\VarDump\Interfaces\VarDumpProcessorInterface;
@@ -177,8 +177,8 @@ final class VarDumpObjectProcessor implements VarDumpProcessorInterface
     private function handleNormalizeClassName(): void
     {
         if (
-            (new StrBool($this->className))
-                ->startsWith(VarDumperInterface::CLASS_ANON)
+            (new StrCondition($this->className))
+                ->isStartingWith(VarDumperInterface::CLASS_ANON)
         ) {
             $this->className = VarDumperInterface::CLASS_ANON;
         }

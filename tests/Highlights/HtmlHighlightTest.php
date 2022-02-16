@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Chevere\Tests\VarDump\Highlights;
+namespace Chevere\Tests\Highlights;
 
 use Chevere\Throwable\Exceptions\OutOfRangeException;
 use Chevere\VarDump\Highlights\VarDumpHtmlHighlight;

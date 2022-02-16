@@ -11,10 +11,10 @@
 
 declare(strict_types=1);
 
-namespace Chevere\Tests\VarDump\Processors;
+namespace Chevere\Tests\Processors;
 
-use Chevere\Tests\VarDump\_resources\DummyClass;
-use Chevere\Tests\VarDump\Traits\VarDumperTrait;
+use Chevere\Tests\_resources\DummyClass;
+use Chevere\Tests\Traits\VarDumperTrait;
 use Chevere\Throwable\Exceptions\InvalidArgumentException;
 use Chevere\VarDump\Interfaces\VarDumpProcessorInterface;
 use Chevere\VarDump\Processors\VarDumpObjectProcessor;

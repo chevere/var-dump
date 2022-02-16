@@ -11,9 +11,10 @@
 
 declare(strict_types=1);
 
-namespace Chevere\Tests\VarDump;
+namespace Chevere\Tests;
 
 use Chevere\Str\Str;
+use Chevere\Tests\Traits\DebugBacktraceTrait;
 use Chevere\VarDump\Formats\VarDumpConsoleFormat;
 use Chevere\VarDump\Formats\VarDumpHtmlFormat;
 use Chevere\VarDump\Formats\VarDumpPlainFormat;
@@ -23,7 +24,6 @@ use Chevere\VarDump\Outputs\VarDumpPlainOutput;
 use Chevere\VarDump\VarOutput;
 use function Chevere\Writer\streamTemp;
 use Chevere\Writer\StreamWriter;
-use Chevere\Tests\VarDump\Traits\DebugBacktraceTrait;
 use PHPUnit\Framework\TestCase;
 
 final class VarOutputTest extends TestCase

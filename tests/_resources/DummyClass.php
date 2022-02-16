@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Chevere\Tests\VarDump\_resources;
+namespace Chevere\Tests\_resources;
 
 use Chevere\DataStructure\Map;
 use stdClass;

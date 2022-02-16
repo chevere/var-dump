@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Chevere\Tests\VarDump\Traits;
+namespace Chevere\Tests\Traits;
 
 use Chevere\VarDump\Formats\VarDumpPlainFormat;
 use Chevere\VarDump\Interfaces\VarDumperInterface;

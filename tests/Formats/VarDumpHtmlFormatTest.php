@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Chevere\Tests\VarDump\Formats;
+namespace Chevere\Tests\Formats;
 
 use Chevere\VarDump\Formats\VarDumpHtmlFormat;
 use Chevere\VarDump\Interfaces\VarDumpHighlightInterface;

@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Chevere\Tests\VarDump;
+namespace Chevere\Tests;
 
 use Chevere\Throwable\Exceptions\LogicException;
 use function Chevere\VarDump\varDumpConsole;

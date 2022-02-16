@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Chevere\Tests\VarDump;
+namespace Chevere\Tests;
 
 use Chevere\Type\Interfaces\TypeInterface;
 use Chevere\VarDump\Processors\VarDumpArrayProcessor;

@@ -84,11 +84,11 @@ namespace {
     use function Chevere\VarDump\getVarDump;
     use function Chevere\VarDump\getVarDumpWriters;
 
-    if (!function_exists('xd')) {
+    if (!function_exists('vd')) {
         /**
          * Dumps information about one or more variables to the registered output writer stream
          */
-        function xd(...$vars): void
+        function vd(...$vars): void
         {
             getVarDump()
                 ->withShift(1)
@@ -96,12 +96,12 @@ namespace {
                 ->process(getVarDumpWriters()->output());
         }
     }
-    if (!function_exists('xdd')) {
+    if (!function_exists('vdd')) {
         /**
          * Dumps information about one or more variables to the registered output writer stream and die()
          * @codeCoverageIgnore
          */
-        function xdd(...$vars): void
+        function vdd(...$vars): void
         {
             getVarDump()
                 ->withShift(1)
