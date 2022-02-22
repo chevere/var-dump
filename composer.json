@@ -12,11 +12,11 @@
         }
     ],
     "require": {
-        "chevere/chevere": "^0.4 || ^0.5"
+        "chevere/chevere": "~0.4"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
-        "symplify/easy-coding-standard": "^9.4"
+        "symplify/easy-coding-standard": "^10.1"
     },
     "autoload": {
         "files": [
