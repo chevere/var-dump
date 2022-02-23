@@ -55,7 +55,7 @@ namespace Chevere\VarDump {
             );
     }
 
-    function getVarDump(): VarDumpInterface
+    function varDump(): VarDumpInterface
     {
         try {
             return VarDumpInstance::get();
@@ -81,8 +81,8 @@ namespace Chevere\VarDump {
 }
 
 namespace {
-    use function Chevere\VarDump\getVarDump;
     use function Chevere\VarDump\getVarDumpWriters;
+    use function Chevere\VarDump\varDump;
 
     if (!function_exists('vd')) {
         /**
@@ -90,7 +90,7 @@ namespace {
          */
         function vd(...$vars): void
         {
-            getVarDump()
+            varDump()
                 ->withShift(1)
                 ->withVars(...$vars)
                 ->process(getVarDumpWriters()->output());
@@ -103,7 +103,7 @@ namespace {
          */
         function vdd(...$vars): void
         {
-            getVarDump()
+            varDump()
                 ->withShift(1)
                 ->withVars(...$vars)
                 ->process(getVarDumpWriters()->output());
