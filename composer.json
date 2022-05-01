@@ -1,6 +1,11 @@
 {
     "name": "chevere/var-dump",
-    "description": "A chevere var-dump component.",
+    "description": "Multi-purpose var_dump alternative",
+    "keywords": [
+        "chevere",
+        "var_dump",
+        "dd"
+    ],
     "homepage": "https://chevere.org",
     "type": "library",
     "license": "Apache-2.0",
@@ -12,10 +17,10 @@
         }
     ],
     "require": {
-        "chevere/chevere": "~0.4"
+        "chevere/chevere": "^0.7"
     },
     "require-dev": {
-        "phpstan/phpstan": "^1.5",
+        "phpstan/phpstan": "^1.6",
         "phpunit/phpunit": "^9.5",
         "symplify/easy-coding-standard": "^10.2"
     },
