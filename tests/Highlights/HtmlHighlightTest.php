@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Chevere\Tests\Highlights;
 
 use Chevere\Throwable\Exceptions\OutOfRangeException;
-use Chevere\VarDump\Highlights\VarDumpHtmlHighlight;
-use Chevere\VarDump\Interfaces\VarDumpHighlightInterface;
+use Chevere\VarDump\Highlights\HtmlHighlight;
+use Chevere\VarDump\Interfaces\HighlightInterface;
 use PHPUnit\Framework\TestCase;
 
 final class HtmlHighlightTest extends TestCase
@@ -23,14 +23,14 @@ final class HtmlHighlightTest extends TestCase
     public function testInvalidArgumentConstruct(): void
     {
         $this->expectException(OutOfRangeException::class);
-        new VarDumpHtmlHighlight('invalid-argument');
+        new HtmlHighlight('invalid-argument');
     }
 
     public function testConstruct(): void
     {
         $dump = 'string';
-        foreach (VarDumpHighlightInterface::KEYS as $key) {
-            $wrapper = new VarDumpHtmlHighlight($key);
+        foreach (HighlightInterface::KEYS as $key) {
+            $wrapper = new HtmlHighlight($key);
             $wrapped = $wrapper->getHighlight($dump);
             $this->assertTrue(strlen($wrapped) > strlen($dump));
         }

@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace Chevere\VarDump;
 
 use Chevere\Type\Interfaces\TypeInterface;
+use Chevere\VarDump\Interfaces\FormatInterface;
 use Chevere\VarDump\Interfaces\VarDumpableInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
-use Chevere\VarDump\Interfaces\VarDumpFormatInterface;
 use Chevere\Writer\Interfaces\WriterInterface;
 use Ds\Set;
 
@@ -32,7 +32,7 @@ final class VarDumper implements VarDumperInterface
 
     public function __construct(
         private WriterInterface $writer,
-        private VarDumpFormatInterface $format,
+        private FormatInterface $format,
         private VarDumpableInterface $dumpable
     ) {
         $this->known = new Set();
@@ -44,7 +44,7 @@ final class VarDumper implements VarDumperInterface
         return $this->writer;
     }
 
-    public function format(): VarDumpFormatInterface
+    public function format(): FormatInterface
     {
         return $this->format;
     }

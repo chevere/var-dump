@@ -15,12 +15,12 @@ namespace Chevere\Tests;
 
 use Chevere\Str\Str;
 use Chevere\Tests\Traits\DebugBacktraceTrait;
-use Chevere\VarDump\Formats\VarDumpConsoleFormat;
-use Chevere\VarDump\Formats\VarDumpHtmlFormat;
-use Chevere\VarDump\Formats\VarDumpPlainFormat;
-use Chevere\VarDump\Outputs\VarDumpConsoleOutput;
-use Chevere\VarDump\Outputs\VarDumpHtmlOutput;
-use Chevere\VarDump\Outputs\VarDumpPlainOutput;
+use Chevere\VarDump\Formats\ConsoleFormat;
+use Chevere\VarDump\Formats\HtmlFormat;
+use Chevere\VarDump\Formats\PlainFormat;
+use Chevere\VarDump\Outputs\ConsoleOutput;
+use Chevere\VarDump\Outputs\HtmlOutput;
+use Chevere\VarDump\Outputs\PlainOutput;
 use Chevere\VarDump\VarOutput;
 use function Chevere\Writer\streamTemp;
 use Chevere\Writer\StreamWriter;
@@ -37,10 +37,10 @@ final class VarOutputTest extends TestCase
         $varOutput = new VarOutput(
             writer: $writer,
             trace: $trace,
-            format: new VarDumpPlainFormat()
+            format: new PlainFormat()
         );
         $varOutput->process(
-            new VarDumpPlainOutput(),
+            new PlainOutput(),
             name: null,
             id: 123
         );
@@ -57,9 +57,9 @@ final class VarOutputTest extends TestCase
         $varOutput = new VarOutput(
             writer: $writer,
             trace: $trace,
-            format: new VarDumpConsoleFormat(),
+            format: new ConsoleFormat(),
         );
-        $varOutput->process(new VarDumpConsoleOutput(), name: null);
+        $varOutput->process(new ConsoleOutput(), name: null);
         $parsed = $this->getParsed($trace, 'output-console-color');
         $string = $writer->__toString();
         $parsed = (new Str($parsed))->withStripANSIColors()->__toString();
@@ -74,9 +74,9 @@ final class VarOutputTest extends TestCase
         $varOutput = new VarOutput(
             writer: $writer,
             trace: $trace,
-            format: new VarDumpHtmlFormat(),
+            format: new HtmlFormat(),
         );
-        $varOutput->process(new VarDumpHtmlOutput(), name: null);
+        $varOutput->process(new HtmlOutput(), name: null);
         $parsed = $this->getParsed($trace, 'output-html');
         $this->assertSame($parsed, $writer->__toString());
     }

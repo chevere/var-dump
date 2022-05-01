@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Chevere\Tests;
 
-use Chevere\VarDump\Formats\VarDumpPlainFormat;
+use Chevere\VarDump\Formats\PlainFormat;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use Chevere\VarDump\VarDumpable;
 use Chevere\VarDump\VarDumper;
@@ -32,7 +32,7 @@ final class VarDumperTest extends TestCase
         $defaultDepth = 0;
         $defaultIndentSting = '';
         $writer = new StreamWriter(streamTemp(''));
-        $format = new VarDumpPlainFormat();
+        $format = new PlainFormat();
         $dumpable = new VarDumpable($var);
         $varDumper = new VarDumper(
             writer: $writer,

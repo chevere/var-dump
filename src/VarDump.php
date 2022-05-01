@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump;
 
-use Chevere\VarDump\Interfaces\VarDumpFormatInterface;
+use Chevere\VarDump\Interfaces\FormatInterface;
+use Chevere\VarDump\Interfaces\OutputInterface;
 use Chevere\VarDump\Interfaces\VarDumpInterface;
-use Chevere\VarDump\Interfaces\VarDumpOutputInterface;
 use function Chevere\VarSupport\deepCopy;
 use Chevere\Writer\Interfaces\WriterInterface;
 
@@ -28,8 +28,8 @@ final class VarDump implements VarDumpInterface
     private array $debugBacktrace = [];
 
     public function __construct(
-        private VarDumpFormatInterface $format,
-        private VarDumpOutputInterface $output
+        private FormatInterface $format,
+        private OutputInterface $output
     ) {
     }
 

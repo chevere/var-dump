@@ -16,9 +16,9 @@ namespace Chevere\Tests\Highlights;
 use Chevere\Str\Str;
 use Chevere\Throwable\Exceptions\OutOfRangeException;
 use Chevere\Type\Interfaces\TypeInterface;
-use Chevere\VarDump\Highlights\VarDumpConsoleHighlight;
+use Chevere\VarDump\Highlights\ConsoleHighlight;
+use Chevere\VarDump\Interfaces\HighlightInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
-use Chevere\VarDump\Interfaces\VarDumpHighlightInterface;
 use Colors\Color;
 use PHPUnit\Framework\TestCase;
 
@@ -27,7 +27,7 @@ final class ConsoleHighlightTest extends TestCase
     public function testInvalidArgumentConstruct(): void
     {
         $this->expectException(OutOfRangeException::class);
-        new VarDumpConsoleHighlight('invalid-argument');
+        new ConsoleHighlight('invalid-argument');
     }
 
     public function testConstruct(): void
@@ -52,7 +52,7 @@ final class ConsoleHighlightTest extends TestCase
             VarDumperInterface::VARIABLE => '%c0%m' . $dump,
             VarDumperInterface::EMPHASIS => '%c1%m' . $open . '%c0%m' . $dump . $close,
         ];
-        $palette = VarDumpConsoleHighlight::palette();
+        $palette = ConsoleHighlight::palette();
         foreach ($expect as $k => &$v) {
             $paletteColor = $palette[$k];
             if (!is_array($paletteColor)) {
@@ -64,8 +64,8 @@ final class ConsoleHighlightTest extends TestCase
             $v = $open . $v . $close;
         }
         $color = new Color();
-        foreach (VarDumpHighlightInterface::KEYS as $key) {
-            $highlight = new VarDumpConsoleHighlight($key);
+        foreach (HighlightInterface::KEYS as $key) {
+            $highlight = new ConsoleHighlight($key);
             $string = $highlight->getHighlight($dump);
             $expected = $expect[$key];
             if ($color->isSupported() === false) {

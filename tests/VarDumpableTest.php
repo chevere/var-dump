@@ -14,14 +14,14 @@ declare(strict_types=1);
 namespace Chevere\Tests;
 
 use Chevere\Type\Interfaces\TypeInterface;
-use Chevere\VarDump\Processors\VarDumpArrayProcessor;
-use Chevere\VarDump\Processors\VarDumpBooleanProcessor;
-use Chevere\VarDump\Processors\VarDumpFloatProcessor;
-use Chevere\VarDump\Processors\VarDumpIntegerProcessor;
-use Chevere\VarDump\Processors\VarDumpNullProcessor;
-use Chevere\VarDump\Processors\VarDumpObjectProcessor;
-use Chevere\VarDump\Processors\VarDumpResourceProcessor;
-use Chevere\VarDump\Processors\VarDumpStringProcessor;
+use Chevere\VarDump\Processors\ArrayProcessor;
+use Chevere\VarDump\Processors\BooleanProcessor;
+use Chevere\VarDump\Processors\FloatProcessor;
+use Chevere\VarDump\Processors\IntegerProcessor;
+use Chevere\VarDump\Processors\NullProcessor;
+use Chevere\VarDump\Processors\ObjectProcessor;
+use Chevere\VarDump\Processors\ResourceProcessor;
+use Chevere\VarDump\Processors\StringProcessor;
 use Chevere\VarDump\VarDumpable;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -32,30 +32,30 @@ final class VarDumpableTest extends TestCase
     {
         $variables = [
             TypeInterface::ARRAY => [
-                [], VarDumpArrayProcessor::class,
+                [], ArrayProcessor::class,
             ],
             TypeInterface::BOOLEAN => [
-                true, VarDumpBooleanProcessor::class,
+                true, BooleanProcessor::class,
             ],
             TypeInterface::FLOAT => [
-                1.1, VarDumpFloatProcessor::class,
+                1.1, FloatProcessor::class,
             ],
             TypeInterface::INTEGER => [
-                1, VarDumpIntegerProcessor::class,
+                1, IntegerProcessor::class,
             ],
             TypeInterface::NULL => [
-                null, VarDumpNullProcessor::class,
+                null, NullProcessor::class,
             ],
             TypeInterface::OBJECT => [
-                new stdClass(), VarDumpObjectProcessor::class,
+                new stdClass(), ObjectProcessor::class,
             ],
             TypeInterface::RESOURCE => [
                 fopen(__FILE__, 'r'),
-                VarDumpResourceProcessor::class,
+                ResourceProcessor::class,
             ],
             TypeInterface::STRING => [
                 '',
-                VarDumpStringProcessor::class,
+                StringProcessor::class,
             ],
         ];
         foreach ($variables as $type => $var) {

@@ -15,13 +15,13 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump {
     use Chevere\Throwable\Exceptions\LogicException;
-    use Chevere\VarDump\Formats\VarDumpConsoleFormat;
-    use Chevere\VarDump\Formats\VarDumpHtmlFormat;
-    use Chevere\VarDump\Formats\VarDumpPlainFormat;
+    use Chevere\VarDump\Formats\ConsoleFormat;
+    use Chevere\VarDump\Formats\HtmlFormat;
+    use Chevere\VarDump\Formats\PlainFormat;
     use Chevere\VarDump\Interfaces\VarDumpInterface;
-    use Chevere\VarDump\Outputs\VarDumpConsoleOutput;
-    use Chevere\VarDump\Outputs\VarDumpHtmlOutput;
-    use Chevere\VarDump\Outputs\VarDumpPlainOutput;
+    use Chevere\VarDump\Outputs\ConsoleOutput;
+    use Chevere\VarDump\Outputs\HtmlOutput;
+    use Chevere\VarDump\Outputs\PlainOutput;
     use Chevere\Writer\Interfaces\WritersInterface;
     use function Chevere\Writer\streamFor;
     use Chevere\Writer\StreamWriter;
@@ -32,8 +32,8 @@ namespace Chevere\VarDump {
     {
         return
                 new VarDump(
-                    new VarDumpPlainFormat(),
-                    new VarDumpPlainOutput()
+                    new PlainFormat(),
+                    new PlainOutput()
                 );
     }
 
@@ -41,8 +41,8 @@ namespace Chevere\VarDump {
     {
         return
             new VarDump(
-                new VarDumpConsoleFormat(),
-                new VarDumpConsoleOutput()
+                new ConsoleFormat(),
+                new ConsoleOutput()
             );
     }
 
@@ -50,8 +50,8 @@ namespace Chevere\VarDump {
     {
         return
             new VarDump(
-                new VarDumpHtmlFormat(),
-                new VarDumpHtmlOutput()
+                new HtmlFormat(),
+                new HtmlOutput()
             );
     }
 

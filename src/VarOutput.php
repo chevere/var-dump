@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump;
 
-use Chevere\VarDump\Interfaces\VarDumpFormatInterface;
-use Chevere\VarDump\Interfaces\VarDumpOutputInterface;
+use Chevere\VarDump\Interfaces\FormatInterface;
+use Chevere\VarDump\Interfaces\OutputInterface;
 use Chevere\VarDump\Interfaces\VarOutputInterface;
 use Chevere\Writer\Interfaces\WriterInterface;
 
@@ -23,11 +23,11 @@ final class VarOutput implements VarOutputInterface
     public function __construct(
         private WriterInterface $writer,
         private array $trace,
-        private VarDumpFormatInterface $format,
+        private FormatInterface $format,
     ) {
     }
 
-    public function process(VarDumpOutputInterface $output, ...$vars): void
+    public function process(OutputInterface $output, ...$vars): void
     {
         $output->setUp($this->writer, $this->trace);
         $output->prepare();
