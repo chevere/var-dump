@@ -1,0 +1,43 @@
+
+[31m[1mChevere\VarDump\VarDump->process()[0m[0m
+[34m------------------------------------------------------------[0m
+[38;5;111m/var/www/html/demo.php:45[0m
+
+Arg:0 [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#2[0m
+ [38;5;170mprivate[0m [38;5;39m$vars[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=0)[0m[0m
+ [38;5;170mprivate[0m [38;5;39m$shift[0m [38;5;208minteger[0m 0 [38;5;3m[38;5;242m(length=1)[0m[0m
+ [38;5;170mprivate[0m [38;5;39m$debugBacktrace[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=0)[0m[0m
+ [38;5;170mprivate[0m [38;5;39m$format[0m [38;5;221mChevere\VarDump\Formats\ConsoleFormat[0m[38;5;242m#4[0m
+ [38;5;170mprivate[0m [38;5;39m$output[0m [38;5;221mChevere\VarDump\Outputs\ConsoleOutput[0m[38;5;242m#5[0m
+  [38;5;170mprivate[0m [38;5;39m$outputHr[0m [38;5;208mstring[0m [34m------------------------------------------------------------[0m [38;5;3m[38;5;242m(length=69)[0m[0m
+  [38;5;170mprivate[0m [38;5;39m$writer[0m [38;5;221mChevere\Writer\StreamWriter[0m[38;5;242m#12[0m
+   [38;5;170mprivate[0m [38;5;39m$stream[0m [38;5;221mLaminas\Diactoros\Stream[0m[38;5;242m#13[0m
+    [38;5;170mprotected[0m [38;5;39m$resource[0m [38;5;203mResource id #147[0m [38;5;3m[38;5;242m(type=stream)[0m[0m
+    [38;5;170mprotected[0m [38;5;39m$stream[0m [38;5;208mnull[0m
+  [38;5;170mprivate[0m [38;5;39m$trace[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=1)[0m[0m
+  0 [38;5;242m=>[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=7)[0m[0m
+   file [38;5;242m=>[0m [38;5;208mstring[0m /var/www/html/demo.php [38;5;3m[38;5;242m(length=49)[0m[0m
+   line [38;5;242m=>[0m [38;5;208minteger[0m 45 [38;5;3m[38;5;242m(length=2)[0m[0m
+   function [38;5;242m=>[0m [38;5;208mstring[0m process [38;5;3m[38;5;242m(length=7)[0m[0m
+   class [38;5;242m=>[0m [38;5;208mstring[0m Chevere\VarDump\VarDump [38;5;3m[38;5;242m(length=23)[0m[0m
+   object [38;5;242m=>[0m [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#14[0m
+     [38;5;170mprivate[0m [38;5;39m$vars[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=1)[0m[0m
+     0 [38;5;242m=>[0m [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#2[0m [38;5;242m*circular reference* #2[0m
+     [38;5;170mprivate[0m [38;5;39m$shift[0m [38;5;208minteger[0m 0 [38;5;3m[38;5;242m(length=1)[0m[0m
+     [38;5;170mprivate[0m [38;5;39m$debugBacktrace[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=1)[0m[0m
+     0 [38;5;242m=>[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=7)[0m[0m
+      file [38;5;242m=>[0m [38;5;208mstring[0m /var/www/html/demo.php [38;5;3m[38;5;242m(length=49)[0m[0m
+      line [38;5;242m=>[0m [38;5;208minteger[0m 45 [38;5;3m[38;5;242m(length=2)[0m[0m
+      function [38;5;242m=>[0m [38;5;208mstring[0m process [38;5;3m[38;5;242m(length=7)[0m[0m
+      class [38;5;242m=>[0m [38;5;208mstring[0m Chevere\VarDump\VarDump [38;5;3m[38;5;242m(length=23)[0m[0m
+      object [38;5;242m=>[0m [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#14[0m [38;5;242m*circular reference* #14[0m
+      type [38;5;242m=>[0m [38;5;208mstring[0m -> [38;5;3m[38;5;242m(length=2)[0m[0m
+      args [38;5;242m=>[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=1)[0m[0m
+       0 [38;5;242m=>[0m [38;5;221mChevere\Writer\StreamWriter[0m[38;5;242m#12[0m [38;5;242m*circular reference* #12[0m
+     [38;5;170mprivate[0m [38;5;39m$format[0m [38;5;221mChevere\VarDump\Formats\ConsoleFormat[0m[38;5;242m#4[0m [38;5;242m*circular reference* #4[0m
+     [38;5;170mprivate[0m [38;5;39m$output[0m [38;5;221mChevere\VarDump\Outputs\ConsoleOutput[0m[38;5;242m#5[0m [38;5;242m*circular reference* #5[0m
+   type [38;5;242m=>[0m [38;5;208mstring[0m -> [38;5;3m[38;5;242m(length=2)[0m[0m
+   args [38;5;242m=>[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=1)[0m[0m
+    0 [38;5;242m=>[0m [38;5;221mChevere\Writer\StreamWriter[0m[38;5;242m#12[0m [38;5;242m*circular reference* #12[0m
+  [38;5;170mprivate[0m [38;5;39m$caller[0m [38;5;208mstring[0m Chevere\VarDump\VarDump->process() [38;5;3m[38;5;242m(length=34)[0m[0m
+[34m------------------------------------------------------------[0m
