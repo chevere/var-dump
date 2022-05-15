@@ -47,6 +47,7 @@ foreach ([
     if ($filename == 'console.log') {
         echo $dumping;
         echo "\n";
+        // dump($varDump);
     }
     $file = fileForPath(__DIR__ . '/output/' . $filename);
     $file->createIfNotExists();

@@ -19,13 +19,13 @@ use Chevere\VarDump\Interfaces\VarDumperInterface;
 
 final class HtmlFormat implements FormatInterface
 {
-    public const HTML_INLINE_PREFIX = ' <span style="border-left: 1px solid rgba(108 108 108 / 35%);"></span>  ';
+    public const HTML_INLINE_PREFIX = '<span style="border-left: 1px solid rgba(108 108 108 / 35%);"></span>';
 
     public const HTML_EMPHASIS = '<em>%s</em>';
 
     public function getIndent(int $indent): string
     {
-        return str_repeat(self::HTML_INLINE_PREFIX, $indent);
+        return str_repeat(' ' . self::HTML_INLINE_PREFIX . ' ', $indent);
     }
 
     public function getEmphasis(string $string): string

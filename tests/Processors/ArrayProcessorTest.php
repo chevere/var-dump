@@ -32,14 +32,14 @@ final class ArrayProcessorTest extends TestCase
     public function testConstructEmpty(): void
     {
         $var = [];
-        $expectInfo = 'size=' . count($var);
+        $expectInfo = 'size=0';
         $varProcess = $this->getVarDumper($var);
         $processor = new ArrayProcessor($varProcess);
         $this->assertSame(1, $processor->depth());
         $this->assertSame($expectInfo, $processor->info());
         $processor->write();
         $this->assertSame(
-            "array (${expectInfo})",
+            "array [] (${expectInfo})",
             $varProcess->writer()->__toString()
         );
     }

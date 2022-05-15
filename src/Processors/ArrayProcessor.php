@@ -16,13 +16,13 @@ namespace Chevere\VarDump\Processors;
 use Chevere\Type\Interfaces\TypeInterface;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
+use Chevere\VarDump\Processors\Traits\HandleDepthTrait;
 use Chevere\VarDump\Processors\Traits\ProcessorTrait;
-use Chevere\VarDump\VarDumpable;
-use Chevere\VarDump\VarDumper;
 
 final class ArrayProcessor implements ProcessorInterface
 {
     use ProcessorTrait;
+    use HandleDepthTrait;
 
     private array $var;
 
@@ -48,6 +48,7 @@ final class ArrayProcessor implements ProcessorInterface
         $this->varDumper->writer()->write(
             $this->typeHighlighted()
             . ' '
+            . ($this->count === 0 ? '[] ' : '')
             . $this->highlightParentheses($this->info)
         );
         if ($this->isCircularRef($this->var)) {
@@ -89,32 +90,14 @@ final class ArrayProcessor implements ProcessorInterface
     {
         $operator = $this->highlightOperator('=>');
         foreach ($this->var as $key => $var) {
+            $indentString = $this->varDumper->indentString();
+            $format = $this->varDumper->format()
+                ->getFilterEncodedChars((string) $key);
             $this->varDumper->writer()->write(
-                implode(' ', [
-                    "\n" . $this->varDumper->indentString() .
-                    $this->varDumper->format()->getFilterEncodedChars((string) $key),
-                    $operator,
-                    '',
-                ])
+                "\n$indentString$format $operator "
             );
+
             $this->handleDepth($var);
         }
-    }
-
-    private function handleDepth($var): void
-    {
-        $deep = $this->depth;
-        if (is_scalar($var)) {
-            --$deep;
-        }
-        (new VarDumper(
-            $this->varDumper->writer(),
-            $this->varDumper->format(),
-            new VarDumpable($var),
-        ))
-            ->withDepth($deep)
-            ->withIndent($this->varDumper->indent())
-            ->withKnownObjects($this->varDumper->known())
-            ->withProcess();
     }
 }

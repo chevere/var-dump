@@ -17,10 +17,8 @@ use Chevere\Str\StrCondition;
 use Chevere\Type\Interfaces\TypeInterface;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
+use Chevere\VarDump\Processors\Traits\HandleDepthTrait;
 use Chevere\VarDump\Processors\Traits\ProcessorTrait;
-use Chevere\VarDump\VarDumpable;
-use Chevere\VarDump\VarDumper;
-use Ds\Collection;
 use Ds\Set;
 use Reflection;
 use ReflectionObject;
@@ -29,6 +27,7 @@ use Throwable;
 final class ObjectProcessor implements ProcessorInterface
 {
     use ProcessorTrait;
+    use HandleDepthTrait;
 
     private object $var;
 
@@ -85,30 +84,14 @@ final class ObjectProcessor implements ProcessorInterface
         }
         if ($this->depth > self::MAX_DEPTH) {
             $this->varDumper->writer()->write(
-                ' ' .
-                $this->highlightOperator($this->maxDepthReached())
+                ' '
+                . $this->highlightOperator($this->maxDepthReached())
             );
 
             return;
         }
         $this->known[] = $this->objectId;
         $this->reflectionObject = new ReflectionObject($this->var);
-        if ($this->reflectionObject->implementsInterface(Collection::class)) {
-            $this->varDumper->writer()->write(' ');
-            (new VarDumper(
-                $this->varDumper->writer(),
-                $this->varDumper->format(),
-                new VarDumpable($this->var->toArray())
-            ))
-                ->withDepth($this->depth)
-                ->withIndent(
-                    $this->varDumper->indent() > 1
-                        ? $this->varDumper->indent() - 1
-                        : $this->varDumper->indent()
-                )
-                ->withKnownObjects($this->known)
-                ->withProcess();
-        }
         $this->setProperties();
     }
 
@@ -144,34 +127,20 @@ final class ObjectProcessor implements ProcessorInterface
 
     private function processProperty(string $name, string $modifiers, $var): void
     {
-        $this->varDumper->writer()->write(
-            implode(' ', [
-                "\n" . $this->varDumper->indentString(),
-                $this->varDumper->format()->getHighlight(
-                    VarDumperInterface::MODIFIERS,
-                    $modifiers
-                ),
-                $this->varDumper->format()
-                    ->getHighlight(
-                        VarDumperInterface::VARIABLE,
-                        '$' . $this->varDumper->format()->getFilterEncodedChars($name)
-                    ),
-                '',
-            ])
+        $indentString = $this->varDumper->indentString();
+        $modifiers = $this->varDumper->format()->getHighlight(
+            VarDumperInterface::MODIFIERS,
+            $modifiers
         );
-        (new VarDumper(
-            $this->varDumper->writer(),
-            $this->varDumper->format(),
-            new VarDumpable($var)
-        ))
-            ->withDepth(
-                is_scalar($var)
-                ? $this->depth - 1
-                : $this->depth
-            )
-            ->withIndent($this->varDumper->indent())
-            ->withKnownObjects($this->known)
-            ->withProcess();
+        $variable = $this->varDumper->format()
+            ->getHighlight(
+                VarDumperInterface::VARIABLE,
+                '$' . $this->varDumper->format()->getFilterEncodedChars($name)
+            );
+        $this->varDumper->writer()->write(
+            "\n$indentString $modifiers $variable "
+        );
+        $this->handleDepth($var, is_array($var) ? 1 : 0);
     }
 
     private function handleNormalizeClassName(): void

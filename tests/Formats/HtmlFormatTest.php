@@ -21,11 +21,10 @@ final class HtmlFormatTest extends TestCase
 {
     public function testIndent(): void
     {
-        $baseIndent = strip_tags(HtmlFormat::HTML_INLINE_PREFIX);
         $indent = 5;
         $indented = (new HtmlFormat())->getIndent($indent);
         $stripped = strip_tags($indented);
-        $expected = str_repeat($baseIndent, $indent);
+        $expected = str_repeat('  ', $indent);
         $this->assertSame($expected, $stripped);
     }
 
