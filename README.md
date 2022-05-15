@@ -10,7 +10,7 @@
 
 ## Documentation
 
-Documentation is available at [chevere.org](https://chevere.org/).
+Documentation is available at [chevere.org](https://chevere.org/packages/var-dump).
 
 ## License
 
