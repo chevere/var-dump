@@ -132,11 +132,10 @@ final class ObjectProcessor implements ProcessorInterface
             VarDumperInterface::MODIFIERS,
             $modifiers
         );
-        $variable = $this->varDumper->format()
-            ->getHighlight(
-                VarDumperInterface::VARIABLE,
-                '$' . $this->varDumper->format()->getFilterEncodedChars($name)
-            );
+        $variable = $this->varDumper->format()->getHighlight(
+            VarDumperInterface::VARIABLE,
+            $this->varDumper->format()->getFilterEncodedChars($name)
+        );
         $this->varDumper->writer()->write(
             "\n$indentString $modifiers $variable "
         );

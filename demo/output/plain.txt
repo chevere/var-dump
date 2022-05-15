@@ -4,27 +4,27 @@ Chevere\VarDump\VarDump->process()
 /var/www/html/demo.php:45
 
 Arg:0 Chevere\VarDump\VarDump#6
- private $vars array [] (size=0)
- private $shift integer 0 (length=1)
- private $debugBacktrace array [] (size=0)
- private $format Chevere\VarDump\Formats\PlainFormat#7
- private $output Chevere\VarDump\Outputs\PlainOutput#8
-  private $outputHr string ------------------------------------------------------------ (length=60)
-  private $writer Chevere\Writer\StreamWriter#17
-   private $stream Laminas\Diactoros\Stream#18
-    protected $resource Resource id #192 (type=stream)
-    protected $stream null
-  private $trace array (size=1)
+ private vars array [] (size=0)
+ private shift integer 0 (length=1)
+ private debugBacktrace array [] (size=0)
+ private format Chevere\VarDump\Formats\PlainFormat#7
+ private output Chevere\VarDump\Outputs\PlainOutput#8
+  private outputHr string ------------------------------------------------------------ (length=60)
+  private writer Chevere\Writer\StreamWriter#17
+   private stream Laminas\Diactoros\Stream#18
+    protected resource Resource id #192 (type=stream)
+    protected stream null
+  private trace array (size=1)
    0 => array (size=7)
     file => string /var/www/html/demo.php (length=48)
     line => integer 45 (length=2)
     function => string process (length=7)
     class => string Chevere\VarDump\VarDump (length=23)
     object => Chevere\VarDump\VarDump#19
-      private $vars array (size=1)
+      private vars array (size=1)
        0 => Chevere\VarDump\VarDump#6 *circular reference* #6
-      private $shift integer 0 (length=1)
-      private $debugBacktrace array (size=1)
+      private shift integer 0 (length=1)
+      private debugBacktrace array (size=1)
        0 => array (size=7)
         file => string /var/www/html/demo.php (length=48)
         line => integer 45 (length=2)
@@ -34,10 +34,10 @@ Arg:0 Chevere\VarDump\VarDump#6
         type => string -> (length=2)
         args => array (size=1)
          0 => Chevere\Writer\StreamWriter#17 *circular reference* #17
-      private $format Chevere\VarDump\Formats\PlainFormat#7 *circular reference* #7
-      private $output Chevere\VarDump\Outputs\PlainOutput#8 *circular reference* #8
+      private format Chevere\VarDump\Formats\PlainFormat#7 *circular reference* #7
+      private output Chevere\VarDump\Outputs\PlainOutput#8 *circular reference* #8
     type => string -> (length=2)
     args => array (size=1)
      0 => Chevere\Writer\StreamWriter#17 *circular reference* #17
-  private $caller string Chevere\VarDump\VarDump->process() (length=34)
+  private caller string Chevere\VarDump\VarDump->process() (length=34)
 ------------------------------------------------------------
