@@ -75,7 +75,7 @@ final class ObjectProcessor implements ProcessorInterface
         if ($this->known->contains($this->objectId)) {
             $this->varDumper->writer()->write(
                 ' '
-                . $this->highlightOperator(
+                . $this->highlightParentheses(
                     $this->circularReference() . ' #' . $this->objectId
                 )
             );
@@ -85,7 +85,7 @@ final class ObjectProcessor implements ProcessorInterface
         if ($this->depth > self::MAX_DEPTH) {
             $this->varDumper->writer()->write(
                 ' '
-                . $this->highlightOperator($this->maxDepthReached())
+                . $this->highlightParentheses($this->maxDepthReached())
             );
 
             return;

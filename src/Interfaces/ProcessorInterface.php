@@ -58,12 +58,12 @@ interface ProcessorInterface
     public function highlightParentheses(string $string): string;
 
     /**
-     * Provides the `*circular reference*` flag.
+     * Provides the `circular reference` flag.
      */
     public function circularReference(): string;
 
     /**
-     * Provides the `*max depth reached*` flag.
+     * Provides the `max depth reached` flag.
      */
     public function maxDepthReached(): string;
 

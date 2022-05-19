@@ -46,8 +46,6 @@ foreach ([
     $dumping = stripLocal($writer->__toString());
     if ($filename == 'console.log') {
         echo $dumping;
-        echo "\n";
-        // var_dump($varDump);
     }
     $file = fileForPath(__DIR__ . '/output/' . $filename);
     $file->createIfNotExists();

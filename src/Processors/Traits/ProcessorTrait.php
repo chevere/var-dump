@@ -60,12 +60,12 @@ trait ProcessorTrait
 
     public function circularReference(): string
     {
-        return '*circular reference*';
+        return 'circular reference';
     }
 
     public function maxDepthReached(): string
     {
-        return '*max depth reached*';
+        return 'max depth reached';
     }
 
     private function assertType(): void

@@ -123,7 +123,7 @@ final class ObjectProcessorTest extends TestCase
          public public null
          private private null
          private protected null
-         private circularReference $className#$id *circular reference* #$id
+         private circularReference $className#$id (circular reference #$id)
          private deep null
         EOT;
         $this->assertSame(
@@ -165,7 +165,7 @@ final class ObjectProcessorTest extends TestCase
               public deep class@anonymous#$objectIds[6]
                public deep class@anonymous#$objectIds[7]
                 public deep class@anonymous#$objectIds[8]
-                 public deep class@anonymous#$objectIds[9] *max depth reached*
+                 public deep class@anonymous#$objectIds[9] (max depth reached)
         EOT;
         $this->assertSame(
             $varDumper->writer()->__toString(),

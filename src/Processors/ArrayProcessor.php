@@ -54,7 +54,7 @@ final class ArrayProcessor implements ProcessorInterface
         if ($this->isCircularRef($this->var)) {
             $this->varDumper->writer()->write(
                 ' '
-                . $this->highlightOperator($this->circularReference())
+                . $this->highlightParentheses($this->circularReference())
             );
 
             return;
@@ -63,7 +63,7 @@ final class ArrayProcessor implements ProcessorInterface
             if ($this->count > 0) {
                 $this->varDumper->writer()->write(
                     ' '
-                    . $this->highlightOperator($this->maxDepthReached())
+                    . $this->highlightParentheses($this->maxDepthReached())
                 );
             }
 
