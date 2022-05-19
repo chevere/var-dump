@@ -16,8 +16,8 @@ return '
 ------------------------------------------------------------
 %fileLine%
 
-Arg:name null
+Arg•name null
 
-Arg:id integer 123 (length=3)
+Arg•id integer 123 (length=3)
 ------------------------------------------------------------
 ';

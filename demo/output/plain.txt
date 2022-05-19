@@ -3,7 +3,7 @@ Chevere\VarDump\VarDump->process()
 ------------------------------------------------------------
 /var/www/html/demo.php:45
 
-Arg:0 Chevere\VarDump\VarDump#6
+Arg•0 Chevere\VarDump\VarDump#6
  private vars array [] (size=0)
  private shift integer 0 (length=1)
  private debugBacktrace array [] (size=0)

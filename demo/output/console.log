@@ -3,7 +3,7 @@
 [34m------------------------------------------------------------[0m
 [38;5;111m/var/www/html/demo.php:45[0m
 
-Arg:0 [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#2[0m
+Arg•0 [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#2[0m
  [38;5;170mprivate[0m [38;5;39mvars[0m [38;5;41marray[0m [] [38;5;3m[38;5;242m(size=0)[0m[0m
  [38;5;170mprivate[0m [38;5;39mshift[0m [38;5;208minteger[0m 0 [38;5;3m[38;5;242m(length=1)[0m[0m
  [38;5;170mprivate[0m [38;5;39mdebugBacktrace[0m [38;5;41marray[0m [] [38;5;3m[38;5;242m(size=0)[0m[0m
