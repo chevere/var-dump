@@ -31,8 +31,6 @@ final class ObjectProcessor implements ProcessorInterface
 
     private object $var;
 
-    private ReflectionObject $reflectionObject;
-
     private string $className;
 
     private Set $known;
@@ -91,16 +89,40 @@ final class ObjectProcessor implements ProcessorInterface
             return;
         }
         $this->known[] = $this->objectId;
-        $this->reflectionObject = new ReflectionObject($this->var);
-        $this->setProperties();
+        $this->setProperties(new ReflectionObject($this->var));
     }
 
-    private function setProperties(): void
+    private function setProperties(ReflectionObject $reflection): void
     {
         $properties = [];
-        $reflectionClass = $this->reflectionObject;
+        if ($reflection->isInternal()) {
+            $properties = $this->getPublicProperties();
+        } else {
+            $properties = $this->getExternalProperties($reflection);
+        }
+        $keys = array_keys($properties);
+        foreach ($keys as $name) {
+            $prop = $properties[$name];
+            $this->processProperty($name, $prop[0], $prop[1]);
+        }
+    }
+
+    private function getPublicProperties(): array
+    {
+        $properties = json_decode(json_encode($this->var), true) ?? [];
+        foreach ($properties as $name => $value) {
+            $properties[$name] = ['public', $value];
+        }
+
+        return $properties;
+    }
+
+    private function getExternalProperties(
+        ReflectionObject $reflection
+    ): array {
+        $properties = [];
         do {
-            foreach ($reflectionClass->getProperties() as $property) {
+            foreach ($reflection->getProperties() as $property) {
                 $property->setAccessible(true);
 
                 try {
@@ -109,7 +131,6 @@ final class ObjectProcessor implements ProcessorInterface
                     $value = null;
                 }
                 $properties[$property->getName()] = [
-                    $property->getName(),
                     implode(
                         ' ',
                         Reflection::getModifierNames($property->getModifiers())
@@ -117,29 +138,26 @@ final class ObjectProcessor implements ProcessorInterface
                     $value ?? null,
                 ];
             }
-        } while ($reflectionClass = $reflectionClass->getParentClass());
-        $keys = array_keys($properties);
-        foreach ($keys as $name) {
-            $el = $properties[$name];
-            $this->processProperty($el[0], $el[1], $el[2]);
-        }
+        } while ($reflection = $reflection->getParentClass());
+
+        return $properties;
     }
 
-    private function processProperty(string $name, string $modifiers, $var): void
+    private function processProperty(string $name, string $modifier, $value): void
     {
         $indentString = $this->varDumper->indentString();
-        $modifiers = $this->varDumper->format()->getHighlight(
+        $modifier = $this->varDumper->format()->getHighlight(
             VarDumperInterface::MODIFIERS,
-            $modifiers
+            $modifier
         );
         $variable = $this->varDumper->format()->getHighlight(
             VarDumperInterface::VARIABLE,
             $this->varDumper->format()->getFilterEncodedChars($name)
         );
         $this->varDumper->writer()->write(
-            "\n$indentString $modifiers $variable "
+            "\n$indentString $modifier $variable "
         );
-        $this->handleDepth($var, is_array($var) ? 1 : 0);
+        $this->handleDepth($value, is_array($value) ? 1 : 0);
     }
 
     private function handleNormalizeClassName(): void
