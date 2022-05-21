@@ -4,9 +4,41 @@
 
 ![Chevere](chevere.svg)
 
-[![Build](https://img.shields.io/github/workflow/status/chevere/var-dump/Test?style=flat-square)](https://github.com/chevere/var-dump/actions) ![Code size](https://img.shields.io/github/languages/code-size/chevere/var-dump?style=flat-square) [![Apache-2.0](https://img.shields.io/github/license/chevere/var-dump?style=flat-square)](LICENSE) [![Mutation testing badge](https://img.shields.io/endpoint?style=flat-square&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fchevere%2Fvar-dump%2F0.3)](https://dashboard.stryker-mutator.io/reports/github.com/chevere/var-dump/0.3)
+[![Build](https://img.shields.io/github/workflow/status/chevere/var-dump/Test?style=flat-square)](https://github.com/chevere/var-dump/actions) ![Code size](https://img.shields.io/github/languages/code-size/chevere/var-dump?style=flat-square) [![Apache-2.0](https://img.shields.io/github/license/chevere/var-dump?style=flat-square)](LICENSE) [![Mutation testing badge](https://img.shields.io/endpoint?style=flat-square&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fchevere%2Fvar-dump%2F0.4)](https://dashboard.stryker-mutator.io/reports/github.com/chevere/var-dump/0.4)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=chevere_var-dump&metric=alert_status)](https://sonarcloud.io/dashboard?id=chevere_var-dump) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=chevere_var-dump&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=chevere_var-dump) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=chevere_var-dump&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=chevere_var-dump) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=chevere_var-dump&metric=security_rating)](https://sonarcloud.io/dashboard?id=chevere_var-dump) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=chevere_var-dump&metric=coverage)](https://sonarcloud.io/dashboard?id=chevere_var-dump) [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=chevere_var-dump&metric=sqale_index)](https://sonarcloud.io/dashboard?id=chevere_var-dump) [![CodeFactor](https://www.codefactor.io/repository/github/chevere/var-dump/badge)](https://www.codefactor.io/repository/github/chevere/var-dump) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/1f8286c311934c45b96c0a6b3d33204f)](https://www.codacy.com/gh/chevere/var-dump/dashboard)
+
+![VarDump](.github/banner/var-dump-social.svg)
+
+## Demo
+
+![HTML demo](demo/demo.svg)
+
+* [HTML](https://chevere.github.io/var-dump/demo/output/html.html)
+* [Plain text](https://chevere.github.io/var-dump/demo/output/plain.txt)
+* [Console (asciinema)](https://asciinema.org/a/492994)
+
+## Quick start
+
+* Install VarDump using Composer.
+
+```sh
+composer require --dev chevere/var-dump
+```
+
+* Use `vd` to dump information about any variable. It replaces `var_dump` or `dump`.
+
+```php
+// var dump
+vd($myVar, $foo);
+```
+
+* Use `vdd` to do the same as `vd` and `die(0)`. It replaces `dd`.
+
+```php
+// var dump and die
+vdd($myVar);
+```
 
 ## Documentation
 
