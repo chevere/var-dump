@@ -12,13 +12,9 @@
 declare(strict_types=1);
 
 use function Chevere\Filesystem\fileForPath;
-use Chevere\VarDump\Formats\ConsoleFormat;
-use Chevere\VarDump\Formats\HtmlFormat;
-use Chevere\VarDump\Formats\PlainFormat;
-use Chevere\VarDump\Outputs\ConsoleOutput;
-use Chevere\VarDump\Outputs\HtmlOutput;
-use Chevere\VarDump\Outputs\PlainOutput;
-use Chevere\VarDump\VarDump;
+use function Chevere\VarDump\varDumpConsole;
+use function Chevere\VarDump\varDumpHtml;
+use function Chevere\VarDump\varDumpPlain;
 use function Chevere\Writer\streamTemp;
 use Chevere\Writer\StreamWriter;
 
@@ -32,10 +28,9 @@ function stripLocal(string $document): string
         $document
     );
 }
-
-$console = new VarDump(new ConsoleFormat(), new ConsoleOutput());
-$plain = new VarDump(new PlainFormat(), new PlainOutput());
-$html = new VarDump(new HtmlFormat(), new HtmlOutput());
+$console = varDumpConsole();
+$plain = varDumpPlain();
+$html = varDumpHtml();
 foreach ([
     'console.log' => $console,
     'plain.txt' => $plain,

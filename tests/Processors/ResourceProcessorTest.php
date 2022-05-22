@@ -31,9 +31,9 @@ final class ResourceProcessorTest extends TestCase
         $resourceString = (string) $resource;
         $expectedInfo = 'type=' . get_resource_type($resource);
         $varDumper = $this->getVarDumper($resource);
+        $this->assertProcessor(ResourceProcessor::class, $varDumper);
         $processor = new ResourceProcessor($varDumper);
         $this->assertSame($expectedInfo, $processor->info());
-        $processor->write();
         $this->assertSame(
             $resourceString . " (${expectedInfo})",
             $varDumper->writer()->__toString()

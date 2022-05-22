@@ -26,10 +26,10 @@ final class StringProcessorTest extends TestCase
     {
         foreach (['', 'string', 'cádena', 'another string', '100', 'false'] as $var) {
             $varDumper = $this->getVarDumper($var);
+            $this->assertProcessor(StringProcessor::class, $varDumper);
             $processor = new StringProcessor($varDumper);
             $expectedInfo = 'length=' . mb_strlen($var);
             $this->assertSame($expectedInfo, $processor->info(), "info:${var}");
-            $processor->write();
             $this->assertSame(
                 "string ${var} (${expectedInfo})",
                 $varDumper->writer()->__toString(),

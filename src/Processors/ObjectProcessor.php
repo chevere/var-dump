@@ -155,9 +155,9 @@ final class ObjectProcessor implements ProcessorInterface
             $this->varDumper->format()->getFilterEncodedChars($name)
         );
         $this->varDumper->writer()->write(
-            "\n$indentString $modifier $variable "
+            "\n$indentString$modifier $variable "
         );
-        $this->handleDepth($value, is_array($value) ? 1 : 0);
+        $this->handleDepth($value);
     }
 
     private function handleNormalizeClassName(): void

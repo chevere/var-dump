@@ -89,7 +89,7 @@ final class ArrayProcessor implements ProcessorInterface
     private function processMembers(): void
     {
         $operator = $this->highlightOperator('=>');
-        foreach ($this->var as $key => $var) {
+        foreach ($this->var as $key => $value) {
             $indentString = $this->varDumper->indentString();
             $format = $this->varDumper->format()
                 ->getFilterEncodedChars((string) $key);
@@ -97,7 +97,7 @@ final class ArrayProcessor implements ProcessorInterface
                 "\n$indentString$format $operator "
             );
 
-            $this->handleDepth($var);
+            $this->handleDepth($value);
         }
     }
 }

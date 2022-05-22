@@ -24,10 +24,20 @@ trait VarDumperTrait
 {
     private function getVarDumper($var): VarDumperInterface
     {
-        return new VarDumper(
-            new StreamWriter(streamTemp('')),
+        return (new VarDumper(
+            new StreamWriter(streamTemp()),
             new PlainFormat(),
             new VarDumpable($var)
+        ))->withProcess();
+    }
+
+    private function assertProcessor(
+        string $processor,
+        VarDumperInterface $varDumper
+    ): void {
+        $this->assertSame(
+            $processor,
+            $varDumper->dumpable()->processorName()
         );
     }
 }

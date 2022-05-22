@@ -18,7 +18,7 @@ use Chevere\VarDump\VarDumper;
 
 trait HandleDepthTrait
 {
-    private function handleDepth($var, $indent = 0): void
+    private function handleDepth($var): void
     {
         $deep = $this->depth;
         if (is_scalar($var)) {
@@ -30,7 +30,7 @@ trait HandleDepthTrait
             new VarDumpable($var),
         ))
             ->withDepth($deep)
-            ->withIndent($this->varDumper->indent() + $indent)
+            ->withIndent($this->varDumper->indent())
             ->withKnownObjects($this->varDumper->known())
             ->withProcess();
     }

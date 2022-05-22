@@ -28,9 +28,9 @@ final class IntegerProcessorTest extends TestCase
             $stringVar = (string) $var;
             $expectedInfo = 'length=' . strlen($stringVar);
             $varDumper = $this->getVarDumper($var);
+            $this->assertProcessor(IntegerProcessor::class, $varDumper);
             $processor = new IntegerProcessor($varDumper);
             $this->assertSame($expectedInfo, $processor->info());
-            $processor->write();
             $this->assertSame(
                 "integer ${stringVar} (${expectedInfo})",
                 $varDumper->writer()->__toString()

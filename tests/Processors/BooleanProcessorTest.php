@@ -29,9 +29,9 @@ final class BooleanProcessorTest extends TestCase
             'false' => false,
         ] as $info => $var) {
             $varDumper = $this->getVarDumper($var);
+            $this->assertProcessor(BooleanProcessor::class, $varDumper);
             $processor = new BooleanProcessor($varDumper);
             $this->assertSame($info, $processor->info(), 'info');
-            $processor->write();
             $this->assertSame(
                 "boolean ${info}",
                 $varDumper->writer()->__toString(),

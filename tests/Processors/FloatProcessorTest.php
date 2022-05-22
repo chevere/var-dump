@@ -28,9 +28,9 @@ final class FloatProcessorTest extends TestCase
             $stringVar = (string) $var;
             $expectedInfo = 'length=' . strlen($stringVar);
             $varDumper = $this->getVarDumper($var);
+            $this->assertProcessor(FloatProcessor::class, $varDumper);
             $processor = new FloatProcessor($varDumper);
             $this->assertSame($expectedInfo, $processor->info());
-            $processor->write();
             $this->assertSame(
                 "float ${stringVar} (${expectedInfo})",
                 $varDumper->writer()->__toString()

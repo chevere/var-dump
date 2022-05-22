@@ -26,9 +26,9 @@ final class NullProcessorTest extends TestCase
     {
         $var = null;
         $varDumper = $this->getVarDumper($var);
+        $this->assertProcessor(NullProcessor::class, $varDumper);
         $processor = new NullProcessor($varDumper);
         $this->assertSame('', $processor->info());
-        $processor->write();
         $this->assertSame('null', $varDumper->writer()->__toString());
     }
 

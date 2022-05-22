@@ -38,10 +38,10 @@ final class ObjectProcessorTest extends TestCase
         $object = new stdClass();
         $id = strval(spl_object_id($object));
         $varDumper = $this->getVarDumper($object);
+        $this->assertProcessor(ObjectProcessor::class, $varDumper);
         $processor = new ObjectProcessor($varDumper);
         $this->assertSame(1, $processor->depth());
         $this->assertSame(stdClass::class . '#' . $id, $processor->info());
-        $processor->write();
         $this->assertSame(
             stdClass::class . '#' . $id,
             $varDumper->writer()->__toString()
@@ -56,18 +56,17 @@ final class ObjectProcessorTest extends TestCase
         $varDumper = $this->getVarDumper($object);
         $processor = new ObjectProcessor($varDumper);
         $this->assertSame(DummyClass::class . '#' . $id, $processor->info());
-        $processor->write();
         $dump = <<<EOT
         $className#$id
-         public public null
-         private private null
-         private protected null
-         private circularReference null
-         private deep null
+        public public null
+        private private null
+        private protected null
+        private circularReference null
+        private deep null
         EOT;
         $this->assertSame(
-            $varDumper->writer()->__toString(),
-            $dump
+            $dump,
+            $varDumper->writer()->__toString()
         );
     }
 
@@ -78,22 +77,21 @@ final class ObjectProcessorTest extends TestCase
         $id = strval(spl_object_id($object));
         $pubId = strval(spl_object_id($object->public));
         $varDumper = $this->getVarDumper($object);
-        (new ObjectProcessor($varDumper))->write();
         $dump = <<<EOT
         $className#$id
-         public public stdClass#$pubId
+        public public stdClass#$pubId
          public string string string (length=6)
          public array array [] (size=0)
          public int integer 1 (length=1)
          public bool boolean true
-         private private null
-         private protected null
-         private circularReference null
-         private deep null
+        private private null
+        private protected null
+        private circularReference null
+        private deep null
         EOT;
         $this->assertSame(
-            $varDumper->writer()->__toString(),
-            $dump
+            $dump,
+            $varDumper->writer()->__toString()
         );
     }
 
@@ -103,7 +101,6 @@ final class ObjectProcessorTest extends TestCase
         };
         $id = strval(spl_object_id($object));
         $varDumper = $this->getVarDumper($object);
-        (new ObjectProcessor($varDumper))->write();
         $this->assertSame(
             'class@anonymous#' . $id,
             $varDumper->writer()->__toString()
@@ -116,19 +113,17 @@ final class ObjectProcessorTest extends TestCase
         $className = $object::class;
         $id = strval(spl_object_id($object));
         $varDumper = $this->getVarDumper($object);
-        $processor = new ObjectProcessor($varDumper);
-        $processor->write();
         $dump = <<<EOT
         $className#$id
-         public public null
-         private private null
-         private protected null
-         private circularReference $className#$id (circular reference #$id)
-         private deep null
+        public public null
+        private private null
+        private protected null
+        private circularReference $className#$id (circular reference #$id)
+        private deep null
         EOT;
         $this->assertSame(
-            $varDumper->writer()->__toString(),
-            $dump
+            $dump,
+            $varDumper->writer()->__toString()
         );
     }
 
@@ -148,15 +143,13 @@ final class ObjectProcessorTest extends TestCase
         $className = $object::class;
         $id = strval(spl_object_id($object));
         $varDumper = $this->getVarDumper($object);
-        $processor = new ObjectProcessor($varDumper);
-        $processor->write();
         $stringEls = <<<EOT
         $className#$id
-         public public null
-         private private null
-         private protected null
-         private circularReference null
-         private deep class@anonymous#$objectIds[0]
+        public public null
+        private private null
+        private protected null
+        private circularReference null
+        private deep class@anonymous#$objectIds[0]
          public deep class@anonymous#$objectIds[1]
           public deep class@anonymous#$objectIds[2]
            public deep class@anonymous#$objectIds[3]
@@ -168,8 +161,8 @@ final class ObjectProcessorTest extends TestCase
                  public deep class@anonymous#$objectIds[9] (max depth reached)
         EOT;
         $this->assertSame(
-            $varDumper->writer()->__toString(),
-            $stringEls
+            $stringEls,
+            $varDumper->writer()->__toString()
         );
     }
 
@@ -193,26 +186,25 @@ final class ObjectProcessorTest extends TestCase
             }
         }
         $varDumper = $this->getVarDumper($object);
-        (new ObjectProcessor($varDumper))->write();
         $stringEls = <<<EOT
         $className#$id
-         private pairs array (size=2)
+        private pairs array (size=2)
          0 => Ds\Pair#$objectIds[0]
-           public key string key (length=3)
-           public value string value (length=5)
+          public key string key (length=3)
+          public value string value (length=5)
          1 => Ds\Pair#$objectIds[1]
-           public key string map (length=3)
-           public value $className#$idChild
-            private pairs array (size=1)
-             0 => Ds\Pair#$objectIds[2]
-               public key integer 0 (length=1)
-               public value string test (length=4)
-            private capacity integer 8 (length=1)
-         private capacity integer 8 (length=1)
+          public key string map (length=3)
+          public value $className#$idChild
+           private pairs array (size=1)
+            0 => Ds\Pair#$objectIds[2]
+             public key integer 0 (length=1)
+             public value string test (length=4)
+           private capacity integer 8 (length=1)
+        private capacity integer 8 (length=1)
         EOT;
         $this->assertSame(
-            $varDumper->writer()->__toString(),
-            $stringEls
+            $stringEls,
+            $varDumper->writer()->__toString()
         );
     }
 }

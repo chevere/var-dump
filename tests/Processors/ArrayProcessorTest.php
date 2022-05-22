@@ -33,14 +33,14 @@ final class ArrayProcessorTest extends TestCase
     {
         $var = [];
         $expectInfo = 'size=0';
-        $varProcess = $this->getVarDumper($var);
-        $processor = new ArrayProcessor($varProcess);
+        $varDumper = $this->getVarDumper($var);
+        $this->assertProcessor(ArrayProcessor::class, $varDumper);
+        $processor = new ArrayProcessor($varDumper);
         $this->assertSame(1, $processor->depth());
         $this->assertSame($expectInfo, $processor->info());
-        $processor->write();
         $this->assertSame(
             "array [] (${expectInfo})",
-            $varProcess->writer()->__toString()
+            $varDumper->writer()->__toString()
         );
     }
 
@@ -49,14 +49,14 @@ final class ArrayProcessorTest extends TestCase
         $var = [0, 1, 2, 3];
         $expectInfo = 'size=' . count($var);
         $containTpl = '%s => integer %s (length=1)';
-        $varProcess = $this->getVarDumper($var);
-        $processor = new ArrayProcessor($varProcess);
+        $varDumper = $this->getVarDumper($var);
+        $processor = new ArrayProcessor($varDumper);
         $this->assertSame($expectInfo, $processor->info());
         $processor->write();
         foreach ($var as $int) {
             $this->assertStringContainsString(
                 str_replace('%s', (string) $int, $containTpl),
-                $varProcess->writer()->__toString()
+                $varDumper->writer()->__toString()
             );
         }
     }
@@ -66,13 +66,12 @@ final class ArrayProcessorTest extends TestCase
         $var = [];
         $var[] = &$var;
         $expectInfo = 'size=' . count($var);
-        $varProcess = $this->getVarDumper($var);
-        $processor = new ArrayProcessor($varProcess);
+        $varDumper = $this->getVarDumper($var);
+        $processor = new ArrayProcessor($varDumper);
         $this->assertSame($expectInfo, $processor->info());
-        $processor->write();
         $this->assertSame(
             "array (${expectInfo}) (" . $processor->circularReference() . ')',
-            $varProcess->writer()->__toString()
+            $varDumper->writer()->__toString()
         );
     }
 
@@ -82,9 +81,9 @@ final class ArrayProcessorTest extends TestCase
         for ($i = 0; $i <= ProcessorInterface::MAX_DEPTH; $i++) {
             $var = [$var];
         }
-        $varProcess = $this->getVarDumper($var);
-        $processor = new ArrayProcessor($varProcess);
+        $varDumper = $this->getVarDumper($var);
+        $processor = new ArrayProcessor($varDumper);
         $processor->write();
-        $this->assertStringContainsString($processor->maxDepthReached(), $varProcess->writer()->__toString());
+        $this->assertStringContainsString($processor->maxDepthReached(), $varDumper->writer()->__toString());
     }
 }
