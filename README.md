@@ -16,7 +16,7 @@
 
 * [HTML](https://chevere.github.io/var-dump/demo/output/html.html)
 * [Plain text](https://chevere.github.io/var-dump/demo/output/plain.txt)
-* [Console (asciinema)](https://asciinema.org/a/492994)
+* [Console (asciinema)](https://asciinema.org/a/496889)
 
 ## Quick start
 
