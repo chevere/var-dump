@@ -1,6 +1,6 @@
 {
     "name": "chevere/var-dump",
-    "description": "Multi-purpose var_dump alternative",
+    "description": "A multi-purpose colorful modern alternative to var_dump",
     "keywords": [
         "chevere",
         "var_dump",
