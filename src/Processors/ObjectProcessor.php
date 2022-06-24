@@ -95,15 +95,14 @@ final class ObjectProcessor implements ProcessorInterface
     private function setProperties(ReflectionObject $reflection): void
     {
         $properties = [];
-        if ($reflection->isInternal()) {
-            $properties = $this->getPublicProperties();
-        } else {
-            $properties = $this->getExternalProperties($reflection);
-        }
+        $properties = $reflection->isInternal()
+            ? $this->getPublicProperties()
+            : $this->getExternalProperties($reflection);
         $keys = array_keys($properties);
         foreach ($keys as $name) {
+            $name = strval($name);
             $prop = $properties[$name];
-            $this->processProperty($name, $prop[0], $prop[1]);
+            $this->processProperty($name, ...$prop);
         }
     }
 
@@ -111,6 +110,7 @@ final class ObjectProcessor implements ProcessorInterface
     {
         $properties = json_decode(json_encode($this->var), true) ?? [];
         foreach ($properties as $name => $value) {
+            $name = strval($name);
             $properties[$name] = ['public', $value];
         }
 
