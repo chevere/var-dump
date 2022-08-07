@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Chevere\Tests;
 
-use Chevere\Str\Str;
+use Chevere\String\ModifyString;
 use Chevere\Tests\Traits\DebugBacktraceTrait;
 use Chevere\VarDump\Formats\ConsoleFormat;
 use Chevere\VarDump\Formats\HtmlFormat;
@@ -62,8 +62,8 @@ final class VarOutputTest extends TestCase
         $varOutput->process(new ConsoleOutput(), name: null);
         $parsed = $this->getParsed($trace, 'output-console-color');
         $string = $writer->__toString();
-        $parsed = (new Str($parsed))->withStripANSIColors()->__toString();
-        $string = (new Str($string))->withStripANSIColors()->__toString();
+        $parsed = (new ModifyString($parsed))->withStripANSIColors()->__toString();
+        $string = (new ModifyString($string))->withStripANSIColors()->__toString();
         $this->assertSame($parsed, $string);
     }
 

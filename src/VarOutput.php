@@ -27,19 +27,19 @@ final class VarOutput implements VarOutputInterface
     ) {
     }
 
-    public function process(OutputInterface $output, ...$vars): void
+    public function process(OutputInterface $output, ...$variables): void
     {
         $output->setUp($this->writer, $this->trace);
         $output->prepare();
         $output->writeCallerFile($this->format);
-        $this->handleArgs($vars);
+        $this->handleArgs($variables);
         $output->tearDown();
     }
 
-    private function handleArgs(array $vars): void
+    private function handleArgs(array $variables): void
     {
         $aux = 0;
-        foreach ($vars as $name => $value) {
+        foreach ($variables as $name => $value) {
             $aux++;
             $varDumper = new VarDumper(
                 $this->writer,

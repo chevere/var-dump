@@ -29,19 +29,22 @@ final class VarDumpTest extends TestCase
     {
         $varDump = $this->getVarDump();
         $this->assertSame(0, $varDump->shift());
-        $this->assertSame([], $varDump->vars());
+        $this->assertSame([], $varDump->variables());
     }
 
-    public function testWithVars(): void
+    public function testWithVariables(): void
     {
         $stream = $this->getStream();
         $writer = new StreamWriter($stream);
-        $var = new stdClass();
+        $variable = new stdClass();
         $varDump = $this->getVarDump();
-        $varDumpWithVars = $varDump->withVars($var);
-        $this->assertNotSame($varDump, $varDumpWithVars);
-        $this->assertEqualsCanonicalizing([$var], $varDumpWithVars->vars());
-        $varDumpWithVars->process($writer);
+        $varDumpWithVariables = $varDump->withVariables($variable);
+        $this->assertNotSame($varDump, $varDumpWithVariables);
+        $this->assertEqualsCanonicalizing(
+            [$variable],
+            $varDumpWithVariables->variables()
+        );
+        $varDumpWithVariables->process($writer);
         $line = strval(__LINE__ - 1);
         $hrLine = str_repeat('-', 60);
         $expectedString = "\n"
@@ -51,7 +54,7 @@ final class VarDumpTest extends TestCase
             . "\n"
             . __FILE__ . ':' . $line
             . "\n\n"
-            . 'Arg•0 stdClass#' . spl_object_id($var)
+            . 'Arg•0 stdClass#' . spl_object_id($variable)
             . "\n" . $hrLine
             . "\n";
         $this->assertSame($expectedString, $writer->__toString());
@@ -70,10 +73,7 @@ final class VarDumpTest extends TestCase
 
     private function getVarDump(): VarDumpInterface
     {
-        return new VarDump(
-            new PlainFormat(),
-            new PlainOutput()
-        );
+        return new VarDump(new PlainFormat(), new PlainOutput());
     }
 
     private function getStream(): StreamInterface

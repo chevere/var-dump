@@ -26,12 +26,12 @@ interface VarDumpInterface
     );
 
     /**
-     * Return an instance with the specified `$vars`.
+     * Return an instance with the specified `$variables`.
      *
      * This method MUST retain the state of the current instance, and return
-     * an instance that contains the specified `$vars`.
+     * an instance that contains the specified `$variables`.
      */
-    public function withVars(...$vars): self;
+    public function withVariables(...$variables): self;
 
     /**
      * Return an instance with the specified `$shift` traces shifted.
@@ -49,9 +49,9 @@ interface VarDumpInterface
     public function process(WriterInterface $writer): void;
 
     /**
-     * Provides access to the instance vars.
+     * Provides access to the dump variables.
      */
-    public function vars(): array;
+    public function variables(): array;
 
     /**
      * Provides access to the shift value.

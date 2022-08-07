@@ -31,9 +31,9 @@ final class ArrayProcessorTest extends TestCase
 
     public function testConstructEmpty(): void
     {
-        $var = [];
+        $variable = [];
         $expectInfo = 'size=0';
-        $varDumper = $this->getVarDumper($var);
+        $varDumper = $this->getVarDumper($variable);
         $this->assertProcessor(ArrayProcessor::class, $varDumper);
         $processor = new ArrayProcessor($varDumper);
         $this->assertSame(1, $processor->depth());
@@ -46,14 +46,14 @@ final class ArrayProcessorTest extends TestCase
 
     public function testX(): void
     {
-        $var = [0, 1, 2, 3];
-        $expectInfo = 'size=' . count($var);
+        $variable = [0, 1, 2, 3];
+        $expectInfo = 'size=' . count($variable);
         $containTpl = '%s => integer %s (length=1)';
-        $varDumper = $this->getVarDumper($var);
+        $varDumper = $this->getVarDumper($variable);
         $processor = new ArrayProcessor($varDumper);
         $this->assertSame($expectInfo, $processor->info());
         $processor->write();
-        foreach ($var as $int) {
+        foreach ($variable as $int) {
             $this->assertStringContainsString(
                 str_replace('%s', (string) $int, $containTpl),
                 $varDumper->writer()->__toString()
@@ -63,10 +63,10 @@ final class ArrayProcessorTest extends TestCase
 
     public function testCircularReference(): void
     {
-        $var = [];
-        $var[] = &$var;
-        $expectInfo = 'size=' . count($var);
-        $varDumper = $this->getVarDumper($var);
+        $variable = [];
+        $variable[] = &$variable;
+        $expectInfo = 'size=' . count($variable);
+        $varDumper = $this->getVarDumper($variable);
         $processor = new ArrayProcessor($varDumper);
         $this->assertSame($expectInfo, $processor->info());
         $this->assertSame(
@@ -77,11 +77,11 @@ final class ArrayProcessorTest extends TestCase
 
     public function testMaxDepth(): void
     {
-        $var = [];
+        $variable = [];
         for ($i = 0; $i <= ProcessorInterface::MAX_DEPTH; $i++) {
-            $var = [$var];
+            $variable = [$variable];
         }
-        $varDumper = $this->getVarDumper($var);
+        $varDumper = $this->getVarDumper($variable);
         $processor = new ArrayProcessor($varDumper);
         $processor->write();
         $this->assertStringContainsString($processor->maxDepthReached(), $varDumper->writer()->__toString());

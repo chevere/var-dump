@@ -37,7 +37,7 @@ foreach ([
     'html.html' => $html,
 ] as $filename => $varDump) {
     $writer = new StreamWriter(streamTemp(''));
-    $varDump->withVars($varDump)->process($writer);
+    $varDump->withVariables($varDump)->process($writer);
     $dumping = stripLocal($writer->__toString());
     if ($filename == 'console.log') {
         echo $dumping;

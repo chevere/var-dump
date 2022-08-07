@@ -88,11 +88,11 @@ namespace {
         /**
          * Dumps information about one or more variables to the registered output writer stream
          */
-        function vd(...$vars): void
+        function vd(...$variables): void
         {
             varDump()
                 ->withShift(1)
-                ->withVars(...$vars)
+                ->withVariables(...$variables)
                 ->process(writers()->output());
         }
     }
@@ -101,11 +101,11 @@ namespace {
          * Dumps information about one or more variables to the registered output writer stream and die()
          * @codeCoverageIgnore
          */
-        function vdd(...$vars): void
+        function vdd(...$variables): void
         {
             varDump()
                 ->withShift(1)
-                ->withVars(...$vars)
+                ->withVariables(...$variables)
                 ->process(writers()->output());
             die(0);
         }

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Processors;
 
-use Chevere\Str\StrCondition;
+use Chevere\String\ValidateString;
 use Chevere\Type\Interfaces\TypeInterface;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
@@ -162,9 +162,8 @@ final class ObjectProcessor implements ProcessorInterface
 
     private function handleNormalizeClassName(): void
     {
-        if (
-            (new StrCondition($this->className))
-                ->isStartingWith(VarDumperInterface::CLASS_ANON)
+        if ((new ValidateString($this->className))
+            ->isStartingWith(VarDumperInterface::CLASS_ANON)
         ) {
             $this->className = VarDumperInterface::CLASS_ANON;
         }

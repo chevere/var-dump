@@ -27,13 +27,13 @@ final class VarDumperTest extends TestCase
 {
     public function testConstruct(): void
     {
-        $var = ['foo', new stdClass()];
+        $variable = ['foo', new stdClass()];
         $defaultIndent = 0;
         $defaultDepth = 0;
         $defaultIndentSting = '';
         $writer = new StreamWriter(streamTemp(''));
         $format = new PlainFormat();
-        $dumpable = new VarDumpable($var);
+        $dumpable = new VarDumpable($variable);
         $varDumper = new VarDumper(
             writer: $writer,
             format: $format,

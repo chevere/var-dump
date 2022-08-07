@@ -16,12 +16,12 @@ namespace Chevere\VarDump;
 use Chevere\VarDump\Interfaces\FormatInterface;
 use Chevere\VarDump\Interfaces\OutputInterface;
 use Chevere\VarDump\Interfaces\VarDumpInterface;
-use function Chevere\VarSupport\deepCopy;
+use function Chevere\VariableSupport\deepCopy;
 use Chevere\Writer\Interfaces\WriterInterface;
 
 final class VarDump implements VarDumpInterface
 {
-    private array $vars = [];
+    private array $variables = [];
 
     private int $shift = 0;
 
@@ -33,10 +33,10 @@ final class VarDump implements VarDumpInterface
     ) {
     }
 
-    public function withVars(...$vars): VarDumpInterface
+    public function withVariables(...$variables): VarDumpInterface
     {
         $new = clone $this;
-        $new->vars = $vars;
+        $new->variables = $variables;
 
         return $new;
     }
@@ -51,7 +51,7 @@ final class VarDump implements VarDumpInterface
 
     public function process(WriterInterface $writer): void
     {
-        if ($this->vars === []) {
+        if ($this->variables === []) {
             return;
         }
         $this->setDebugBacktrace();
@@ -60,12 +60,12 @@ final class VarDump implements VarDumpInterface
             $this->debugBacktrace,
             $this->format,
         ))
-            ->process($this->output, ...$this->vars);
+            ->process($this->output, ...$this->variables);
     }
 
-    public function vars(): array
+    public function variables(): array
     {
-        return deepCopy($this->vars);
+        return deepCopy($this->variables);
     }
 
     public function shift(): int
