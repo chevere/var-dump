@@ -8,7 +8,7 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=chevere_var-dump&metric=alert_status)](https://sonarcloud.io/dashboard?id=chevere_var-dump) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=chevere_var-dump&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=chevere_var-dump) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=chevere_var-dump&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=chevere_var-dump) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=chevere_var-dump&metric=security_rating)](https://sonarcloud.io/dashboard?id=chevere_var-dump) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=chevere_var-dump&metric=coverage)](https://sonarcloud.io/dashboard?id=chevere_var-dump) [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=chevere_var-dump&metric=sqale_index)](https://sonarcloud.io/dashboard?id=chevere_var-dump) [![CodeFactor](https://www.codefactor.io/repository/github/chevere/var-dump/badge)](https://www.codefactor.io/repository/github/chevere/var-dump) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/1f8286c311934c45b96c0a6b3d33204f)](https://www.codacy.com/gh/chevere/var-dump/dashboard)
 
-![VarDump](.github/banner/var-dump-social.svg)
+![VarDump](.github/banner/var-dump-logo.svg)
 
 ## Demo
 
