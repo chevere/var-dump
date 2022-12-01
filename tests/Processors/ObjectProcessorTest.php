@@ -20,7 +20,6 @@ use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Processors\ObjectProcessor;
 use Ds\Map;
 use PHPUnit\Framework\TestCase;
-use ReflectionClass;
 use stdClass;
 
 final class ObjectProcessorTest extends TestCase
@@ -57,7 +56,7 @@ final class ObjectProcessorTest extends TestCase
         $processor = new ObjectProcessor($varDumper);
         $this->assertSame(DummyClass::class . '#' . $id, $processor->info());
         $dump = <<<EOT
-        $className#$id
+        {$className}#{$id}
         public public null
         private private null
         private protected null
@@ -78,8 +77,8 @@ final class ObjectProcessorTest extends TestCase
         $pubId = strval(spl_object_id($object->public));
         $varDumper = $this->getVarDumper($object);
         $dump = <<<EOT
-        $className#$id
-        public public stdClass#$pubId
+        {$className}#{$id}
+        public public stdClass#{$pubId}
          public string string string (length=6)
          public array array [] (size=0)
          public int integer 1 (length=1)
@@ -114,11 +113,11 @@ final class ObjectProcessorTest extends TestCase
         $id = strval(spl_object_id($object));
         $varDumper = $this->getVarDumper($object);
         $dump = <<<EOT
-        $className#$id
+        {$className}#{$id}
         public public null
         private private null
         private protected null
-        private circularReference $className#$id (circular reference #$id)
+        private circularReference {$className}#{$id} (circular reference #{$id})
         private deep null
         EOT;
         $this->assertSame(
@@ -132,8 +131,9 @@ final class ObjectProcessorTest extends TestCase
         $deep = new stdClass();
         for ($i = 0; $i <= ProcessorInterface::MAX_DEPTH; $i++) {
             $deep = new class($deep) {
-                public function __construct(public $deep)
-                {
+                public function __construct(
+                    public $deep
+                ) {
                 }
             };
             $objectIds[] = strval(spl_object_id($deep));
@@ -144,21 +144,21 @@ final class ObjectProcessorTest extends TestCase
         $id = strval(spl_object_id($object));
         $varDumper = $this->getVarDumper($object);
         $stringEls = <<<EOT
-        $className#$id
+        {$className}#{$id}
         public public null
         private private null
         private protected null
         private circularReference null
-        private deep class@anonymous#$objectIds[0]
-         public deep class@anonymous#$objectIds[1]
-          public deep class@anonymous#$objectIds[2]
-           public deep class@anonymous#$objectIds[3]
-            public deep class@anonymous#$objectIds[4]
-             public deep class@anonymous#$objectIds[5]
-              public deep class@anonymous#$objectIds[6]
-               public deep class@anonymous#$objectIds[7]
-                public deep class@anonymous#$objectIds[8]
-                 public deep class@anonymous#$objectIds[9] (max depth reached)
+        private deep class@anonymous#{$objectIds[0]}
+         public deep class@anonymous#{$objectIds[1]}
+          public deep class@anonymous#{$objectIds[2]}
+           public deep class@anonymous#{$objectIds[3]}
+            public deep class@anonymous#{$objectIds[4]}
+             public deep class@anonymous#{$objectIds[5]}
+              public deep class@anonymous#{$objectIds[6]}
+               public deep class@anonymous#{$objectIds[7]}
+                public deep class@anonymous#{$objectIds[8]}
+                 public deep class@anonymous#{$objectIds[9]} (max depth reached)
         EOT;
         $this->assertSame(
             $stringEls,
@@ -166,41 +166,26 @@ final class ObjectProcessorTest extends TestCase
         );
     }
 
-    public function testDsMap(): void
+    /**
+     * @requires extension ds
+     */
+    public function testDsMapExtension(): void
     {
         $key = 'key';
         $value = 'value';
         $objectChild = new Map(['test']);
-        $object = new Map([$key => $value, 'map' => $objectChild]);
+        $object = new Map([
+            $key => $value,
+            'map' => $objectChild,
+        ]);
         $className = $object::class;
         $id = strval(spl_object_id($object));
-        $idChild = strval(spl_object_id($objectChild));
-        $objectIds = [];
-        $reflection = new ReflectionClass(Map::class);
-        foreach ([$object, $objectChild] as $map) {
-            $property = $reflection->getProperty('pairs');
-            $property->setAccessible(true);
-            $pairs = $property->getValue($map);
-            foreach ($pairs as $pair) {
-                $objectIds[] = strval(spl_object_id($pair));
-            }
-        }
         $varDumper = $this->getVarDumper($object);
         $stringEls = <<<EOT
-        $className#$id
-        private pairs array (size=2)
-         0 => Ds\Pair#$objectIds[0]
-          public key string key (length=3)
-          public value string value (length=5)
-         1 => Ds\Pair#$objectIds[1]
-          public key string map (length=3)
-          public value $className#$idChild
-           private pairs array (size=1)
-            0 => Ds\Pair#$objectIds[2]
-             public key integer 0 (length=1)
-             public value string test (length=4)
-           private capacity integer 8 (length=1)
-        private capacity integer 8 (length=1)
+        {$className}#{$id}
+        public key string value (length=5)
+        public map array (size=1)
+         0 => string test (length=4)
         EOT;
         $this->assertSame(
             $stringEls,
