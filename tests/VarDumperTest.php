@@ -45,7 +45,7 @@ final class VarDumperTest extends TestCase
         $this->assertSame($defaultIndent, $varDumper->indent());
         $this->assertSame($defaultDepth, $varDumper->depth());
         $this->assertSame($defaultIndentSting, $varDumper->indentString());
-        $this->assertCount(0, $varDumper->known());
+        $this->assertCount(0, $varDumper->knownObjects());
         for ($integer = 1; $integer <= 5; $integer++) {
             $this->hookTestWithIndent($varDumper, $integer);
             $this->hookTestWithDepth($varDumper, $integer);
@@ -86,7 +86,7 @@ final class VarDumperTest extends TestCase
     ): void {
         $varDumperWithObjects = $varDumper->withKnownObjects($known);
         $this->assertNotSame($varDumper, $varDumperWithObjects);
-        $this->assertSame($known, $varDumperWithObjects->known());
+        $this->assertSame($known, $varDumperWithObjects->knownObjects());
     }
 
     public function hookTestWithProcess(

@@ -25,7 +25,7 @@ final class ResourceProcessorTest extends TestCase
     public function testConstruct(): void
     {
         $resource = fopen(__FILE__, 'r');
-        if (!is_resource($resource)) {
+        if (! is_resource($resource)) {
             $this->markTestIncomplete('Unable to open ' . __FILE__);
         }
         $resourceString = (string) $resource;
@@ -35,7 +35,7 @@ final class ResourceProcessorTest extends TestCase
         $processor = new ResourceProcessor($varDumper);
         $this->assertSame($expectedInfo, $processor->info());
         $this->assertSame(
-            $resourceString . " (${expectedInfo})",
+            $resourceString . " ({$expectedInfo})",
             $varDumper->writer()->__toString()
         );
         /** @var resource $resource */

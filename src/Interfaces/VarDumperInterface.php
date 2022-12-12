@@ -60,12 +60,6 @@ interface VarDumperInterface
         TypeInterface::RESOURCE => ResourceProcessor::class,
     ];
 
-    public function __construct(
-        WriterInterface $writer,
-        FormatInterface $format,
-        VarDumpableInterface $dumpable
-    );
-
     /**
      * Provides access to the `$writer` instance.
      */
@@ -113,17 +107,18 @@ interface VarDumperInterface
     public function depth(): int;
 
     /**
-     * Return an instance with the specified `$known` object IDs.
+     * Return an instance with the specified `$known` objects.
      *
      * This method MUST retain the state of the current instance, and return
-     * an instance that contains the specified `$known` object IDs.
+     * an instance that contains the specified `$known` objects.
      */
-    public function withKnownObjects(Set $known): self;
+    public function withKnownObjects(Set $objects): self;
 
     /**
-     * Provides access to the known object ids.
+     * Provides access to the known objects.
+     * @return Set<object>
      */
-    public function known(): Set;
+    public function knownObjects(): Set;
 
     /**
      * Process the dump.

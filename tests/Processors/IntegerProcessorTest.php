@@ -32,7 +32,7 @@ final class IntegerProcessorTest extends TestCase
             $processor = new IntegerProcessor($varDumper);
             $this->assertSame($expectedInfo, $processor->info());
             $this->assertSame(
-                "integer ${stringVar} (${expectedInfo})",
+                "integer {$stringVar} ({$expectedInfo})",
                 $varDumper->writer()->__toString()
             );
         }

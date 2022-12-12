@@ -84,9 +84,10 @@ namespace {
     use function Chevere\VarDump\varDump;
     use function Chevere\VarDump\writers;
 
-    if (!function_exists('vd')) {
+    if (! function_exists('vd')) {
         /**
          * Dumps information about one or more variables to the registered output writer stream
+         * @phpstan-ignore-next-line
          */
         function vd(...$variables): void
         {
@@ -96,10 +97,11 @@ namespace {
                 ->process(writers()->output());
         }
     }
-    if (!function_exists('vdd')) {
+    if (! function_exists('vdd')) {
         /**
          * Dumps information about one or more variables to the registered output writer stream and die()
          * @codeCoverageIgnore
+         * @phpstan-ignore-next-line
          */
         function vdd(...$variables): void
         {

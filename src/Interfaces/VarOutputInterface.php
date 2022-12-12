@@ -13,21 +13,13 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Interfaces;
 
-use Chevere\Writer\Interfaces\WriterInterface;
-
 /**
  * Describes the component in charge of writing information about a variable.
  */
 interface VarOutputInterface
 {
-    public function __construct(
-        WriterInterface $writer,
-        array $trace,
-        FormatInterface $format
-    );
-
     /**
      * Process the var output streaming.
      */
-    public function process(OutputInterface $output, ...$variables): void;
+    public function process(OutputInterface $output, mixed ...$variables): void;
 }

@@ -29,17 +29,19 @@ final class StringProcessorTest extends TestCase
             $this->assertProcessor(StringProcessor::class, $varDumper);
             $processor = new StringProcessor($varDumper);
             $expectedInfo = 'length=' . mb_strlen($var);
-            $this->assertSame($expectedInfo, $processor->info(), "info:${var}");
+            $this->assertSame($expectedInfo, $processor->info(), "info:{$var}");
             $this->assertSame(
-                "string ${var} (${expectedInfo})",
+                "string {$var} ({$expectedInfo})",
                 $varDumper->writer()->__toString(),
-                "string:${var}"
+                "string:{$var}"
             );
         }
     }
 
     public function testInvalidArgument(): void
     {
+        $char = chr(128);
+        $char = iconv('CP1252', 'UTF-8', $char);
         $this->expectException(InvalidArgumentException::class);
         new StringProcessor($this->getVarDumper(null));
     }

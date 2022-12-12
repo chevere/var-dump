@@ -25,6 +25,20 @@ abstract class Output implements OutputInterface
 
     private string $caller;
 
+    final public function setUp(WriterInterface $writer, array $trace)
+    {
+        $this->writer = $writer;
+        $this->trace = $trace;
+        $this->caller = '';
+        if ($this->trace[0]['class'] ?? null) {
+            $this->caller .= $this->trace[0]['class']
+                . $this->trace[0]['type'];
+        }
+        if ($this->trace[0]['function'] ?? null) {
+            $this->caller .= $this->trace[0]['function'] . '()';
+        }
+    }
+
     public function writeCallerFile(FormatInterface $format): void
     {
         $item = $this->trace[0] ?? null;
@@ -38,20 +52,6 @@ abstract class Output implements OutputInterface
                     )
                 . "\n"
             );
-        }
-    }
-
-    final public function setUp(WriterInterface $writer, array $trace)
-    {
-        $this->writer = $writer;
-        $this->trace = $trace;
-        $this->caller = '';
-        if ($this->trace[0]['class'] ?? null) {
-            $this->caller .= $this->trace[0]['class']
-                . $this->trace[0]['type'];
-        }
-        if ($this->trace[0]['function'] ?? null) {
-            $this->caller .= $this->trace[0]['function'] . '()';
         }
     }
 

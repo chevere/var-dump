@@ -13,11 +13,14 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Processors\Traits;
 
+use Chevere\VarDump\Interfaces\VarDumperInterface;
 use Chevere\VarDump\VarDumpable;
 use Chevere\VarDump\VarDumper;
 
 trait HandleDepthTrait
 {
+    private VarDumperInterface $varDumper;
+
     private function handleDepth($var): void
     {
         $deep = $this->depth;
@@ -31,7 +34,7 @@ trait HandleDepthTrait
         ))
             ->withDepth($deep)
             ->withIndent($this->varDumper->indent())
-            ->withKnownObjects($this->varDumper->known())
+            ->withKnownObjects($this->varDumper->knownObjects())
             ->withProcess();
     }
 }

@@ -15,6 +15,7 @@ namespace Chevere\VarDump;
 
 use Chevere\Type\Interfaces\TypeInterface;
 use Chevere\VarDump\Interfaces\FormatInterface;
+use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\VarDumpableInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use Chevere\Writer\Interfaces\WriterInterface;
@@ -22,7 +23,10 @@ use Ds\Set;
 
 final class VarDumper implements VarDumperInterface
 {
-    public Set $known;
+    /**
+     * @var Set<object>
+     */
+    public Set $knownObjects;
 
     private int $indent = 0;
 
@@ -35,7 +39,7 @@ final class VarDumper implements VarDumperInterface
         private FormatInterface $format,
         private VarDumpableInterface $dumpable
     ) {
-        $this->known = new Set();
+        $this->knownObjects = new Set();
         ++$this->depth;
     }
 
@@ -86,17 +90,17 @@ final class VarDumper implements VarDumperInterface
         return $this->depth;
     }
 
-    public function withKnownObjects(Set $known): VarDumperInterface
+    public function withKnownObjects(Set $objects): VarDumperInterface
     {
         $new = clone $this;
-        $new->known = $known;
+        $new->knownObjects = $objects;
 
         return $new;
     }
 
-    public function known(): Set
+    public function knownObjects(): Set
     {
-        return $this->known;
+        return $this->knownObjects;
     }
 
     public function withProcess(): VarDumperInterface
@@ -106,7 +110,9 @@ final class VarDumper implements VarDumperInterface
         if (in_array($new->dumpable->type(), [TypeInterface::ARRAY, TypeInterface::OBJECT], true)) {
             ++$new->indent;
         }
-        (new $processorName($new))->write();
+        /** @var ProcessorInterface $processor */
+        $processor = new $processorName($new);
+        $processor->write();
 
         return $new;
     }

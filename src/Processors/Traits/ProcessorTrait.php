@@ -55,7 +55,7 @@ trait ProcessorTrait
 
     public function highlightParentheses(string $string): string
     {
-        return $this->varDumper->format()->getEmphasis("(${string})");
+        return $this->varDumper->format()->getEmphasis("({$string})");
     }
 
     public function circularReference(): string
@@ -71,7 +71,7 @@ trait ProcessorTrait
     private function assertType(): void
     {
         $type = new Type($this->type());
-        if (!$type->validate($this->varDumper->dumpable()->var())) {
+        if (! $type->validate($this->varDumper->dumpable()->var())) {
             throw new InvalidArgumentException(
                 message('Instance of %className% expects a type %expected% for the return value of %method%, type %provided% returned')
                     ->withCode('%className%', static::class)

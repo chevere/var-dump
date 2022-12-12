@@ -43,7 +43,7 @@ final class ObjectProcessor implements ProcessorInterface
         $this->assertType();
         $this->var = $this->varDumper->dumpable()->var();
         $this->depth = $this->varDumper->depth() + 1;
-        $this->known = $this->varDumper->known();
+        $this->known = $this->varDumper->knownObjects();
         $this->className = $this->var::class;
         $this->handleNormalizeClassName();
         $this->objectId = spl_object_id($this->var);
@@ -155,7 +155,7 @@ final class ObjectProcessor implements ProcessorInterface
             $this->varDumper->format()->getFilterEncodedChars($name)
         );
         $this->varDumper->writer()->write(
-            "\n$indentString$modifier $variable "
+            "\n{$indentString}{$modifier} {$variable} "
         );
         $this->handleDepth($value);
     }

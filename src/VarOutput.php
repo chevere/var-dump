@@ -20,6 +20,9 @@ use Chevere\Writer\Interfaces\WriterInterface;
 
 final class VarOutput implements VarOutputInterface
 {
+    /**
+     * @param array<string, mixed> $trace
+     */
     public function __construct(
         private WriterInterface $writer,
         private array $trace,
@@ -27,16 +30,16 @@ final class VarOutput implements VarOutputInterface
     ) {
     }
 
-    public function process(OutputInterface $output, ...$variables): void
+    public function process(OutputInterface $output, mixed ...$variables): void
     {
         $output->setUp($this->writer, $this->trace);
         $output->prepare();
         $output->writeCallerFile($this->format);
-        $this->handleArgs($variables);
+        $this->handleArgs(...$variables);
         $output->tearDown();
     }
 
-    private function handleArgs(array $variables): void
+    private function handleArgs(mixed ...$variables): void
     {
         $aux = 0;
         foreach ($variables as $name => $value) {
@@ -48,7 +51,7 @@ final class VarOutput implements VarOutputInterface
             );
             $this->writer->write(
                 str_repeat("\n", (int) ($aux === 1 ?: 2))
-                . "Arg•" . strval($name) . ' '
+                . 'Arg•' . strval($name) . ' '
             );
             $varDumper->withProcess();
         }

@@ -83,7 +83,7 @@ final class VarOutputTest extends TestCase
 
     private function getParsed(array $trace, string $name): string
     {
-        return strtr(include "_resources/${name}.php", [
+        return strtr(include "_resources/{$name}.php", [
             '%handlerClassName%' => $trace[0]['class'],
             '%handlerFunctionName%' => $trace[0]['function'],
             '%fileLine%' => $trace[0]['file'] . ':' . $trace[0]['line'],

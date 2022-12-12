@@ -33,7 +33,7 @@ final class BooleanProcessorTest extends TestCase
             $processor = new BooleanProcessor($varDumper);
             $this->assertSame($info, $processor->info(), 'info');
             $this->assertSame(
-                "boolean ${info}",
+                "boolean {$info}",
                 $varDumper->writer()->__toString(),
             );
         }
