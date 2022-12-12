@@ -61,6 +61,7 @@ interface HighlightInterface
      *     'float' => '<color_for_float>',
      * ];
      * ```
+     * @return array<string, string|array<string>>
      */
     public static function palette(): array;
 }

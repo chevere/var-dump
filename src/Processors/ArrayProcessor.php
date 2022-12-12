@@ -24,6 +24,9 @@ final class ArrayProcessor implements ProcessorInterface
     use ProcessorTrait;
     use HandleDepthTrait;
 
+    /**
+     * @var array<mixed>
+     */
     private array $var;
 
     private int $count = 0;
@@ -32,7 +35,9 @@ final class ArrayProcessor implements ProcessorInterface
         private VarDumperInterface $varDumper
     ) {
         $this->assertType();
-        $this->var = $this->varDumper->dumpable()->var();
+        /** @var array<mixed> $array */
+        $array = $this->varDumper->dumpable()->var();
+        $this->var = $array;
         $this->depth = $this->varDumper->depth() + 1;
         $this->count = count($this->var);
         $this->info = 'size=' . $this->count;
@@ -72,6 +77,9 @@ final class ArrayProcessor implements ProcessorInterface
         $this->processMembers();
     }
 
+    /**
+     * @param array<mixed> $array
+     */
     private function isCircularRef(array $array): bool
     {
         foreach ($array as $var) {
@@ -94,7 +102,7 @@ final class ArrayProcessor implements ProcessorInterface
             $format = $this->varDumper->format()
                 ->getFilterEncodedChars((string) $key);
             $this->varDumper->writer()->write(
-                "\n$indentString$format $operator "
+                "\n{$indentString}{$format} {$operator} "
             );
 
             $this->handleDepth($value);

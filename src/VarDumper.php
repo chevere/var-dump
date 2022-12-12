@@ -24,7 +24,7 @@ use Ds\Set;
 final class VarDumper implements VarDumperInterface
 {
     /**
-     * @var Set<object>
+     * @var Set<int>
      */
     public Set $knownObjects;
 

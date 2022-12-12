@@ -28,7 +28,9 @@ final class FloatProcessor implements ProcessorInterface
         private VarDumperInterface $varDumper
     ) {
         $this->assertType();
-        $this->stringVar = (string) $this->varDumper->dumpable()->var();
+        /** @var float $float */
+        $float = $this->varDumper->dumpable()->var();
+        $this->stringVar = strval($float);
         $this->info = 'length=' . strlen($this->stringVar);
     }
 

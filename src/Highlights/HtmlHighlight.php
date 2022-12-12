@@ -36,6 +36,9 @@ final class HtmlHighlight implements HighlightInterface
         return '<span style="color:' . $this->color . '">' . $dump . '</span>';
     }
 
+    /**
+     * @return array<string, string>
+     */
     public static function palette(): array
     {
         return [

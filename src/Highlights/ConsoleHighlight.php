@@ -26,6 +26,9 @@ final class ConsoleHighlight implements HighlightInterface
 
     private Color $color;
 
+    /**
+     * @var array<string>
+     */
     private array $style;
 
     public function __construct(string $key)
@@ -55,6 +58,9 @@ final class ConsoleHighlight implements HighlightInterface
         return $dump;
     }
 
+    /**
+     * @return array<string, array<string>>
+     */
     public static function palette(): array
     {
         return [

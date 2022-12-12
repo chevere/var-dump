@@ -21,16 +21,16 @@ trait HandleDepthTrait
 {
     private VarDumperInterface $varDumper;
 
-    private function handleDepth($var): void
+    private function handleDepth(mixed $variable): void
     {
         $deep = $this->depth;
-        if (is_scalar($var)) {
+        if (is_scalar($variable)) {
             --$deep;
         }
         (new VarDumper(
             $this->varDumper->writer(),
             $this->varDumper->format(),
-            new VarDumpable($var),
+            new VarDumpable($variable),
         ))
             ->withDepth($deep)
             ->withIndent($this->varDumper->indent())

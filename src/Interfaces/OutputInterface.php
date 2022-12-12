@@ -21,14 +21,10 @@ use Chevere\Writer\Interfaces\WriterInterface;
 interface OutputInterface
 {
     /**
-     * Writes the caller file using the target formatter.
-     */
-    public function writeCallerFile(FormatInterface $format): void;
-
-    /**
      * This method is executed before `prepare()`.
+     * @param array<array<string, mixed>> $trace
      */
-    public function setUp(WriterInterface $writer, array $trace);
+    public function setUp(WriterInterface $writer, array $trace): void;
 
     /**
      * Ends the output.
@@ -36,7 +32,13 @@ interface OutputInterface
     public function tearDown(): void;
 
     /**
+     * Writes the caller file using the target formatter.
+     */
+    public function writeCallerFile(FormatInterface $format): void;
+
+    /**
      * Provides access to the instance backtrace.
+     * @return array<array<string, mixed>>
      */
     public function trace(): array;
 

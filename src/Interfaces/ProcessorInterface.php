@@ -13,19 +13,12 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Interfaces;
 
-use Chevere\Throwable\Exceptions\InvalidArgumentException;
-
 /**
  * Describes the component in charge of processing a variable of a known type.
  */
 interface ProcessorInterface
 {
     public const MAX_DEPTH = 10;
-
-    /**
-     * @throws InvalidArgumentException
-     */
-    public function __construct(VarDumperInterface $varDumper);
 
     /**
      * Provides the current processor depth.

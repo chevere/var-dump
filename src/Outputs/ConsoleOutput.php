@@ -33,7 +33,9 @@ final class ConsoleOutput extends Output
 
         try {
             $this->outputHr = $color->fg('blue', $this->outputHr);
-            $caller = $color->fg('red', $color->bold($caller));
+            // @phpstan-ignore-next-line
+            $bold = $color->bold($caller);
+            $caller = $color->fg('red', $bold);
         }
         // @codeCoverageIgnoreStart
         catch (Throwable) {

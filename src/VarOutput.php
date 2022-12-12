@@ -21,7 +21,7 @@ use Chevere\Writer\Interfaces\WriterInterface;
 final class VarOutput implements VarOutputInterface
 {
     /**
-     * @param array<string, mixed> $trace
+     * @param array<array<string, mixed>> $trace
      */
     public function __construct(
         private WriterInterface $writer,

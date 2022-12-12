@@ -20,18 +20,13 @@ use Chevere\Writer\Interfaces\WriterInterface;
  */
 interface VarDumpInterface
 {
-    public function __construct(
-        FormatInterface $format,
-        OutputInterface $output
-    );
-
     /**
      * Return an instance with the specified `$variables`.
      *
      * This method MUST retain the state of the current instance, and return
      * an instance that contains the specified `$variables`.
      */
-    public function withVariables(...$variables): self;
+    public function withVariables(mixed ...$variables): self;
 
     /**
      * Return an instance with the specified `$shift` traces shifted.
@@ -50,6 +45,7 @@ interface VarDumpInterface
 
     /**
      * Provides access to the dump variables.
+     * @return array<mixed>
      */
     public function variables(): array;
 

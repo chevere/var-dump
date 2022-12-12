@@ -26,7 +26,9 @@ final class StringProcessor implements ProcessorInterface
         private VarDumperInterface $varDumper
     ) {
         $this->assertType();
-        $this->info = 'length=' . mb_strlen($this->varDumper->dumpable()->var());
+        /** @var string $string */
+        $string = $this->varDumper->dumpable()->var();
+        $this->info = 'length=' . mb_strlen($string);
     }
 
     public function type(): string
@@ -36,12 +38,12 @@ final class StringProcessor implements ProcessorInterface
 
     public function write(): void
     {
+        /** @var string $string */
+        $string = $this->varDumper->dumpable()->var();
         $this->varDumper->writer()->write(
             implode(' ', [
                 $this->typeHighlighted(),
-                $this->varDumper->format()->getFilterEncodedChars(
-                    $this->varDumper->dumpable()->var()
-                ),
+                $this->varDumper->format()->getFilterEncodedChars($string),
                 $this->highlightParentheses($this->info),
             ])
         );

@@ -27,13 +27,13 @@ final class VarDumpable implements VarDumpableInterface
     private string $processorName;
 
     public function __construct(
-        private $var
+        private mixed $var
     ) {
         $this->type = getType($this->var);
         $this->assertSetProcessorName();
     }
 
-    public function var()
+    public function var(): mixed
     {
         return $this->var;
     }
@@ -55,13 +55,13 @@ final class VarDumpable implements VarDumpableInterface
     private function assertSetProcessorName(): void
     {
         $processorName = VarDumperInterface::PROCESSORS[$this->type] ?? null;
-        if (!isset($processorName)) {
+        if (! isset($processorName)) {
             throw new LogicException(
                 message('No processor for variable of type %type%')
                     ->withCode('%type%', $this->type)
             );
         }
-        if (!is_subclass_of($processorName, ProcessorInterface::class, true)) {
+        if (! is_subclass_of($processorName, ProcessorInterface::class, true)) {
             throw new LogicException(
                 message('Processor %processorName% must implement the %interfaceName% interface')
                     ->withCode('%processorName%', $processorName)

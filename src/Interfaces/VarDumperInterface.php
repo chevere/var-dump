@@ -47,7 +47,7 @@ interface VarDumperInterface
     public const EMPHASIS = '_emphasis';
 
     /**
-     * @var array [ProcessorInterface,]
+     * @var array<string, string>
      */
     public const PROCESSORS = [
         TypeInterface::BOOLEAN => BooleanProcessor::class,
@@ -111,12 +111,14 @@ interface VarDumperInterface
      *
      * This method MUST retain the state of the current instance, and return
      * an instance that contains the specified `$known` objects.
+     *
+     * @param Set<int> $objects
      */
     public function withKnownObjects(Set $objects): self;
 
     /**
      * Provides access to the known objects.
-     * @return Set<object>
+     * @return Set<int>
      */
     public function knownObjects(): Set;
 

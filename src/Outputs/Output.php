@@ -21,11 +21,14 @@ abstract class Output implements OutputInterface
 {
     private WriterInterface $writer;
 
+    /**
+     * @var array<array<string, mixed>>
+     */
     private array $trace;
 
     private string $caller;
 
-    final public function setUp(WriterInterface $writer, array $trace)
+    final public function setUp(WriterInterface $writer, array $trace): void
     {
         $this->writer = $writer;
         $this->trace = $trace;

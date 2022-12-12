@@ -21,10 +21,16 @@ use Chevere\Writer\Interfaces\WriterInterface;
 
 final class VarDump implements VarDumpInterface
 {
+    /**
+     * @var array<mixed>
+     */
     private array $variables = [];
 
     private int $shift = 0;
 
+    /**
+     * @var array<array<string, mixed>>
+     */
     private array $debugBacktrace = [];
 
     public function __construct(
@@ -33,7 +39,7 @@ final class VarDump implements VarDumpInterface
     ) {
     }
 
-    public function withVariables(...$variables): VarDumpInterface
+    public function withVariables(mixed ...$variables): VarDumpInterface
     {
         $new = clone $this;
         $new->variables = $variables;
@@ -65,6 +71,7 @@ final class VarDump implements VarDumpInterface
 
     public function variables(): array
     {
+        /** @var array<mixed> */
         return deepCopy($this->variables);
     }
 

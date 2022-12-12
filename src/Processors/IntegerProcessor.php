@@ -28,7 +28,9 @@ final class IntegerProcessor implements ProcessorInterface
         private VarDumperInterface $varDumper
     ) {
         $this->assertType();
-        $this->stringVar = (string) $this->varDumper->dumpable()->var();
+        /** @var int $integer */
+        $integer = $this->varDumper->dumpable()->var();
+        $this->stringVar = strval($integer);
         $this->info = 'length=' . strlen($this->stringVar);
     }
 

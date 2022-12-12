@@ -33,7 +33,10 @@ final class ObjectProcessor implements ProcessorInterface
 
     private string $className;
 
-    private Set $known;
+    /**
+     * @var Set<int>
+     */
+    private Set $knownObjectsId;
 
     private int $objectId;
 
@@ -41,9 +44,11 @@ final class ObjectProcessor implements ProcessorInterface
         private VarDumperInterface $varDumper
     ) {
         $this->assertType();
-        $this->var = $this->varDumper->dumpable()->var();
+        /** @var object $object */
+        $object = $this->varDumper->dumpable()->var();
+        $this->var = $object;
         $this->depth = $this->varDumper->depth() + 1;
-        $this->known = $this->varDumper->knownObjects();
+        $this->knownObjectsId = $this->varDumper->knownObjects();
         $this->className = $this->var::class;
         $this->handleNormalizeClassName();
         $this->objectId = spl_object_id($this->var);
@@ -70,7 +75,7 @@ final class ObjectProcessor implements ProcessorInterface
                     '#' . strval($this->objectId)
                 )
         );
-        if ($this->known->contains($this->objectId)) {
+        if ($this->knownObjectsId->contains($this->objectId)) {
             $this->varDumper->writer()->write(
                 ' '
                 . $this->highlightParentheses(
@@ -88,7 +93,7 @@ final class ObjectProcessor implements ProcessorInterface
 
             return;
         }
-        $this->known[] = $this->objectId;
+        $this->knownObjectsId->add($this->objectId);
         $this->setProperties(new ReflectionObject($this->var));
     }
 
@@ -101,14 +106,19 @@ final class ObjectProcessor implements ProcessorInterface
         $keys = array_keys($properties);
         foreach ($keys as $name) {
             $name = strval($name);
+            /** @var string[] */
             $prop = $properties[$name];
             $this->processProperty($name, ...$prop);
         }
     }
 
+    /**
+     * @return array<string, array<mixed>>
+     */
     private function getPublicProperties(): array
     {
-        $properties = json_decode(json_encode($this->var), true) ?? [];
+        /** @var array<string, array<mixed>> $properties */
+        $properties = json_decode(json_encode($this->var) ?: '', true) ?? [];
         foreach ($properties as $name => $value) {
             $name = strval($name);
             $properties[$name] = ['public', $value];
@@ -117,6 +127,9 @@ final class ObjectProcessor implements ProcessorInterface
         return $properties;
     }
 
+    /**
+     * @return array<string, array<mixed>>
+     */
     private function getExternalProperties(
         ReflectionObject $reflection
     ): array {
@@ -143,7 +156,7 @@ final class ObjectProcessor implements ProcessorInterface
         return $properties;
     }
 
-    private function processProperty(string $name, string $modifier, $value): void
+    private function processProperty(string $name, string $modifier, mixed $value): void
     {
         $indentString = $this->varDumper->indentString();
         $modifier = $this->varDumper->format()->getHighlight(
