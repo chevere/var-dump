@@ -41,8 +41,8 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install dependencies
         run: composer install --no-progress
-      # - name: Run PHPStan
-      #   run: phpstan analyse src -l 9
+      - name: Run PHPStan
+        run: phpstan analyse src -l 9
       - name: Tests (PHPUnit)
         run: vendor/bin/phpunit --coverage-xml=build/logs/xml-coverage --log-junit=build/logs/junit.xml
       - name: Mutation testing (Infection)
