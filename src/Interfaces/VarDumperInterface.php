@@ -111,16 +111,14 @@ interface VarDumperInterface
      *
      * This method MUST retain the state of the current instance, and return
      * an instance that contains the specified `$known` objects.
-     *
-     * @param Set<int> $objects
      */
-    public function withKnownObjects(Set $objects): self;
+    public function withKnownObjectsId(int ...$id): self;
 
     /**
      * Provides access to the known objects.
      * @return Set<int>
      */
-    public function knownObjects(): Set;
+    public function knownObjectsId(): Set;
 
     /**
      * Process the dump.

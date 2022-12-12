@@ -34,7 +34,9 @@ trait HandleDepthTrait
         ))
             ->withDepth($deep)
             ->withIndent($this->varDumper->indent())
-            ->withKnownObjects($this->varDumper->knownObjects())
+            ->withKnownObjectsId(
+                ...$this->varDumper->knownObjectsId()->toArray()
+            )
             ->withProcess();
     }
 }

@@ -90,15 +90,15 @@ final class VarDumper implements VarDumperInterface
         return $this->depth;
     }
 
-    public function withKnownObjects(Set $objects): VarDumperInterface
+    public function withKnownObjectsId(int ...$id): VarDumperInterface
     {
         $new = clone $this;
-        $new->knownObjects = $objects;
+        $new->knownObjects = new Set($id);
 
         return $new;
     }
 
-    public function knownObjects(): Set
+    public function knownObjectsId(): Set
     {
         return $this->knownObjects;
     }

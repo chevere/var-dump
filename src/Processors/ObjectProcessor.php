@@ -48,7 +48,7 @@ final class ObjectProcessor implements ProcessorInterface
         $object = $this->varDumper->dumpable()->var();
         $this->var = $object;
         $this->depth = $this->varDumper->depth() + 1;
-        $this->knownObjectsId = $this->varDumper->knownObjects();
+        $this->knownObjectsId = $this->varDumper->knownObjectsId();
         $this->className = $this->var::class;
         $this->handleNormalizeClassName();
         $this->objectId = spl_object_id($this->var);

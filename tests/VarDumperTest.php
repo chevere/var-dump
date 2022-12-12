@@ -19,7 +19,6 @@ use Chevere\VarDump\VarDumpable;
 use Chevere\VarDump\VarDumper;
 use function Chevere\Writer\streamTemp;
 use Chevere\Writer\StreamWriter;
-use Ds\Set;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -45,7 +44,7 @@ final class VarDumperTest extends TestCase
         $this->assertSame($defaultIndent, $varDumper->indent());
         $this->assertSame($defaultDepth, $varDumper->depth());
         $this->assertSame($defaultIndentSting, $varDumper->indentString());
-        $this->assertCount(0, $varDumper->knownObjects());
+        $this->assertCount(0, $varDumper->knownObjectsId());
         for ($integer = 1; $integer <= 5; $integer++) {
             $this->hookTestWithIndent($varDumper, $integer);
             $this->hookTestWithDepth($varDumper, $integer);
@@ -54,9 +53,12 @@ final class VarDumperTest extends TestCase
                 $integer
             );
         }
+        $object1 = new stdClass();
+        $object2 = new stdClass();
         $this->hookTestWithKnownObjects(
             $varDumper,
-            new Set([new stdClass(), new stdClass()])
+            spl_object_id($object1),
+            spl_object_id($object2)
         );
     }
 
@@ -82,11 +84,11 @@ final class VarDumperTest extends TestCase
 
     public function hookTestWithKnownObjects(
         VarDumperInterface $varDumper,
-        Set $known
+        int ...$known
     ): void {
-        $varDumperWithObjects = $varDumper->withKnownObjects($known);
-        $this->assertNotSame($varDumper, $varDumperWithObjects);
-        $this->assertSame($known, $varDumperWithObjects->knownObjects());
+        $withKnownObjects = $varDumper->withKnownObjectsId(...$known);
+        $this->assertNotSame($varDumper, $withKnownObjects);
+        $this->assertSame($known, $withKnownObjects->knownObjectsId()->toArray());
     }
 
     public function hookTestWithProcess(
