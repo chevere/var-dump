@@ -22,12 +22,25 @@ final class StringProcessor implements ProcessorInterface
 {
     use ProcessorTrait;
 
+    private string $charset = '';
+
+    private string $string = '';
+
     public function __construct(
         private VarDumperInterface $varDumper
     ) {
         $this->assertType();
         /** @var string $string */
         $string = $this->varDumper->dumpable()->var();
+        $this->string = $string;
+        $this->setCharset(
+            ini_get('php.output_encoding')
+            ?: ini_get('default_charset')
+            ?: 'UTF-8'
+        );
+        if (! preg_match('//u', $this->string)) {
+            $this->handleBinaryString();
+        }
         $this->info = 'length=' . mb_strlen($string);
     }
 
@@ -38,14 +51,51 @@ final class StringProcessor implements ProcessorInterface
 
     public function write(): void
     {
-        /** @var string $string */
-        $string = $this->varDumper->dumpable()->var();
         $this->varDumper->writer()->write(
             implode(' ', [
                 $this->typeHighlighted(),
-                $this->varDumper->format()->getFilterEncodedChars($string),
+                $this->varDumper->format()
+                    ->getFilterEncodedChars($this->string),
                 $this->highlightParentheses($this->info),
             ])
         );
+    }
+
+    /**
+     * Sets the default character encoding to use for non-UTF8 strings.
+     */
+    private function setCharset(string $charset): void
+    {
+        $charset = strtoupper($charset);
+        $this->charset = $charset === 'UTF-8' || $charset === 'UTF8'
+            ? 'CP1252' : $charset;
+    }
+
+    private function handleBinaryString(): void
+    {
+        $this->string = 'b"' . $this->utf8Encode($this->string) . '"';
+    }
+
+    /**
+     * Converts a non-UTF-8 string to UTF-8.
+     */
+    private function utf8Encode(string $string): string
+    {
+        if (! function_exists('iconv')) {
+            return $string; // @codeCoverageIgnore
+        }
+        $converted = iconv($this->charset, 'UTF-8', $string);
+        if ($converted !== false) {
+            return $converted;
+        }
+        // @codeCoverageIgnoreStart
+        $converted = iconv('CP1252', 'UTF-8', $string);
+        if ($converted !== false && $this->charset !== 'CP1252') {
+            return $converted;
+        }
+        $converted = iconv('CP850', 'UTF-8', $string);
+
+        return $converted ?: $string;
+        // @codeCoverageIgnoreEnd
     }
 }

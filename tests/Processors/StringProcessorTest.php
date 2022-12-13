@@ -15,34 +15,43 @@ namespace Chevere\Tests\Processors;
 
 use Chevere\Tests\Traits\VarDumperTrait;
 use Chevere\VarDump\Processors\StringProcessor;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 final class StringProcessorTest extends TestCase
 {
     use VarDumperTrait;
 
-    public function testConstruct(): void
+    /**
+     * @dataProvider provideConstruct
+     */
+    public function testConstruct(string $var, string $expected = ''): void
     {
-        foreach (['', 'string', 'cádena', 'another string', '100', 'false'] as $var) {
-            $varDumper = $this->getVarDumper($var);
-            $this->assertProcessor(StringProcessor::class, $varDumper);
-            $processor = new StringProcessor($varDumper);
-            $expectedInfo = 'length=' . mb_strlen($var);
-            $this->assertSame($expectedInfo, $processor->info(), "info:{$var}");
-            $this->assertSame(
-                "string {$var} ({$expectedInfo})",
-                $varDumper->writer()->__toString(),
-                "string:{$var}"
-            );
+        if ($expected === '') {
+            $expected = $var;
         }
+        $varDumper = $this->getVarDumper($var);
+        $this->assertProcessor(StringProcessor::class, $varDumper);
+        $processor = new StringProcessor($varDumper);
+        $expectedInfo = 'length=' . mb_strlen($var);
+        $this->assertSame($expectedInfo, $processor->info(), "info:{$var}");
+        $this->assertSame(
+            "string {$expected} ({$expectedInfo})",
+            $varDumper->writer()->__toString(),
+            "string:{$expected}"
+        );
     }
 
-    public function testInvalidArgument(): void
+    public function provideConstruct(): array
     {
-        $char = chr(128);
-        $char = iconv('CP1252', 'UTF-8', $char);
-        $this->expectException(InvalidArgumentException::class);
-        new StringProcessor($this->getVarDumper(null));
+        return [
+            [''],
+            ['string'],
+            ['cádena'],
+            ['another string'],
+            ['100'],
+            ['false'],
+            ['€'],
+            [chr(128), 'b"€"'],
+        ];
     }
 }
