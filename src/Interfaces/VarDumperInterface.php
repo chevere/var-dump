@@ -107,12 +107,14 @@ interface VarDumperInterface
     public function depth(): int;
 
     /**
-     * Return an instance with the specified `$known` objects.
+     * Return an instance with the specified object ids.
      *
      * This method MUST retain the state of the current instance, and return
-     * an instance that contains the specified `$known` objects.
+     * an instance that contains the specified object ids.
+     *
+     * @param Set<int> $ids
      */
-    public function withKnownObjectsId(int ...$id): self;
+    public function withKnownObjectsId(Set $ids): self;
 
     /**
      * Provides access to the known objects.

@@ -19,6 +19,7 @@ use Chevere\VarDump\VarDumpable;
 use Chevere\VarDump\VarDumper;
 use function Chevere\Writer\streamTemp;
 use Chevere\Writer\StreamWriter;
+use Ds\Set;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -55,10 +56,10 @@ final class VarDumperTest extends TestCase
         }
         $object1 = new stdClass();
         $object2 = new stdClass();
+        $set = new Set([spl_object_id($object1), spl_object_id($object2)]);
         $this->hookTestWithKnownObjects(
             $varDumper,
-            spl_object_id($object1),
-            spl_object_id($object2)
+            $set
         );
     }
 
@@ -84,11 +85,11 @@ final class VarDumperTest extends TestCase
 
     public function hookTestWithKnownObjects(
         VarDumperInterface $varDumper,
-        int ...$known
+        Set $known
     ): void {
-        $withKnownObjects = $varDumper->withKnownObjectsId(...$known);
+        $withKnownObjects = $varDumper->withKnownObjectsId($known);
         $this->assertNotSame($varDumper, $withKnownObjects);
-        $this->assertSame($known, $withKnownObjects->knownObjectsId()->toArray());
+        $this->assertSame($known, $withKnownObjects->knownObjectsId());
     }
 
     public function hookTestWithProcess(
