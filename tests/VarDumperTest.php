@@ -13,13 +13,14 @@ declare(strict_types=1);
 
 namespace Chevere\Tests;
 
+use Chevere\DataStructure\Interfaces\VectorInterface;
+use Chevere\DataStructure\Vector;
 use Chevere\VarDump\Formats\PlainFormat;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use Chevere\VarDump\VarDumpable;
 use Chevere\VarDump\VarDumper;
 use function Chevere\Writer\streamTemp;
 use Chevere\Writer\StreamWriter;
-use Ds\Set;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -56,10 +57,10 @@ final class VarDumperTest extends TestCase
         }
         $object1 = new stdClass();
         $object2 = new stdClass();
-        $set = new Set([spl_object_id($object1), spl_object_id($object2)]);
-        $this->hookTestWithKnownObjects(
+        $vector = new Vector(spl_object_id($object1), spl_object_id($object2));
+        $this->hookTestWithKnownObjectIds(
             $varDumper,
-            $set
+            $vector
         );
     }
 
@@ -83,13 +84,13 @@ final class VarDumperTest extends TestCase
         $this->assertSame($depth, $varDumperWithDepth->depth());
     }
 
-    public function hookTestWithKnownObjects(
+    public function hookTestWithKnownObjectIds(
         VarDumperInterface $varDumper,
-        Set $known
+        VectorInterface $known
     ): void {
-        $withKnownObjects = $varDumper->withKnownObjectsId($known);
-        $this->assertNotSame($varDumper, $withKnownObjects);
-        $this->assertSame($known, $withKnownObjects->knownObjectsId());
+        $withKnownObjectIds = $varDumper->withKnownObjectsId($known);
+        $this->assertNotSame($varDumper, $withKnownObjectIds);
+        $this->assertSame($known, $withKnownObjectIds->knownObjectsId());
     }
 
     public function hookTestWithProcess(

@@ -19,7 +19,6 @@ use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use Chevere\VarDump\Processors\Traits\HandleDepthTrait;
 use Chevere\VarDump\Processors\Traits\ProcessorTrait;
-use Ds\Set;
 use Reflection;
 use ReflectionObject;
 use Throwable;
@@ -33,11 +32,6 @@ final class ObjectProcessor implements ProcessorInterface
 
     private string $className;
 
-    /**
-     * @var Set<int>
-     */
-    private Set $knownObjectsId;
-
     private int $objectId;
 
     public function __construct(
@@ -48,7 +42,6 @@ final class ObjectProcessor implements ProcessorInterface
         $object = $this->varDumper->dumpable()->var();
         $this->var = $object;
         $this->depth = $this->varDumper->depth() + 1;
-        $this->knownObjectsId = $this->varDumper->knownObjectsId();
         $this->className = $this->var::class;
         $this->handleNormalizeClassName();
         $this->objectId = spl_object_id($this->var);
@@ -75,7 +68,7 @@ final class ObjectProcessor implements ProcessorInterface
                     '#' . strval($this->objectId)
                 )
         );
-        if ($this->knownObjectsId->contains($this->objectId)) {
+        if ($this->varDumper->knownObjectsId()->find($this->objectId) !== null) {
             $this->varDumper->writer()->write(
                 ' '
                 . $this->highlightParentheses(
@@ -93,7 +86,9 @@ final class ObjectProcessor implements ProcessorInterface
 
             return;
         }
-        $this->knownObjectsId->add($this->objectId);
+        $this->varDumper = $this->varDumper->withKnownObjectsId(
+            $this->varDumper->knownObjectsId()->withPush($this->objectId)
+        );
         $this->setProperties(new ReflectionObject($this->var));
     }
 

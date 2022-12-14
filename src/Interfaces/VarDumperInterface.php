@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Interfaces;
 
+use Chevere\DataStructure\Interfaces\VectorInterface;
 use Chevere\Type\Interfaces\TypeInterface;
 use Chevere\VarDump\Processors\ArrayProcessor;
 use Chevere\VarDump\Processors\BooleanProcessor;
@@ -23,7 +24,6 @@ use Chevere\VarDump\Processors\ObjectProcessor;
 use Chevere\VarDump\Processors\ResourceProcessor;
 use Chevere\VarDump\Processors\StringProcessor;
 use Chevere\Writer\Interfaces\WriterInterface;
-use Ds\Set;
 
 /**
  * Describes the component in charge of handling variable dumping process.
@@ -112,15 +112,15 @@ interface VarDumperInterface
      * This method MUST retain the state of the current instance, and return
      * an instance that contains the specified object ids.
      *
-     * @param Set<int> $ids
+     * @param VectorInterface<int> $ids
      */
-    public function withKnownObjectsId(Set $ids): self;
+    public function withKnownObjectsId(VectorInterface $ids): self;
 
     /**
      * Provides access to the known objects.
-     * @return Set<int>
+     * @return VectorInterface<int>
      */
-    public function knownObjectsId(): Set;
+    public function knownObjectsId(): VectorInterface;
 
     /**
      * Process the dump.

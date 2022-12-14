@@ -18,7 +18,6 @@ use Chevere\Tests\Traits\VarDumperTrait;
 use Chevere\Throwable\Exceptions\InvalidArgumentException;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Processors\ObjectProcessor;
-use Ds\Map;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -159,33 +158,6 @@ final class ObjectProcessorTest extends TestCase
                public deep class@anonymous#{$objectIds[7]}
                 public deep class@anonymous#{$objectIds[8]}
                  public deep class@anonymous#{$objectIds[9]} (max depth reached)
-        EOT;
-        $this->assertSame(
-            $stringEls,
-            $varDumper->writer()->__toString()
-        );
-    }
-
-    /**
-     * @requires extension ds
-     */
-    public function testDsMapExtension(): void
-    {
-        $key = 'key';
-        $value = 'value';
-        $objectChild = new Map(['test']);
-        $object = new Map([
-            $key => $value,
-            'map' => $objectChild,
-        ]);
-        $className = $object::class;
-        $id = strval(spl_object_id($object));
-        $varDumper = $this->getVarDumper($object);
-        $stringEls = <<<EOT
-        {$className}#{$id}
-        public key string value (length=5)
-        public map array (size=1)
-         0 => string test (length=4)
         EOT;
         $this->assertSame(
             $stringEls,

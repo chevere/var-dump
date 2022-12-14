@@ -13,20 +13,21 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump;
 
+use Chevere\DataStructure\Interfaces\VectorInterface;
+use Chevere\DataStructure\Vector;
 use Chevere\Type\Interfaces\TypeInterface;
 use Chevere\VarDump\Interfaces\FormatInterface;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\VarDumpableInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use Chevere\Writer\Interfaces\WriterInterface;
-use Ds\Set;
 
 final class VarDumper implements VarDumperInterface
 {
     /**
-     * @var Set<int>
+     * @var VectorInterface<int>
      */
-    public Set $knownObjects;
+    public VectorInterface $knownObjectsId;
 
     private int $indent = 0;
 
@@ -39,7 +40,7 @@ final class VarDumper implements VarDumperInterface
         private FormatInterface $format,
         private VarDumpableInterface $dumpable
     ) {
-        $this->knownObjects = new Set();
+        $this->knownObjectsId = new Vector();
         ++$this->depth;
     }
 
@@ -90,17 +91,17 @@ final class VarDumper implements VarDumperInterface
         return $this->depth;
     }
 
-    public function withKnownObjectsId(Set $ids): VarDumperInterface
+    public function withKnownObjectsId(VectorInterface $ids): VarDumperInterface
     {
         $new = clone $this;
-        $new->knownObjects = $ids;
+        $new->knownObjectsId = $ids;
 
         return $new;
     }
 
-    public function knownObjectsId(): Set
+    public function knownObjectsId(): VectorInterface
     {
-        return $this->knownObjects;
+        return $this->knownObjectsId;
     }
 
     public function withProcess(): VarDumperInterface

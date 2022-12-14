@@ -12,7 +12,7 @@ private output Chevere\VarDump\Outputs\PlainOutput#8
  private outputHr string ------------------------------------------------------------ (length=60)
  private writer Chevere\Writer\StreamWriter#17
   private stream Nyholm\Psr7\Stream#18
-   private stream Resource id #175 (type=stream)
+   private stream Resource id #173 (type=stream)
    private seekable boolean true
    private readable boolean true
    private writable boolean true
@@ -24,7 +24,7 @@ private output Chevere\VarDump\Outputs\PlainOutput#8
    line => integer 40 (length=2)
    function => string process (length=7)
    class => string Chevere\VarDump\VarDump (length=23)
-   object => Chevere\VarDump\VarDump#19
+   object => Chevere\VarDump\VarDump#20
     private variables array (size=1)
      0 => Chevere\VarDump\VarDump#6 (circular reference #6)
     private shift integer 0 (length=1)
@@ -34,14 +34,28 @@ private output Chevere\VarDump\Outputs\PlainOutput#8
       line => integer 40 (length=2)
       function => string process (length=7)
       class => string Chevere\VarDump\VarDump (length=23)
-      object => Chevere\VarDump\VarDump#19 (circular reference #19)
+      object => Chevere\VarDump\VarDump#20 (circular reference #20)
       type => string -> (length=2)
       args => array (size=1)
-       0 => Chevere\Writer\StreamWriter#17 (circular reference #17)
-    private format Chevere\VarDump\Formats\PlainFormat#7 (circular reference #7)
+       0 => Chevere\Writer\StreamWriter#17
+        private stream Nyholm\Psr7\Stream#18
+         private stream Resource id #173 (type=stream)
+         private seekable boolean true
+         private readable boolean true
+         private writable boolean true
+         private uri null
+         private size null
+    private format Chevere\VarDump\Formats\PlainFormat#7
     private output Chevere\VarDump\Outputs\PlainOutput#8 (circular reference #8)
    type => string -> (length=2)
    args => array (size=1)
-    0 => Chevere\Writer\StreamWriter#17 (circular reference #17)
+    0 => Chevere\Writer\StreamWriter#17
+     private stream Nyholm\Psr7\Stream#18
+      private stream Resource id #173 (type=stream)
+      private seekable boolean true
+      private readable boolean true
+      private writable boolean true
+      private uri null
+      private size null
  private caller string Chevere\VarDump\VarDump->process() (length=34)
 ------------------------------------------------------------
