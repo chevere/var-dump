@@ -4,29 +4,33 @@ Chevere\VarDump\VarDump->process()
 /var/www/html/demo.php:40
 
 Arg•0 Chevere\VarDump\VarDump#6
-private vars array [] (size=0)
+private variables array [] (size=0)
 private shift integer 0 (length=1)
 private debugBacktrace array [] (size=0)
 private format Chevere\VarDump\Formats\PlainFormat#7
 private output Chevere\VarDump\Outputs\PlainOutput#8
  private outputHr string ------------------------------------------------------------ (length=60)
  private writer Chevere\Writer\StreamWriter#17
-  private stream Laminas\Diactoros\Stream#18
-   protected resource Resource id #192 (type=stream)
-   protected stream null
+  private stream Nyholm\Psr7\Stream#18
+   private stream Resource id #175 (type=stream)
+   private seekable boolean true
+   private readable boolean true
+   private writable boolean true
+   private uri null
+   private size null
  private trace array (size=1)
   0 => array (size=7)
-   file => string /var/www/html/demo.php (length=48)
+   file => string /var/www/html/demo.php (length=49)
    line => integer 40 (length=2)
    function => string process (length=7)
    class => string Chevere\VarDump\VarDump (length=23)
    object => Chevere\VarDump\VarDump#19
-    private vars array (size=1)
+    private variables array (size=1)
      0 => Chevere\VarDump\VarDump#6 (circular reference #6)
     private shift integer 0 (length=1)
     private debugBacktrace array (size=1)
      0 => array (size=7)
-      file => string /var/www/html/demo.php (length=48)
+      file => string /var/www/html/demo.php (length=49)
       line => integer 40 (length=2)
       function => string process (length=7)
       class => string Chevere\VarDump\VarDump (length=23)

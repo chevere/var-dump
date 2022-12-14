@@ -22,7 +22,19 @@ final class HtmlOutput extends Output
     /**
      * @var string Dump style, no double quotes.
      */
-    public const STYLE = "font: 14px 'Fira Code Retina', 'Operator Mono', Inconsolata, Consolas, monospace, sans-serif; line-height: normal; color: #ecf0f1; padding: 15px; margin: 10px 0; word-break: break-word; white-space: pre-wrap; background: " . self::BACKGROUND . '; display: block; text-align: left; border: none; border-radius: 4px;';
+    public const STYLE = 'font-size:14px;'
+        . "font-family:'Fira Code Retina','Operator Mono',Inconsolata,Consolas,monospace,sans-serif;"
+        . 'line-height:normal;'
+        . 'color:#ecf0f1;'
+        . 'padding:15px;'
+        . 'margin:10px 0;'
+        . 'word-break:break-word;'
+        . 'white-space:pre-wrap;'
+        . 'background:' . self::BACKGROUND . ';'
+        . 'display:block;'
+        . 'text-align:left;'
+        . 'border:none;'
+        . 'border-radius:4px;';
 
     private bool $hasHeader = false;
 
@@ -37,7 +49,7 @@ final class HtmlOutput extends Output
     public function prepare(): void
     {
         // @infection-ignore-all
-        if (!headers_sent() || headers_list() === []) {
+        if (! headers_sent() || headers_list() === []) {
             $this->hasHeader = true;
             $this->writer()->write(
                 '<html style="background: '

@@ -4,29 +4,33 @@
 [38;5;111m/var/www/html/demo.php:40[0m
 
 Arg•0 [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#2[0m
-[38;5;170mprivate[0m [38;5;39mvars[0m [38;5;41marray[0m [] [38;5;3m[38;5;242m(size=0)[0m[0m
+[38;5;170mprivate[0m [38;5;39mvariables[0m [38;5;41marray[0m [] [38;5;3m[38;5;242m(size=0)[0m[0m
 [38;5;170mprivate[0m [38;5;39mshift[0m [38;5;208minteger[0m 0 [38;5;3m[38;5;242m(length=1)[0m[0m
 [38;5;170mprivate[0m [38;5;39mdebugBacktrace[0m [38;5;41marray[0m [] [38;5;3m[38;5;242m(size=0)[0m[0m
 [38;5;170mprivate[0m [38;5;39mformat[0m [38;5;221mChevere\VarDump\Formats\ConsoleFormat[0m[38;5;242m#4[0m
 [38;5;170mprivate[0m [38;5;39moutput[0m [38;5;221mChevere\VarDump\Outputs\ConsoleOutput[0m[38;5;242m#5[0m
  [38;5;170mprivate[0m [38;5;39moutputHr[0m [38;5;208mstring[0m [34m------------------------------------------------------------[0m [38;5;3m[38;5;242m(length=69)[0m[0m
  [38;5;170mprivate[0m [38;5;39mwriter[0m [38;5;221mChevere\Writer\StreamWriter[0m[38;5;242m#12[0m
-  [38;5;170mprivate[0m [38;5;39mstream[0m [38;5;221mLaminas\Diactoros\Stream[0m[38;5;242m#13[0m
-   [38;5;170mprotected[0m [38;5;39mresource[0m [38;5;203mResource id #151[0m [38;5;3m[38;5;242m(type=stream)[0m[0m
-   [38;5;170mprotected[0m [38;5;39mstream[0m [38;5;208mnull[0m
+  [38;5;170mprivate[0m [38;5;39mstream[0m [38;5;221mNyholm\Psr7\Stream[0m[38;5;242m#13[0m
+   [38;5;170mprivate[0m [38;5;39mstream[0m [38;5;203mResource id #135[0m [38;5;3m[38;5;242m(type=stream)[0m[0m
+   [38;5;170mprivate[0m [38;5;39mseekable[0m [38;5;208mboolean[0m true
+   [38;5;170mprivate[0m [38;5;39mreadable[0m [38;5;208mboolean[0m true
+   [38;5;170mprivate[0m [38;5;39mwritable[0m [38;5;208mboolean[0m true
+   [38;5;170mprivate[0m [38;5;39muri[0m [38;5;208mnull[0m
+   [38;5;170mprivate[0m [38;5;39msize[0m [38;5;208mnull[0m
  [38;5;170mprivate[0m [38;5;39mtrace[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=1)[0m[0m
   0 [38;5;242m=>[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=7)[0m[0m
-   file [38;5;242m=>[0m [38;5;208mstring[0m /var/www/html/demo.php [38;5;3m[38;5;242m(length=48)[0m[0m
+   file [38;5;242m=>[0m [38;5;208mstring[0m /var/www/html/demo.php [38;5;3m[38;5;242m(length=49)[0m[0m
    line [38;5;242m=>[0m [38;5;208minteger[0m 40 [38;5;3m[38;5;242m(length=2)[0m[0m
    function [38;5;242m=>[0m [38;5;208mstring[0m process [38;5;3m[38;5;242m(length=7)[0m[0m
    class [38;5;242m=>[0m [38;5;208mstring[0m Chevere\VarDump\VarDump [38;5;3m[38;5;242m(length=23)[0m[0m
    object [38;5;242m=>[0m [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#14[0m
-    [38;5;170mprivate[0m [38;5;39mvars[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=1)[0m[0m
+    [38;5;170mprivate[0m [38;5;39mvariables[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=1)[0m[0m
      0 [38;5;242m=>[0m [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#2[0m [38;5;3m[38;5;242m(circular reference #2)[0m[0m
     [38;5;170mprivate[0m [38;5;39mshift[0m [38;5;208minteger[0m 0 [38;5;3m[38;5;242m(length=1)[0m[0m
     [38;5;170mprivate[0m [38;5;39mdebugBacktrace[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=1)[0m[0m
      0 [38;5;242m=>[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=7)[0m[0m
-      file [38;5;242m=>[0m [38;5;208mstring[0m /var/www/html/demo.php [38;5;3m[38;5;242m(length=48)[0m[0m
+      file [38;5;242m=>[0m [38;5;208mstring[0m /var/www/html/demo.php [38;5;3m[38;5;242m(length=49)[0m[0m
       line [38;5;242m=>[0m [38;5;208minteger[0m 40 [38;5;3m[38;5;242m(length=2)[0m[0m
       function [38;5;242m=>[0m [38;5;208mstring[0m process [38;5;3m[38;5;242m(length=7)[0m[0m
       class [38;5;242m=>[0m [38;5;208mstring[0m Chevere\VarDump\VarDump [38;5;3m[38;5;242m(length=23)[0m[0m
