@@ -47,9 +47,7 @@ final class ConsoleHighlight implements HighlightInterface
         foreach ($this->style as $style) {
             try {
                 $dump = $this->color->apply("color[{$style}]", $dump);
-            }
-            // @codeCoverageIgnoreStart
-            catch (Throwable) {
+            } catch (Throwable) { // @codeCoverageIgnoreStart
                 // Ignore if color not supported
             }
             // @codeCoverageIgnoreEnd

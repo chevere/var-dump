@@ -73,7 +73,12 @@ final class StringProcessor implements ProcessorInterface
 
     private function handleBinaryString(): void
     {
-        $this->string = 'b"' . $this->utf8Encode($this->string) . '"';
+        if (! function_exists('iconv')) {
+            return; // @codeCoverageIgnore
+        }
+        $this->string = <<<STRING
+        b"{$this->utf8Encode($this->string)}"
+        STRING;
     }
 
     /**
@@ -81,9 +86,6 @@ final class StringProcessor implements ProcessorInterface
      */
     private function utf8Encode(string $string): string
     {
-        if (! function_exists('iconv')) {
-            return $string; // @codeCoverageIgnore
-        }
         $converted = iconv($this->charset, 'UTF-8', $string);
         if ($converted !== false) {
             return $converted;
@@ -93,9 +95,8 @@ final class StringProcessor implements ProcessorInterface
         if ($converted !== false && $this->charset !== 'CP1252') {
             return $converted;
         }
-        $converted = iconv('CP850', 'UTF-8', $string);
 
-        return $converted ?: $string;
+        return iconv('CP850', 'UTF-8', $string) ?: $string;
         // @codeCoverageIgnoreEnd
     }
 }

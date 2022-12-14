@@ -36,9 +36,7 @@ final class ConsoleOutput extends Output
             // @phpstan-ignore-next-line
             $bold = $color->bold($caller);
             $caller = $color->fg('red', $bold);
-        }
-        // @codeCoverageIgnoreStart
-        catch (Throwable) {
+        } catch (Throwable) { // @codeCoverageIgnoreStart
             // Ignore if color not supported
         }
         // @codeCoverageIgnoreEnd
