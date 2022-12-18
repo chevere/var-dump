@@ -61,6 +61,11 @@ final class StringProcessor implements ProcessorInterface
         );
     }
 
+    public function charset(): string
+    {
+        return $this->charset;
+    }
+
     /**
      * Sets the default character encoding to use for non-UTF8 strings.
      */

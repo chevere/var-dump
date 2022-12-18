@@ -19,13 +19,25 @@ use PHPUnit\Framework\TestCase;
 
 final class HtmlFormatTest extends TestCase
 {
-    public function testIndent(): void
+    /**
+     * @dataProvider provideIndent
+     */
+    public function testIndent(int $indent): void
     {
-        $indent = 5;
+        $prefix = HtmlFormat::HTML_INLINE_PREFIX;
         $indented = (new HtmlFormat())->getIndent($indent);
         $stripped = strip_tags($indented);
         $expected = str_repeat('  ', $indent);
         $this->assertSame($expected, $stripped);
+    }
+
+    public function provideIndent(): array
+    {
+        return [
+            [0],
+            [10],
+            [100],
+        ];
     }
 
     public function testEmphasis(): void

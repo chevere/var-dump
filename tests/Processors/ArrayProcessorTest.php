@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Chevere\Tests\Processors;
 
 use Chevere\Tests\Traits\VarDumperTrait;
-use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Processors\ArrayProcessor;
+use Chevere\VarDump\VarDumper;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
@@ -26,6 +26,9 @@ final class ArrayProcessorTest extends TestCase
     public function testInvalidArgument(): void
     {
         $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'type array for the return value of ' . VarDumper::class . '::var()'
+        );
         new ArrayProcessor($this->getVarDumper(null));
     }
 
@@ -51,6 +54,7 @@ final class ArrayProcessorTest extends TestCase
         $containTpl = '%s => integer %s (length=1)';
         $varDumper = $this->getVarDumper($variable);
         $processor = new ArrayProcessor($varDumper);
+        $this->assertSame(1, $processor->depth());
         $this->assertSame($expectInfo, $processor->info());
         $processor->write();
         foreach ($variable as $int) {
@@ -78,12 +82,15 @@ final class ArrayProcessorTest extends TestCase
     public function testMaxDepth(): void
     {
         $variable = [];
-        for ($i = 0; $i <= ProcessorInterface::MAX_DEPTH; $i++) {
+        for ($i = 0; $i <= ArrayProcessor::MAX_DEPTH; $i++) {
             $variable = [$variable];
         }
         $varDumper = $this->getVarDumper($variable);
         $processor = new ArrayProcessor($varDumper);
         $processor->write();
-        $this->assertStringContainsString($processor->maxDepthReached(), $varDumper->writer()->__toString());
+        $this->assertStringContainsString(
+            '         0 => array (size=1) (' . $processor->maxDepthReached() . ')',
+            $varDumper->writer()->__toString()
+        );
     }
 }

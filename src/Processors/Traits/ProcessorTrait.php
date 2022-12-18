@@ -24,14 +24,7 @@ trait ProcessorTrait
 
     private string $info = '';
 
-    private int $depth = 0;
-
     abstract public function type(): string;
-
-    public function depth(): int
-    {
-        return $this->depth;
-    }
 
     public function info(): string
     {

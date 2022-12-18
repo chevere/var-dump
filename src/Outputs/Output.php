@@ -58,9 +58,6 @@ abstract class Output implements OutputInterface
         }
     }
 
-    /**
-     * @codeCoverageIgnore
-     */
     final public function trace(): array
     {
         return $this->trace;

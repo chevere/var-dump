@@ -15,11 +15,12 @@ namespace Chevere\VarDump\Processors;
 
 use Chevere\Type\Interfaces\TypeInterface;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
+use Chevere\VarDump\Interfaces\ProcessorNestedInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use Chevere\VarDump\Processors\Traits\HandleDepthTrait;
 use Chevere\VarDump\Processors\Traits\ProcessorTrait;
 
-final class ArrayProcessor implements ProcessorInterface
+final class ArrayProcessor implements ProcessorInterface, ProcessorNestedInterface
 {
     use ProcessorTrait;
     use HandleDepthTrait;
@@ -65,12 +66,10 @@ final class ArrayProcessor implements ProcessorInterface
             return;
         }
         if ($this->depth > self::MAX_DEPTH) {
-            if ($this->count > 0) {
-                $this->varDumper->writer()->write(
-                    ' '
-                    . $this->highlightParentheses($this->maxDepthReached())
-                );
-            }
+            $this->varDumper->writer()->write(
+                ' '
+                . $this->highlightParentheses($this->maxDepthReached())
+            );
 
             return;
         }

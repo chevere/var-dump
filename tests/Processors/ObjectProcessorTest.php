@@ -16,7 +16,6 @@ namespace Chevere\Tests\Processors;
 use Chevere\Tests\_resources\DummyClass;
 use Chevere\Tests\Traits\VarDumperTrait;
 use Chevere\Throwable\Exceptions\InvalidArgumentException;
-use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Processors\ObjectProcessor;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -128,7 +127,7 @@ final class ObjectProcessorTest extends TestCase
     public function testDeep(): void
     {
         $deep = new stdClass();
-        for ($i = 0; $i <= ProcessorInterface::MAX_DEPTH; $i++) {
+        for ($i = 0; $i <= ObjectProcessor::MAX_DEPTH; $i++) {
             $deep = new class($deep) {
                 public function __construct(
                     public $deep

@@ -16,6 +16,7 @@ namespace Chevere\VarDump\Processors;
 use Chevere\String\ValidateString;
 use Chevere\Type\Interfaces\TypeInterface;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
+use Chevere\VarDump\Interfaces\ProcessorNestedInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use Chevere\VarDump\Processors\Traits\HandleDepthTrait;
 use Chevere\VarDump\Processors\Traits\ProcessorTrait;
@@ -23,7 +24,7 @@ use Reflection;
 use ReflectionObject;
 use Throwable;
 
-final class ObjectProcessor implements ProcessorInterface
+final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterface
 {
     use ProcessorTrait;
     use HandleDepthTrait;
@@ -70,18 +71,20 @@ final class ObjectProcessor implements ProcessorInterface
         );
         if ($this->varDumper->knownObjectsId()->find($this->objectId) !== null) {
             $this->varDumper->writer()->write(
-                ' '
-                . $this->highlightParentheses(
+                <<<STRING
+                 {$this->highlightParentheses(
                     $this->circularReference() . ' #' . $this->objectId
-                )
+                )}
+                STRING
             );
 
             return;
         }
         if ($this->depth > self::MAX_DEPTH) {
             $this->varDumper->writer()->write(
-                ' '
-                . $this->highlightParentheses($this->maxDepthReached())
+                <<<STRING
+                 {$this->highlightParentheses($this->maxDepthReached())}
+                STRING
             );
 
             return;

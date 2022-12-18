@@ -18,13 +18,6 @@ namespace Chevere\VarDump\Interfaces;
  */
 interface ProcessorInterface
 {
-    public const MAX_DEPTH = 10;
-
-    /**
-     * Provides the current processor depth.
-     */
-    public function depth(): int;
-
     /**
      * Provides the variable type (primitive).
      */
@@ -49,16 +42,6 @@ interface ProcessorInterface
      * Highlights and wraps in parentheses the given `$string`.
      */
     public function highlightParentheses(string $string): string;
-
-    /**
-     * Provides the `circular reference` flag.
-     */
-    public function circularReference(): string;
-
-    /**
-     * Provides the `max depth reached` flag.
-     */
-    public function maxDepthReached(): string;
 
     /**
      * Write the dump to the stream.

@@ -25,6 +25,7 @@ final class HtmlFormat implements FormatInterface
 
     public function getIndent(int $indent): string
     {
+        // @infection-ignore-all
         return str_repeat(' ' . self::HTML_INLINE_PREFIX . ' ', $indent);
     }
 
