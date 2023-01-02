@@ -4,7 +4,7 @@
 
 ![Chevere](chevere.svg)
 
-[![Build](https://img.shields.io/github/workflow/status/chevere/var-dump/Test?style=flat-square)](https://github.com/chevere/var-dump/actions)
+[![Build](https://img.shields.io/github/actions/workflow/status/chevere/var-dump/test.yml?branch=0.7&style=flat-square)](https://github.com/chevere/var-dump/actions)
 ![Code size](https://img.shields.io/github/languages/code-size/chevere/var-dump?style=flat-square)
 [![Apache-2.0](https://img.shields.io/github/license/chevere/var-dump?style=flat-square)](LICENSE)
 [![PHPStan](https://img.shields.io/badge/PHPStan-level%209-blueviolet?style=flat-square)](https://phpstan.org/)
@@ -21,23 +21,15 @@
 
 ![VarDump](.github/banner/var-dump-logo.svg)
 
-## Demo
-
-![HTML demo](demo/demo.svg)
-
-* [HTML](https://chevere.github.io/var-dump/demo/output/html.html)
-* [Plain text](https://chevere.github.io/var-dump/demo/output/plain.txt)
-* [Console (asciinema)](https://asciinema.org/a/496889)
-
 ## Quick start
 
-* Install VarDump using Composer.
+* Install VarDump using [Composer](https://getcomposer.org).
 
 ```sh
 composer require --dev chevere/var-dump
 ```
 
-* Use `vd` to dump information about any variable. It replaces `var_dump` or `dump`.
+* Use `vd` to dump information about any variable. It replaces `var_dump` and `dump`.
 
 ```php
 // var dump
@@ -50,6 +42,14 @@ vd($myVar, $foo);
 // var dump and die
 vdd($myVar);
 ```
+
+## Demo
+
+![HTML demo](demo/demo.svg)
+
+* [HTML](https://chevere.github.io/var-dump/demo/output/html.html)
+* [Plain text](https://chevere.github.io/var-dump/demo/output/plain.txt)
+* [Console (asciinema)](https://asciinema.org/a/496889)
 
 ## Documentation
 
