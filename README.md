@@ -23,24 +23,18 @@
 
 ## Quick start
 
-* Install VarDump using [Composer](https://getcomposer.org).
+Install VarDump using [Composer](https://getcomposer.org).
 
 ```sh
 composer require --dev chevere/var-dump
 ```
 
-* Use `vd` to dump information about any variable. It replaces `var_dump` and `dump`.
+* Use `vd` to dump information about any variable (replaces `var_dump` and `dump`)
+* Use `vdd` to do the same as `vd` and `die(0)` (replaces `dd`)
 
 ```php
-// var dump
-vd($myVar, $foo);
-```
-
-* Use `vdd` to do the same as `vd` and `die(0)`. It replaces `dd`.
-
-```php
-// var dump and die
-vdd($myVar);
+vd($myVar); // var dump
+vdd($myVar); // var dump and die
 ```
 
 ## Demo
