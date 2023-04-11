@@ -18,7 +18,7 @@ namespace Chevere\VarDump\Interfaces;
  */
 interface ProcessorNestedInterface
 {
-    public const MAX_DEPTH = 10;
+    public const MAX_DEPTH = 100;
 
     /**
      * Provides the current processor depth.
