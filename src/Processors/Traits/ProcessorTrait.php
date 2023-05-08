@@ -48,7 +48,7 @@ trait ProcessorTrait
 
     public function highlightParentheses(string $string): string
     {
-        return $this->varDumper->format()->getEmphasis("({$string})");
+        return $this->varDumper->format()->getEmphasis('('.$string.')');
     }
 
     public function circularReference(): string
