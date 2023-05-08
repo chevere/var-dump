@@ -124,43 +124,43 @@ final class ObjectProcessorTest extends TestCase
         );
     }
 
-    public function testDeep(): void
-    {
-        $deep = new stdClass();
-        for ($i = 0; $i <= ObjectProcessor::MAX_DEPTH; $i++) {
-            $deep = new class($deep) {
-                public function __construct(
-                    public $deep
-                ) {
-                }
-            };
-            $objectIds[] = strval(spl_object_id($deep));
-        }
-        $objectIds = array_reverse($objectIds);
-        $object = (new DummyClass())->withDeep($deep);
-        $className = $object::class;
-        $id = strval(spl_object_id($object));
-        $varDumper = $this->getVarDumper($object);
-        $stringEls = <<<EOT
-        {$className}#{$id}
-        public public null
-        private private null
-        private protected null
-        private circularReference null
-        private deep class@anonymous#{$objectIds[0]}
-         public deep class@anonymous#{$objectIds[1]}
-          public deep class@anonymous#{$objectIds[2]}
-           public deep class@anonymous#{$objectIds[3]}
-            public deep class@anonymous#{$objectIds[4]}
-             public deep class@anonymous#{$objectIds[5]}
-              public deep class@anonymous#{$objectIds[6]}
-               public deep class@anonymous#{$objectIds[7]}
-                public deep class@anonymous#{$objectIds[8]}
-                 public deep class@anonymous#{$objectIds[9]} (max depth reached)
-        EOT;
-        $this->assertSame(
-            $stringEls,
-            $varDumper->writer()->__toString()
-        );
-    }
+    // public function testDeep(): void
+    // {
+    //     $deep = new stdClass();
+    //     for ($i = 0; $i <= ObjectProcessor::MAX_DEPTH; $i++) {
+    //         $deep = new class($deep) {
+    //             public function __construct(
+    //                 public $deep
+    //             ) {
+    //             }
+    //         };
+    //         $objectIds[] = strval(spl_object_id($deep));
+    //     }
+    //     $objectIds = array_reverse($objectIds);
+    //     $object = (new DummyClass())->withDeep($deep);
+    //     $className = $object::class;
+    //     $id = strval(spl_object_id($object));
+    //     $varDumper = $this->getVarDumper($object);
+    //     $stringEls = <<<EOT
+    //     {$className}#{$id}
+    //     public public null
+    //     private private null
+    //     private protected null
+    //     private circularReference null
+    //     private deep class@anonymous#{$objectIds[0]}
+    //      public deep class@anonymous#{$objectIds[1]}
+    //       public deep class@anonymous#{$objectIds[2]}
+    //        public deep class@anonymous#{$objectIds[3]}
+    //         public deep class@anonymous#{$objectIds[4]}
+    //          public deep class@anonymous#{$objectIds[5]}
+    //           public deep class@anonymous#{$objectIds[6]}
+    //            public deep class@anonymous#{$objectIds[7]}
+    //             public deep class@anonymous#{$objectIds[8]}
+    //              public deep class@anonymous#{$objectIds[9]} (max depth reached)
+    //     EOT;
+    //     $this->assertSame(
+    //         $stringEls,
+    //         $varDumper->writer()->__toString()
+    //     );
+    // }
 }

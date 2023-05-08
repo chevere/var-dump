@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Chevere\Tests\Highlights;
 
-use Chevere\String\ModifyString;
+use Chevere\String\StringModify;
 use Chevere\Throwable\Exceptions\OutOfRangeException;
 use Chevere\Type\Interfaces\TypeInterface;
 use Chevere\VarDump\Highlights\ConsoleHighlight;
@@ -55,11 +55,11 @@ final class ConsoleHighlightTest extends TestCase
         $palette = ConsoleHighlight::palette();
         foreach ($expect as $k => &$v) {
             $paletteColor = $palette[$k];
-            if (!is_array($paletteColor)) {
+            if (! is_array($paletteColor)) {
                 $paletteColor = [$paletteColor];
             }
             foreach ($paletteColor as $pos => $colorCode) {
-                $v = str_replace("%c$pos%", $colorCode, $v);
+                $v = str_replace("%c{$pos}%", $colorCode, $v);
             }
             $v = $open . $v . $close;
         }
@@ -69,7 +69,7 @@ final class ConsoleHighlightTest extends TestCase
             $string = $highlight->getHighlight($dump);
             $expected = $expect[$key];
             if ($color->isSupported() === false) {
-                $expected = (new ModifyString($expected))->withStripANSIColors()
+                $expected = (new StringModify($expected))->withStripANSIColors()
                     ->__toString();
             }
             $this->assertSame($expected, $string);
