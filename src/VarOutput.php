@@ -44,6 +44,9 @@ final class VarOutput implements VarOutputInterface
         $aux = 0;
         foreach ($variables as $name => $value) {
             $aux++;
+            if (is_int($name)) {
+                $name = $aux;
+            }
             $varDumper = new VarDumper(
                 $this->writer,
                 $this->format,

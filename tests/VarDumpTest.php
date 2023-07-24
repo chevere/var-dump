@@ -54,7 +54,7 @@ final class VarDumpTest extends TestCase
             . "\n"
             . __FILE__ . ':' . $line
             . "\n\n"
-            . 'Arg•0 stdClass#' . spl_object_id($variable)
+            . 'Arg•1 stdClass#' . spl_object_id($variable)
             . "\n" . $hrLine
             . "\n";
         $this->assertSame($expectedString, $writer->__toString());
