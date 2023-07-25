@@ -105,8 +105,8 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
         foreach ($keys as $name) {
             $name = strval($name);
             /** @var string[] */
-            $prop = $properties[$name];
-            $this->processProperty($name, ...$prop);
+            $property = $properties[$name];
+            $this->processProperty($name, ...$property);
         }
     }
 
@@ -134,11 +134,9 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
         $properties = [];
         do {
             foreach ($reflection->getProperties() as $property) {
-                $property->setAccessible(true);
-
                 try {
                     $value = $property->getValue($this->var);
-                } catch (Throwable $e) {
+                } catch (Throwable) {
                     $value = null;
                 }
                 $properties[$property->getName()] = [

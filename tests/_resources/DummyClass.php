@@ -20,6 +20,8 @@ final class DummyClass
 {
     public object $public;
 
+    public readonly string $readonly;
+
     private object $private;
 
     private object $protected;

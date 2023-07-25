@@ -56,6 +56,7 @@ final class ObjectProcessorTest extends TestCase
         $dump = <<<EOT
         {$className}#{$id}
         public public null
+        public readonly readonly null
         private private null
         private protected null
         private circularReference null
@@ -81,6 +82,7 @@ final class ObjectProcessorTest extends TestCase
          public array array [] (size=0)
          public int integer 1 (length=1)
          public bool boolean true
+        public readonly readonly null
         private private null
         private protected null
         private circularReference null
@@ -113,6 +115,7 @@ final class ObjectProcessorTest extends TestCase
         $dump = <<<EOT
         {$className}#{$id}
         public public null
+        public readonly readonly null
         private private null
         private protected null
         private circularReference {$className}#{$id} (circular reference #{$id})
