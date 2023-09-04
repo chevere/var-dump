@@ -19,15 +19,13 @@ use Chevere\VarDump\VarDumper;
 
 trait HandleDepthTrait
 {
-    /**
-     * Provides the current processor depth.
-     */
-    // public function depth(): int;
-
     private VarDumperInterface $varDumper;
 
     private int $depth = 0;
 
+    /**
+     * Current processor depth
+     */
     public function depth(): int
     {
         return $this->depth;
