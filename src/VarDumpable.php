@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump;
 
-use function Chevere\Message\message;
 use Chevere\Throwable\Exceptions\LogicException;
-use function Chevere\Type\getType;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\VarDumpableInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
+use function Chevere\Message\message;
+use function Chevere\Type\getType;
 
 final class VarDumpable implements VarDumpableInterface
 {

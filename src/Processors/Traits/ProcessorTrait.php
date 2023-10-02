@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Processors\Traits;
 
-use function Chevere\Message\message;
 use Chevere\Throwable\Exceptions\InvalidArgumentException;
 use Chevere\Type\Type;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
+use function Chevere\Message\message;
 
 trait ProcessorTrait
 {

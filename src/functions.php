@@ -23,10 +23,10 @@ namespace Chevere\VarDump {
     use Chevere\VarDump\Outputs\HtmlOutput;
     use Chevere\VarDump\Outputs\PlainOutput;
     use Chevere\Writer\Interfaces\WritersInterface;
-    use function Chevere\Writer\streamFor;
     use Chevere\Writer\StreamWriter;
     use Chevere\Writer\Writers;
     use Chevere\Writer\WritersInstance;
+    use function Chevere\Writer\streamFor;
 
     function varDumpPlain(): VarDumpInterface
     {
@@ -109,7 +109,7 @@ namespace {
                 ->withShift(1)
                 ->withVariables(...$variables)
                 ->process(writers()->output());
-            die(0);
+            exit(0);
         }
     }
 }
