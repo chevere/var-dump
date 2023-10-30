@@ -41,6 +41,8 @@ jobs:
         run: composer install --no-progress
       - name: Run PHPStan
         run: phpstan analyse src -l 9
+      - name: Setup demo
+        run: php demo/demo.php
       - name: Tests (PHPUnit)
         run: vendor/bin/phpunit --coverage-xml=build/logs/xml-coverage --log-junit=build/logs/junit.xml
       - name: Mutation testing (Infection)
