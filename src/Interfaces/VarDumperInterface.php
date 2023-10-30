@@ -16,9 +16,9 @@ namespace Chevere\VarDump\Interfaces;
 use Chevere\DataStructure\Interfaces\VectorInterface;
 use Chevere\Type\Interfaces\TypeInterface;
 use Chevere\VarDump\Processors\ArrayProcessor;
-use Chevere\VarDump\Processors\BooleanProcessor;
+use Chevere\VarDump\Processors\BoolProcessor;
 use Chevere\VarDump\Processors\FloatProcessor;
-use Chevere\VarDump\Processors\IntegerProcessor;
+use Chevere\VarDump\Processors\IntProcessor;
 use Chevere\VarDump\Processors\NullProcessor;
 use Chevere\VarDump\Processors\ObjectProcessor;
 use Chevere\VarDump\Processors\ResourceProcessor;
@@ -50,10 +50,10 @@ interface VarDumperInterface
      * @var array<string, string>
      */
     public const PROCESSORS = [
-        TypeInterface::BOOLEAN => BooleanProcessor::class,
+        TypeInterface::BOOL => BoolProcessor::class,
         TypeInterface::ARRAY => ArrayProcessor::class,
         TypeInterface::OBJECT => ObjectProcessor::class,
-        TypeInterface::INTEGER => IntegerProcessor::class,
+        TypeInterface::INT => IntProcessor::class,
         TypeInterface::STRING => StringProcessor::class,
         TypeInterface::FLOAT => FloatProcessor::class,
         TypeInterface::NULL => NullProcessor::class,

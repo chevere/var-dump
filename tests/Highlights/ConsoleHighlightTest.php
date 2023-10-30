@@ -38,8 +38,8 @@ final class ConsoleHighlightTest extends TestCase
         $expect = [
             TypeInterface::STRING => '%c0%m' . $dump,
             TypeInterface::FLOAT => '%c0%m' . $dump,
-            TypeInterface::INTEGER => '%c0%m' . $dump,
-            TypeInterface::BOOLEAN => '%c0%m' . $dump,
+            TypeInterface::INT => '%c0%m' . $dump,
+            TypeInterface::BOOL => '%c0%m' . $dump,
             TypeInterface::NULL => '%c0%m' . $dump,
             TypeInterface::OBJECT => '%c0%m' . $dump,
             TypeInterface::ARRAY => '%c0%m' . $dump,

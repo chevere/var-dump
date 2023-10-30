@@ -80,8 +80,8 @@ final class ObjectProcessorTest extends TestCase
         public public stdClass#{$pubId}
          public string string string (length=6)
          public array array [] (size=0)
-         public int integer 1 (length=1)
-         public bool boolean true
+         public int int 1 (length=1)
+         public bool bool true
         public readonly readonly null
         private private null
         private protected null

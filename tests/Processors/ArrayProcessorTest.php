@@ -51,7 +51,7 @@ final class ArrayProcessorTest extends TestCase
     {
         $variable = [0, 1, 2, 3];
         $expectInfo = 'size=' . count($variable);
-        $containTpl = '%s => integer %s (length=1)';
+        $containTpl = '%s => int %s (length=1)';
         $varDumper = $this->getVarDumper($variable);
         $processor = new ArrayProcessor($varDumper);
         $this->assertSame(1, $processor->depth());

@@ -18,35 +18,26 @@ use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use Chevere\VarDump\Processors\Traits\ProcessorTrait;
 
-final class IntegerProcessor implements ProcessorInterface
+final class BoolProcessor implements ProcessorInterface
 {
     use ProcessorTrait;
-
-    private string $stringVar = '';
 
     public function __construct(
         private VarDumperInterface $varDumper
     ) {
         $this->assertType();
-        /** @var int $integer */
-        $integer = $this->varDumper->dumpable()->var();
-        $this->stringVar = strval($integer);
-        $this->info = 'length=' . strlen($this->stringVar);
+        $this->info = $this->varDumper->dumpable()->var() ? 'true' : 'false';
     }
 
     public function type(): string
     {
-        return TypeInterface::INTEGER;
+        return TypeInterface::BOOL;
     }
 
     public function write(): void
     {
         $this->varDumper->writer()->write(
-            implode(' ', [
-                $this->typeHighlighted(),
-                $this->varDumper->format()->getFilterEncodedChars($this->stringVar),
-                $this->highlightParentheses($this->info),
-            ])
+            $this->typeHighlighted() . ' ' . $this->info
         );
     }
 }

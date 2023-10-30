@@ -14,27 +14,26 @@ declare(strict_types=1);
 namespace Chevere\Tests\Processors;
 
 use Chevere\Tests\Traits\VarDumperTrait;
-use Chevere\VarDump\Processors\BooleanProcessor;
+use Chevere\VarDump\Processors\IntProcessor;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-final class BooleanProcessorTest extends TestCase
+final class IntProcessorTest extends TestCase
 {
     use VarDumperTrait;
 
     public function testConstruct(): void
     {
-        foreach ([
-            'true' => true,
-            'false' => false,
-        ] as $info => $var) {
+        foreach ([0, 1, 100, 200, 110011] as $var) {
+            $stringVar = (string) $var;
+            $expectedInfo = 'length=' . strlen($stringVar);
             $varDumper = $this->getVarDumper($var);
-            $this->assertProcessor(BooleanProcessor::class, $varDumper);
-            $processor = new BooleanProcessor($varDumper);
-            $this->assertSame($info, $processor->info(), 'info');
+            $this->assertProcessor(IntProcessor::class, $varDumper);
+            $processor = new IntProcessor($varDumper);
+            $this->assertSame($expectedInfo, $processor->info());
             $this->assertSame(
-                "boolean {$info}",
-                $varDumper->writer()->__toString(),
+                "int {$stringVar} ({$expectedInfo})",
+                $varDumper->writer()->__toString()
             );
         }
     }
@@ -42,6 +41,6 @@ final class BooleanProcessorTest extends TestCase
     public function testInvalidArgument(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        new BooleanProcessor($this->getVarDumper(null));
+        new IntProcessor($this->getVarDumper(1.1));
     }
 }

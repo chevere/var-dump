@@ -24,8 +24,8 @@ interface HighlightInterface
     public const KEYS = [
         TypeInterface::STRING,
         TypeInterface::FLOAT,
-        TypeInterface::INTEGER,
-        TypeInterface::BOOLEAN,
+        TypeInterface::INT,
+        TypeInterface::BOOL,
         TypeInterface::NULL,
         TypeInterface::OBJECT,
         TypeInterface::ARRAY,

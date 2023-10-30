@@ -15,9 +15,9 @@ namespace Chevere\Tests;
 
 use Chevere\Type\Interfaces\TypeInterface;
 use Chevere\VarDump\Processors\ArrayProcessor;
-use Chevere\VarDump\Processors\BooleanProcessor;
+use Chevere\VarDump\Processors\BoolProcessor;
 use Chevere\VarDump\Processors\FloatProcessor;
-use Chevere\VarDump\Processors\IntegerProcessor;
+use Chevere\VarDump\Processors\IntProcessor;
 use Chevere\VarDump\Processors\NullProcessor;
 use Chevere\VarDump\Processors\ObjectProcessor;
 use Chevere\VarDump\Processors\ResourceProcessor;
@@ -34,14 +34,14 @@ final class VarDumpableTest extends TestCase
             TypeInterface::ARRAY => [
                 [], ArrayProcessor::class,
             ],
-            TypeInterface::BOOLEAN => [
-                true, BooleanProcessor::class,
+            TypeInterface::BOOL => [
+                true, BoolProcessor::class,
             ],
             TypeInterface::FLOAT => [
                 1.1, FloatProcessor::class,
             ],
-            TypeInterface::INTEGER => [
-                1, IntegerProcessor::class,
+            TypeInterface::INT => [
+                1, IntProcessor::class,
             ],
             TypeInterface::NULL => [
                 null, NullProcessor::class,

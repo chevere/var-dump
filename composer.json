@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "chevere/chevere": "^3.2"
+        "chevere/chevere": "^4.0.x-dev"
     },
     "require-dev": {
         "phpstan/phpstan": "^1.9",

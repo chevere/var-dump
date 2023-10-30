@@ -44,8 +44,8 @@ final class HtmlHighlight implements HighlightInterface
         return [
             TypeInterface::STRING => '#ff8700',
             TypeInterface::FLOAT => '#ff8700',
-            TypeInterface::INTEGER => '#ff8700',
-            TypeInterface::BOOLEAN => '#ff8700',
+            TypeInterface::INT => '#ff8700',
+            TypeInterface::BOOL => '#ff8700',
             TypeInterface::NULL => '#ff8700',
             TypeInterface::OBJECT => '#fabb00',
             TypeInterface::ARRAY => '#27ae60',

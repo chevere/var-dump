@@ -65,8 +65,8 @@ final class ConsoleHighlight implements HighlightInterface
             // DarkOrange
             TypeInterface::STRING => ['208'],
             TypeInterface::FLOAT => ['208'],
-            TypeInterface::INTEGER => ['208'],
-            TypeInterface::BOOLEAN => ['208'],
+            TypeInterface::INT => ['208'],
+            TypeInterface::BOOL => ['208'],
             TypeInterface::NULL => ['208'],
             // Gold1
             TypeInterface::OBJECT => ['220'],

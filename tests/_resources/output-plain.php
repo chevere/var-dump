@@ -18,6 +18,6 @@ return '
 
 Arg•name null
 
-Arg•id integer 123 (length=3)
+Arg•id int 123 (length=3)
 ------------------------------------------------------------
 ';

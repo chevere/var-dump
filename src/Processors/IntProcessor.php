@@ -18,26 +18,35 @@ use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use Chevere\VarDump\Processors\Traits\ProcessorTrait;
 
-final class BooleanProcessor implements ProcessorInterface
+final class IntProcessor implements ProcessorInterface
 {
     use ProcessorTrait;
+
+    private string $stringVar = '';
 
     public function __construct(
         private VarDumperInterface $varDumper
     ) {
         $this->assertType();
-        $this->info = $this->varDumper->dumpable()->var() ? 'true' : 'false';
+        /** @var int $int */
+        $int = $this->varDumper->dumpable()->var();
+        $this->stringVar = strval($int);
+        $this->info = 'length=' . strlen($this->stringVar);
     }
 
     public function type(): string
     {
-        return TypeInterface::BOOLEAN;
+        return TypeInterface::INT;
     }
 
     public function write(): void
     {
         $this->varDumper->writer()->write(
-            $this->typeHighlighted() . ' ' . $this->info
+            implode(' ', [
+                $this->typeHighlighted(),
+                $this->varDumper->format()->getFilterEncodedChars($this->stringVar),
+                $this->highlightParentheses($this->info),
+            ])
         );
     }
 }

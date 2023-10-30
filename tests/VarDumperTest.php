@@ -19,10 +19,10 @@ use Chevere\VarDump\Formats\PlainFormat;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use Chevere\VarDump\VarDumpable;
 use Chevere\VarDump\VarDumper;
-use function Chevere\Writer\streamTemp;
 use Chevere\Writer\StreamWriter;
 use PHPUnit\Framework\TestCase;
 use stdClass;
+use function Chevere\Writer\streamTemp;
 
 final class VarDumperTest extends TestCase
 {
@@ -47,12 +47,12 @@ final class VarDumperTest extends TestCase
         $this->assertSame($defaultDepth, $varDumper->depth());
         $this->assertSame($defaultIndentSting, $varDumper->indentString());
         $this->assertCount(0, $varDumper->knownObjectsId());
-        for ($integer = 1; $integer <= 5; $integer++) {
-            $this->hookTestWithIndent($varDumper, $integer);
-            $this->hookTestWithDepth($varDumper, $integer);
+        for ($int = 1; $int <= 5; $int++) {
+            $this->hookTestWithIndent($varDumper, $int);
+            $this->hookTestWithDepth($varDumper, $int);
             $varDumperWithProcess = $this->hookTestWithProcess(
                 $varDumperWithProcess ?? $varDumper,
-                $integer
+                $int
             );
         }
         $object1 = new stdClass();
