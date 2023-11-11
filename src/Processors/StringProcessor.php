@@ -33,11 +33,10 @@ final class StringProcessor implements ProcessorInterface
         /** @var string $string */
         $string = $this->varDumper->dumpable()->var();
         $this->string = $string;
-        $this->setCharset(
-            ini_get('php.output_encoding')
+        $charset = ini_get('php.output_encoding')
             ?: ini_get('default_charset')
-            ?: 'UTF-8'
-        );
+            ?: 'UTF-8'; // @codeCoverageIgnore
+        $this->setCharset($charset);
         if (! preg_match('//u', $this->string)) {
             $this->handleBinaryString();
         }
@@ -72,8 +71,9 @@ final class StringProcessor implements ProcessorInterface
     private function setCharset(string $charset): void
     {
         $charset = strtoupper($charset);
-        $this->charset = $charset === 'UTF-8' || $charset === 'UTF8'
-            ? 'CP1252' : $charset;
+        $this->charset = ($charset === 'UTF-8' || $charset === 'UTF8')
+            ? 'CP1252'
+            : $charset;
     }
 
     private function handleBinaryString(): void
@@ -92,10 +92,10 @@ final class StringProcessor implements ProcessorInterface
     private function utf8Encode(string $string): string
     {
         $converted = iconv($this->charset, 'UTF-8', $string);
+        // @codeCoverageIgnoreStart
         if ($converted !== false) {
             return $converted;
         }
-        // @codeCoverageIgnoreStart
         $converted = iconv('CP1252', 'UTF-8', $string);
         if ($converted !== false && $this->charset !== 'CP1252') {
             return $converted;

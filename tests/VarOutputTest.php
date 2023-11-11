@@ -22,9 +22,9 @@ use Chevere\VarDump\Outputs\ConsoleOutput;
 use Chevere\VarDump\Outputs\HtmlOutput;
 use Chevere\VarDump\Outputs\PlainOutput;
 use Chevere\VarDump\VarOutput;
-use function Chevere\Writer\streamTemp;
 use Chevere\Writer\StreamWriter;
 use PHPUnit\Framework\TestCase;
+use function Chevere\Writer\streamTemp;
 
 final class VarOutputTest extends TestCase
 {
@@ -39,11 +39,13 @@ final class VarOutputTest extends TestCase
             trace: $trace,
             format: new PlainFormat()
         );
+        $output = new PlainOutput();
         $varOutput->process(
-            new PlainOutput(),
+            $output,
             name: null,
             id: 123
         );
+        $this->assertSame($trace, $output->trace());
         $this->assertSame(
             $this->getParsed($trace, 'output-plain'),
             $writer->__toString(),
@@ -83,7 +85,7 @@ final class VarOutputTest extends TestCase
 
     private function getParsed(array $trace, string $name): string
     {
-        return strtr(include "_resources/{$name}.php", [
+        return strtr(include "src/{$name}.php", [
             '%handlerClassName%' => $trace[0]['class'],
             '%handlerFunctionName%' => $trace[0]['function'],
             '%fileLine%' => $trace[0]['file'] . ':' . $trace[0]['line'],

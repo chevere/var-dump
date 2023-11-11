@@ -23,9 +23,6 @@ trait HandleDepthTrait
 
     private int $depth = 0;
 
-    /**
-     * Current processor depth
-     */
     public function depth(): int
     {
         return $this->depth;
@@ -34,6 +31,7 @@ trait HandleDepthTrait
     private function handleDepth(mixed $variable): void
     {
         $deep = $this->depth;
+        // @infection-ignore-all
         if (is_scalar($variable)) {
             --$deep;
         }

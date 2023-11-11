@@ -11,13 +11,15 @@
 
 declare(strict_types=1);
 
-namespace Chevere\Tests\_resources;
+namespace Chevere\Tests\src;
 
 use Chevere\DataStructure\Map;
 use stdClass;
 
-final class DummyClass
+abstract class BaseClass
 {
+    public int $code = 101;
+
     public object $public;
 
     public readonly string $readonly;

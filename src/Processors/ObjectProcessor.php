@@ -119,7 +119,7 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
         $properties = json_decode(json_encode($this->var) ?: '', true) ?? [];
         foreach ($properties as $name => $value) {
             $name = strval($name);
-            $properties[$name] = ['public', $value];
+            $properties[$name] = ['public', $value, false];
         }
 
         return $properties;
@@ -134,10 +134,13 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
         $properties = [];
         do {
             foreach ($reflection->getProperties() as $property) {
+                $isUnset = false;
+
                 try {
                     $value = $property->getValue($this->var);
                 } catch (Throwable) {
-                    $value = null;
+                    $value = '';
+                    $isUnset = true;
                 }
                 $properties[$property->getName()] = [
                     implode(
@@ -145,6 +148,7 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
                         Reflection::getModifierNames($property->getModifiers())
                     ),
                     $value ?? null,
+                    $isUnset,
                 ];
             }
         } while ($reflection = $reflection->getParentClass());
@@ -152,8 +156,12 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
         return $properties;
     }
 
-    private function processProperty(string $name, string $modifier, mixed $value): void
-    {
+    private function processProperty(
+        string $name,
+        string $modifier,
+        mixed $value,
+        bool $isUnset
+    ): void {
         $indentString = $this->varDumper->indentString();
         $modifier = $this->varDumper->format()->getHighlight(
             VarDumperInterface::MODIFIERS,
@@ -166,7 +174,15 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
         $this->varDumper->writer()->write(
             "\n{$indentString}{$modifier} {$variable} "
         );
-        $this->handleDepth($value);
+        if ($isUnset) {
+            $unset = $this->varDumper->format()->getHighlight(
+                VarDumperInterface::EMPHASIS,
+                'uninitialized'
+            );
+            $this->varDumper->writer()->write($unset);
+        } else {
+            $this->handleDepth($value);
+        }
     }
 
     private function handleNormalizeClassName(): void

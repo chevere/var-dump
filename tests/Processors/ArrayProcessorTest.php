@@ -79,6 +79,31 @@ final class ArrayProcessorTest extends TestCase
         );
     }
 
+    public function testDepth(): void
+    {
+        $variable = [];
+        for ($i = 0; $i <= ArrayProcessor::MAX_DEPTH - 2; $i++) {
+            $variable = [$variable];
+        }
+        $varDumper = $this->getVarDumper($variable);
+        $processor = new ArrayProcessor($varDumper);
+        $processor->write();
+        $toString = $varDumper->writer()->__toString();
+        $this->assertStringStartsWith(
+            <<<PLAIN
+            array (size=1)
+            0 => array (size=1)
+            PLAIN,
+            $toString
+        );
+        $this->assertStringEndsWith(
+            <<<PLAIN
+            0 => array [] (size=0)
+            PLAIN,
+            $toString
+        );
+    }
+
     public function testMaxDepth(): void
     {
         $variable = [];
@@ -88,9 +113,19 @@ final class ArrayProcessorTest extends TestCase
         $varDumper = $this->getVarDumper($variable);
         $processor = new ArrayProcessor($varDumper);
         $processor->write();
-        $this->assertStringContainsString(
-            '         0 => array (size=1) (' . $processor->maxDepthReached() . ')',
-            $varDumper->writer()->__toString()
+        $toString = $varDumper->writer()->__toString();
+        $this->assertStringStartsWith(
+            <<<PLAIN
+            array (size=1)
+            0 => array (size=1)
+            PLAIN,
+            $toString
+        );
+        $this->assertStringEndsWith(
+            <<<PLAIN
+            0 => array (size=1) ({$processor->maxDepthReached()})
+            PLAIN,
+            $toString
         );
     }
 }

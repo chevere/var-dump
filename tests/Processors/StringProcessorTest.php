@@ -22,8 +22,23 @@ final class StringProcessorTest extends TestCase
 {
     use VarDumperTrait;
 
+    public function dataProviderConstruct(): array
+    {
+        return [
+            [''],
+            ['string'],
+            ['cádena'],
+            ['another string'],
+            ['100'],
+            ['false'],
+            ['😀'],
+            ['€'],
+            [chr(128), 'b"€"'],
+        ];
+    }
+
     /**
-     * @dataProvider provideConstruct
+     * @dataProvider dataProviderConstruct
      */
     public function testConstruct(string $var, string $expected = ''): void
     {
@@ -43,19 +58,14 @@ final class StringProcessorTest extends TestCase
         );
     }
 
-    public function provideConstruct(): array
+    public function testDefaultCharset(): void
     {
-        return [
-            [''],
-            ['string'],
-            ['cádena'],
-            ['another string'],
-            ['100'],
-            ['false'],
-            ['😀'],
-            ['€'],
-            [chr(128), 'b"€"'],
-        ];
+        $varDumper = $this->getVarDumper('string');
+        $defaultCharset = ini_get('default_charset');
+        ini_set('default_charset', '8bit');
+        $processor = new StringProcessor($varDumper);
+        $this->assertSame('8BIT', $processor->charset());
+        ini_set('default_charset', $defaultCharset);
     }
 
     public function testTypeError(): void

@@ -23,7 +23,7 @@
 
 ## Quick start
 
-Install VarDump using [Composer](https://getcomposer.org).
+Install VarDump using [Composer](https://packagist.org/packages/chevere/var-dump).
 
 ```sh
 composer require --dev chevere/var-dump

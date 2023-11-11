@@ -32,28 +32,28 @@ abstract class Output implements OutputInterface
     {
         $this->writer = $writer;
         $this->trace = $trace;
-        $this->caller = '';
-        if ($this->trace[0]['class'] ?? null) {
-            $this->caller .= $this->trace[0]['class']
-                . $this->trace[0]['type'];
-        }
-        if ($this->trace[0]['function'] ?? null) {
-            $this->caller .= $this->trace[0]['function'] . '()';
+        $frame = $this->trace[0] ?? [];
+        $class = $frame['class'] ?? '';
+        $type = $frame['type'] ?? '';
+        $this->caller = $class . $type;
+        $function = $frame['function'] ?? null;
+        if ($function !== null) {
+            $this->caller .= $function . '()';
         }
     }
 
     public function writeCallerFile(FormatInterface $format): void
     {
         $item = $this->trace[0] ?? null;
-        if ($item !== null && isset($item['file'])) {
+        if (isset($item['file'])) {
+            $fileLine = $item['file'] . ':' . $item['line'];
+            $highlight = $format->getHighlight('_file', $fileLine);
             $this->writer->write(
-                "\n"
-                . $format
-                    ->getHighlight(
-                        '_file',
-                        $item['file'] . ':' . $item['line']
-                    )
-                . "\n"
+                <<<PLAIN
+
+                {$highlight}
+
+                PLAIN
             );
         }
     }
