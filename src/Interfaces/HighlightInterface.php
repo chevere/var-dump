@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Interfaces;
 
-use Chevere\Throwable\Exceptions\OutOfRangeException;
 use Chevere\Type\Interfaces\TypeInterface;
 
 /**
@@ -43,7 +42,6 @@ interface HighlightInterface
      * Constructs a highlight instance specified by `$key`.
      *
      * @see `VarDumpHighlightInterface::KEYS`
-     * @throws OutOfRangeException
      */
     public function __construct(string $key);
 

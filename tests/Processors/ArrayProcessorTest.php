@@ -27,7 +27,7 @@ final class ArrayProcessorTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            'type array for the return value of ' . VarDumper::class . '::var()'
+            'type `array` for the return value of `' . VarDumper::class . '::var()`'
         );
         new ArrayProcessor($this->getVarDumper(null));
     }

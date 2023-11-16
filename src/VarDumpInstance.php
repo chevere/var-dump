@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump;
 
-use Chevere\Throwable\Exceptions\LogicException;
 use Chevere\VarDump\Interfaces\VarDumpInterface;
+use LogicException;
 use function Chevere\Message\message;
 
 final class VarDumpInstance
@@ -30,7 +30,7 @@ final class VarDumpInstance
     {
         if (! isset(self::$instance)) {
             throw new LogicException(
-                message('No VarDump instance present')
+                (string) message('No instance')
             );
         }
 

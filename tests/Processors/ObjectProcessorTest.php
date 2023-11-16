@@ -15,8 +15,8 @@ namespace Chevere\Tests\Processors;
 
 use Chevere\Tests\src\DummyClass;
 use Chevere\Tests\Traits\VarDumperTrait;
-use Chevere\Throwable\Exceptions\InvalidArgumentException;
 use Chevere\VarDump\Processors\ObjectProcessor;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 

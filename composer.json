@@ -17,7 +17,8 @@
         }
     ],
     "require": {
-        "chevere/chevere": "^4.0.x-dev"
+        "chevere/chevere": "^4.0.x-dev",
+        "kevinlebrun/colors.php": "^1.0"
     },
     "require-dev": {
         "phpstan/phpstan": "^1.9",

@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Chevere\Tests\Processors;
 
 use Chevere\Tests\Traits\VarDumperTrait;
-use Chevere\Throwable\Exceptions\InvalidArgumentException;
 use Chevere\VarDump\Processors\StringProcessor;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 final class StringProcessorTest extends TestCase

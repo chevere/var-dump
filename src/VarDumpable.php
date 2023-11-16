@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump;
 
-use Chevere\Throwable\Exceptions\LogicException;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\VarDumpableInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
+use LogicException;
 use function Chevere\Message\message;
 use function Chevere\Type\getType;
 
@@ -57,15 +57,19 @@ final class VarDumpable implements VarDumpableInterface
         $processorName = VarDumperInterface::PROCESSORS[$this->type] ?? null;
         if (! isset($processorName)) {
             throw new LogicException(
-                message('No processor for variable of type %type%')
-                    ->withCode('%type%', $this->type)
+                (string) message(
+                    'No processor for variable of type `%type%`',
+                    type: $this->type
+                )
             );
         }
         if (! is_subclass_of($processorName, ProcessorInterface::class, true)) {
             throw new LogicException(
-                message('Processor %processorName% must implement the %interfaceName% interface')
-                    ->withCode('%processorName%', $processorName)
-                    ->withCode('%interfaceName%', ProcessorInterface::class)
+                (string) message(
+                    'Processor `%processorName%` must implement the `%interfaceName%` interface',
+                    processorName: $processorName,
+                    interfaceName: ProcessorInterface::class,
+                )
             );
         }
         $this->processorName = $processorName;

@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace Chevere\Tests\Highlights;
 
-use Chevere\Throwable\Exceptions\OutOfRangeException;
 use Chevere\VarDump\Highlights\HtmlHighlight;
 use Chevere\VarDump\Interfaces\HighlightInterface;
+use OutOfRangeException;
 use PHPUnit\Framework\TestCase;
 
 final class HtmlHighlightTest extends TestCase

@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Processors\Traits;
 
-use Chevere\Throwable\Exceptions\InvalidArgumentException;
 use Chevere\Type\Type;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
+use InvalidArgumentException;
 use function Chevere\Message\message;
 
 trait ProcessorTrait
@@ -66,11 +66,13 @@ trait ProcessorTrait
         $type = new Type($this->type());
         if (! $type->validate($this->varDumper->dumpable()->var())) {
             throw new InvalidArgumentException(
-                message('Instance of %className% expects a type %expected% for the return value of %method%, type %provided% returned')
-                    ->withCode('%className%', static::class)
-                    ->withCode('%expected%', $this->type())
-                    ->withCode('%method%', $this->varDumper::class . '::var()')
-                    ->withCode('%provided%', get_debug_type($this->varDumper->dumpable()->var()))
+                (string) message(
+                    'Instance of `%className%` expects a type `%expected%` for the return value of `%method%`, type `%provided%` returned',
+                    className: static::class,
+                    expected: $this->type(),
+                    method: $this->varDumper::class . '::var()',
+                    provided: get_debug_type($this->varDumper->dumpable()->var()),
+                )
             );
         }
     }

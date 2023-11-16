@@ -14,7 +14,6 @@ declare(strict_types=1);
 // @codeCoverageIgnoreStart
 
 namespace Chevere\VarDump {
-    use Chevere\Throwable\Exceptions\LogicException;
     use Chevere\VarDump\Formats\ConsoleFormat;
     use Chevere\VarDump\Formats\HtmlFormat;
     use Chevere\VarDump\Formats\PlainFormat;
@@ -26,6 +25,7 @@ namespace Chevere\VarDump {
     use Chevere\Writer\StreamWriter;
     use Chevere\Writer\Writers;
     use Chevere\Writer\WritersInstance;
+    use LogicException;
     use function Chevere\Writer\streamFor;
 
     function varDumpPlain(): VarDumpInterface

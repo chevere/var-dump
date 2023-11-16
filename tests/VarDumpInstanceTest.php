@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace Chevere\Tests;
 
-use Chevere\Throwable\Exceptions\LogicException;
-use function Chevere\VarDump\varDumpConsole;
 use Chevere\VarDump\VarDumpInstance;
+use LogicException;
 use PHPUnit\Framework\TestCase;
+use function Chevere\VarDump\varDumpConsole;
 
 final class VarDumpInstanceTest extends TestCase
 {
