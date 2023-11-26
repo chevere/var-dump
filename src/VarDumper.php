@@ -15,7 +15,7 @@ namespace Chevere\VarDump;
 
 use Chevere\DataStructure\Interfaces\VectorInterface;
 use Chevere\DataStructure\Vector;
-use Chevere\Type\Interfaces\TypeInterface;
+use Chevere\Parameter\Interfaces\TypeInterface;
 use Chevere\VarDump\Interfaces\FormatInterface;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\VarDumpableInterface;

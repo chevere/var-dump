@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Interfaces;
 
-use Chevere\Type\Interfaces\TypeInterface;
+use Chevere\Parameter\Interfaces\TypeInterface;
 
 /**
  * Describes the component in charge of highlight the var dump strings.

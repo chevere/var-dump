@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Highlights;
 
-use Chevere\Type\Interfaces\TypeInterface;
+use Chevere\Parameter\Interfaces\TypeInterface;
 use Chevere\VarDump\Highlights\Traits\AssertKeyTrait;
 use Chevere\VarDump\Interfaces\HighlightInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;

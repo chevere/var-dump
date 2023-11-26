@@ -18,7 +18,7 @@ use Chevere\VarDump\Interfaces\VarDumpableInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use LogicException;
 use function Chevere\Message\message;
-use function Chevere\Type\getType;
+use function Chevere\Parameter\getType;
 
 final class VarDumpable implements VarDumpableInterface
 {

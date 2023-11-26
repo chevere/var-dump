@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Processors\Traits;
 
-use Chevere\Type\Type;
+use Chevere\Parameter\Type;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use InvalidArgumentException;
 use function Chevere\Message\message;

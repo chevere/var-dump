@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Chevere\VarDump\Interfaces;
 
 use Chevere\DataStructure\Interfaces\VectorInterface;
-use Chevere\Type\Interfaces\TypeInterface;
+use Chevere\Parameter\Interfaces\TypeInterface;
 use Chevere\VarDump\Processors\ArrayProcessor;
 use Chevere\VarDump\Processors\BoolProcessor;
 use Chevere\VarDump\Processors\FloatProcessor;

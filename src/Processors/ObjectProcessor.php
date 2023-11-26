@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Processors;
 
+use Chevere\Parameter\Interfaces\TypeInterface;
 use Chevere\String\StringValidate;
-use Chevere\Type\Interfaces\TypeInterface;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\ProcessorNestedInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
