@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Chevere\Tests\Highlights;
 
 use Chevere\Parameter\Interfaces\TypeInterface;
-use Chevere\String\StringModify;
+use Chevere\Tests\Traits\StripANSIColorsTrait;
 use Chevere\VarDump\Highlights\ConsoleHighlight;
 use Chevere\VarDump\Interfaces\HighlightInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
@@ -24,6 +24,8 @@ use PHPUnit\Framework\TestCase;
 
 final class ConsoleHighlightTest extends TestCase
 {
+    use StripANSIColorsTrait;
+
     public function testInvalidArgumentConstruct(): void
     {
         $this->expectException(OutOfRangeException::class);
@@ -69,8 +71,7 @@ final class ConsoleHighlightTest extends TestCase
             $string = $highlight->getHighlight($dump);
             $expected = $expect[$key];
             if ($color->isSupported() === false) {
-                $expected = (new StringModify($expected))->withStripANSIColors()
-                    ->__toString();
+                $expected = $this->stripANSIColors($expected);
             }
             $this->assertSame($expected, $string);
         }

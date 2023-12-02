@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Chevere\Tests;
 
 use Chevere\Tests\Traits\DebugBacktraceTrait;
+use Chevere\Tests\Traits\StripANSIColorsTrait;
 use Chevere\VarDump\Formats\ConsoleFormat;
 use Chevere\VarDump\Formats\HtmlFormat;
 use Chevere\VarDump\Formats\PlainFormat;
@@ -28,6 +29,7 @@ use function Chevere\Writer\streamTemp;
 final class VarOutputTest extends TestCase
 {
     use DebugBacktraceTrait;
+    use StripANSIColorsTrait;
 
     public function testPlainOutput(): void
     {
@@ -91,10 +93,5 @@ final class VarOutputTest extends TestCase
             '%className%' => $trace[1]['class'],
             '%functionName%' => $trace[1]['function'],
         ]);
-    }
-
-    private function stripANSIColors(string $string): string
-    {
-        return preg_replace('#\\x1b[[][^A-Za-z]*[A-Za-z]#', '', $string) ?? '';
     }
 }
