@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Chevere\Tests;
 
-use Chevere\String\StringModify;
 use Chevere\Tests\Traits\DebugBacktraceTrait;
 use Chevere\VarDump\Formats\ConsoleFormat;
 use Chevere\VarDump\Formats\HtmlFormat;
@@ -64,8 +63,8 @@ final class VarOutputTest extends TestCase
         $varOutput->process(new ConsoleOutput(), name: null);
         $parsed = $this->getParsed($trace, 'output-console-color');
         $string = $writer->__toString();
-        $parsed = (new StringModify($parsed))->withStripANSIColors()->__toString();
-        $string = (new StringModify($string))->withStripANSIColors()->__toString();
+        $parsed = $this->stripANSIColors($parsed);
+        $string = $this->stripANSIColors($string);
         $this->assertSame($parsed, $string);
     }
 
@@ -92,5 +91,10 @@ final class VarOutputTest extends TestCase
             '%className%' => $trace[1]['class'],
             '%functionName%' => $trace[1]['function'],
         ]);
+    }
+
+    private function stripANSIColors(string $string): string
+    {
+        return preg_replace('#\\x1b[[][^A-Za-z]*[A-Za-z]#', '', $string) ?? '';
     }
 }

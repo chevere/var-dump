@@ -17,7 +17,10 @@
         }
     ],
     "require": {
-        "chevere/chevere": "^4.0.x-dev",
+        "chevere/message": "^0.1.0",
+        "chevere/parameter": "^1.0.x-dev",
+        "chevere/var-support": "^1.0",
+        "chevere/writer": "^1.0",
         "kevinlebrun/colors.php": "^1.0"
     },
     "require-dev": {

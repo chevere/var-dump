@@ -17,7 +17,7 @@ use Chevere\VarDump\Interfaces\FormatInterface;
 use Chevere\VarDump\Interfaces\OutputInterface;
 use Chevere\VarDump\Interfaces\VarDumpInterface;
 use Chevere\Writer\Interfaces\WriterInterface;
-use function Chevere\VariableSupport\deepCopy;
+use function Chevere\VarSupport\deepCopy;
 
 final class VarDump implements VarDumpInterface
 {
