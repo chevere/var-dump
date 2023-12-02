@@ -11,12 +11,11 @@
 
 declare(strict_types=1);
 
-use function Chevere\Filesystem\fileForPath;
+use Chevere\Writer\StreamWriter;
 use function Chevere\VarDump\varDumpConsole;
 use function Chevere\VarDump\varDumpHtml;
 use function Chevere\VarDump\varDumpPlain;
 use function Chevere\Writer\streamTemp;
-use Chevere\Writer\StreamWriter;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -39,10 +38,8 @@ foreach ([
     $writer = new StreamWriter(streamTemp(''));
     $varDump->withVariables($varDump)->process($writer);
     $dumping = stripLocal($writer->__toString());
-    if ($filename == 'console.log') {
+    if ($filename === 'console.log') {
         echo $dumping;
     }
-    $file = fileForPath(__DIR__ . '/output/' . $filename);
-    $file->createIfNotExists();
-    $file->put($dumping);
+    file_put_contents(__DIR__ . '/output/' . $filename, $dumping);
 }
