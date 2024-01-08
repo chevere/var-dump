@@ -18,9 +18,8 @@
     ],
     "require": {
         "php": "^8.1",
-        "chevere/message": "^0.1.0",
+        "chevere/message": "^1.0.0",
         "chevere/parameter": "^1.0.x-dev",
-        "chevere/var-support": "^1.0",
         "chevere/writer": "^1.0",
         "kevinlebrun/colors.php": "^1.0"
     },

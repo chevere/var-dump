@@ -17,7 +17,6 @@ use Chevere\VarDump\Interfaces\FormatInterface;
 use Chevere\VarDump\Interfaces\OutputInterface;
 use Chevere\VarDump\Interfaces\VarDumpInterface;
 use Chevere\Writer\Interfaces\WriterInterface;
-use function Chevere\VarSupport\deepCopy;
 
 final class VarDump implements VarDumpInterface
 {
@@ -71,8 +70,7 @@ final class VarDump implements VarDumpInterface
 
     public function variables(): array
     {
-        /** @var array<mixed> */
-        return deepCopy($this->variables);
+        return $this->variables;
     }
 
     public function shift(): int
