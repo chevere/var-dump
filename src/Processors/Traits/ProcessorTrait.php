@@ -73,7 +73,9 @@ trait ProcessorTrait
 
         throw new InvalidArgumentException(
             (string) message(
-                'Instance of `%className%` expects type `%expected%` for the return value of `%method%`, type `%provided%` returned',
+                <<<PLAIN
+                Instance of `%className%` expects type `%expected%` for the return value of `%method%`, type `%provided%` returned
+                PLAIN,
                 className: static::class,
                 expected: $this->type(),
                 method: $method,
