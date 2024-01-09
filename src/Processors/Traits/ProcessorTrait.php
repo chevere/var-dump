@@ -17,6 +17,7 @@ use Chevere\Parameter\Type;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use InvalidArgumentException;
 use function Chevere\Message\message;
+use function Chevere\Parameter\getType;
 
 trait ProcessorTrait
 {
@@ -64,16 +65,20 @@ trait ProcessorTrait
     private function assertType(): void
     {
         $type = new Type($this->type());
-        if (! $type->validate($this->varDumper->dumpable()->var())) {
-            throw new InvalidArgumentException(
-                (string) message(
-                    'Instance of `%className%` expects a type `%expected%` for the return value of `%method%`, type `%provided%` returned',
-                    className: static::class,
-                    expected: $this->type(),
-                    method: $this->varDumper::class . '::var()',
-                    provided: get_debug_type($this->varDumper->dumpable()->var()),
-                )
-            );
+        if ($type->validate($this->varDumper->dumpable()->var())) {
+            return;
         }
+        $provided = getType($this->varDumper->dumpable()->var());
+        $method = $this->varDumper::class . '::var()';
+
+        throw new InvalidArgumentException(
+            (string) message(
+                'Instance of `%className%` expects type `%expected%` for the return value of `%method%`, type `%provided%` returned',
+                className: static::class,
+                expected: $this->type(),
+                method: $method,
+                provided: $provided,
+            )
+        );
     }
 }
