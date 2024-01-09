@@ -17,17 +17,22 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=chevere_var-dump&metric=coverage)](https://sonarcloud.io/dashboard?id=chevere_var-dump)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=chevere_var-dump&metric=sqale_index)](https://sonarcloud.io/dashboard?id=chevere_var-dump)
 [![CodeFactor](https://www.codefactor.io/repository/github/chevere/var-dump/badge)](https://www.codefactor.io/repository/github/chevere/var-dump)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/1f8286c311934c45b96c0a6b3d33204f)](https://app.codacy.com/gh/chevere/var-dump/dashboard)
 
 ![VarDump](.github/banner/var-dump-logo.svg)
 
-## Quick start
+## Summary
 
-Install VarDump using [Composer](https://packagist.org/packages/chevere/var-dump).
+Multi-purpose colorful modern alternative to [var_dump](https://www.php.net/manual/function.var-dump.php).
+
+## Installing
+
+VarDump is available through [Packagist](https://packagist.org/packages/chevere/var-dump) and the repository source is at [chevere/var-dump](https://github.com/chevere/var-dump).
 
 ```sh
 composer require --dev chevere/var-dump
 ```
+
+## Quick start
 
 * Use `vd` to dump information about any variable (replaces `var_dump` and `dump`)
 * Use `vdd` to do the same as `vd` and `die(0)` (replaces `dd`)
@@ -51,7 +56,7 @@ Documentation is available at [chevere.org](https://chevere.org/packages/var-dum
 
 ## License
 
-Copyright 2022 [Rodolfo Berrios A.](https://rodolfoberrios.com/)
+Copyright [Rodolfo Berrios A.](https://rodolfoberrios.com/)
 
 Chevere is licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for the full license text.
 
