@@ -54,7 +54,7 @@ final class HtmlOutput extends Output
             $this->writer()->write(
                 '<html style="background: '
                 . self::BACKGROUND_SHADE
-                . ';"><head></head><body>'
+                . ';"><head><meta charset="UTF-8"></head><body>'
             );
         }
         $this->writer()->write(

@@ -1,9 +1,9 @@
 
 Chevere\VarDump\VarDump->process()
 ------------------------------------------------------------
-/var/www/html/demo.php:41
+/var/www/html/demo.php:38
 
-Arg•1 Chevere\VarDump\VarDump#7
+Arg#1 Chevere\VarDump\VarDump#7
 private variables array [] (size=0)
 private shift int 0 (length=1)
 private debugBacktrace array [] (size=0)
@@ -12,7 +12,7 @@ private output Chevere\VarDump\Outputs\PlainOutput#9
  private outputHr string ------------------------------------------------------------ (length=60)
  private writer Chevere\Writer\StreamWriter#16
   private stream Nyholm\Psr7\Stream#17
-   private stream Resource id #160 (type=stream)
+   private stream Resource id #71 (type=stream)
    private seekable bool true
    private readable bool true
    private writable bool true
@@ -21,7 +21,7 @@ private output Chevere\VarDump\Outputs\PlainOutput#9
  private trace array (size=1)
   0 => array (size=7)
    file => string /var/www/html/demo.php (length=49)
-   line => int 41 (length=2)
+   line => int 38 (length=2)
    function => string process (length=7)
    class => string Chevere\VarDump\VarDump (length=23)
    object => Chevere\VarDump\VarDump#18
@@ -31,7 +31,7 @@ private output Chevere\VarDump\Outputs\PlainOutput#9
     private debugBacktrace array (size=1)
      0 => array (size=7)
       file => string /var/www/html/demo.php (length=49)
-      line => int 41 (length=2)
+      line => int 38 (length=2)
       function => string process (length=7)
       class => string Chevere\VarDump\VarDump (length=23)
       object => Chevere\VarDump\VarDump#18 (circular reference #18)
@@ -39,7 +39,7 @@ private output Chevere\VarDump\Outputs\PlainOutput#9
       args => array (size=1)
        0 => Chevere\Writer\StreamWriter#16
         private stream Nyholm\Psr7\Stream#17
-         private stream Resource id #160 (type=stream)
+         private stream Resource id #71 (type=stream)
          private seekable bool true
          private readable bool true
          private writable bool true
@@ -51,7 +51,7 @@ private output Chevere\VarDump\Outputs\PlainOutput#9
    args => array (size=1)
     0 => Chevere\Writer\StreamWriter#16
      private stream Nyholm\Psr7\Stream#17
-      private stream Resource id #160 (type=stream)
+      private stream Resource id #71 (type=stream)
       private seekable bool true
       private readable bool true
       private writable bool true

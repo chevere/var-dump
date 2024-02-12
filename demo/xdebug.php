@@ -11,6 +11,10 @@
 
 declare(strict_types=1);
 
+use Chevere\Writer\StreamWriter;
+use function Chevere\VarDump\varDumpHtml;
+use function Chevere\Writer\streamTemp;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 /**
@@ -46,6 +50,15 @@ $array = [
     'three' => new test(),
     'four' => range(0, 5),
 ];
+
+$filename = 'xdebug.html';
+$varDump = varDumpHtml();
+$writer = new StreamWriter(streamTemp(''));
+$varDump
+    ->withVariables($array)
+    ->process($writer);
+$dumping = $writer->__toString();
+file_put_contents(__DIR__ . '/output/' . $filename, $dumping);
 
 var_dump($array);
 vd($array);

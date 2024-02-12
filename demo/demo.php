@@ -27,16 +27,15 @@ function stripLocal(string $document): string
         $document
     );
 }
-$console = varDumpConsole();
-$plain = varDumpPlain();
-$html = varDumpHtml();
 foreach ([
-    'console.log' => $console,
-    'plain.txt' => $plain,
-    'html.html' => $html,
+    'console.log' => varDumpConsole(),
+    'plain.txt' => varDumpPlain(),
+    'html.html' => varDumpHtml(),
 ] as $filename => $varDump) {
     $writer = new StreamWriter(streamTemp(''));
-    $varDump->withVariables($varDump)->process($writer);
+    $varDump
+        ->withVariables($varDump)
+        ->process($writer);
     $dumping = stripLocal($writer->__toString());
     if ($filename === 'console.log') {
         echo $dumping;
