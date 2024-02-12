@@ -17,11 +17,11 @@ use Chevere\VarDump\Formats\PlainFormat;
 use Chevere\VarDump\Interfaces\VarDumpInterface;
 use Chevere\VarDump\Outputs\PlainOutput;
 use Chevere\VarDump\VarDump;
-use function Chevere\Writer\streamTemp;
 use Chevere\Writer\StreamWriter;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
 use stdClass;
+use function Chevere\Writer\streamTemp;
 
 final class VarDumpTest extends TestCase
 {
@@ -54,7 +54,7 @@ final class VarDumpTest extends TestCase
             . "\n"
             . __FILE__ . ':' . $line
             . "\n\n"
-            . 'Arg•1 stdClass#' . spl_object_id($variable)
+            . 'Arg#1 stdClass#' . spl_object_id($variable)
             . "\n" . $hrLine
             . "\n";
         $this->assertSame($expectedString, $writer->__toString());
