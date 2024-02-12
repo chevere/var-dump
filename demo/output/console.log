@@ -1,7 +1,7 @@
 
 [31m[1mChevere\VarDump\VarDump->process()[0m[0m
 [34m------------------------------------------------------------[0m
-[38;5;111m/var/www/html/demo.php:38[0m
+[38;5;111m/var/www/html/demo.php:33[0m
 
 Arg#1 [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#2[0m
 [38;5;170mprivate[0m [38;5;39mvariables[0m [38;5;41marray[0m [] [38;5;3m[38;5;242m(size=0)[0m[0m
@@ -21,7 +21,7 @@ Arg#1 [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#2[0m
  [38;5;170mprivate[0m [38;5;39mtrace[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=1)[0m[0m
   0 [38;5;242m=>[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=7)[0m[0m
    file [38;5;242m=>[0m [38;5;208mstring[0m /var/www/html/demo.php [38;5;3m[38;5;242m(length=49)[0m[0m
-   line [38;5;242m=>[0m [38;5;208mint[0m 38 [38;5;3m[38;5;242m(length=2)[0m[0m
+   line [38;5;242m=>[0m [38;5;208mint[0m 33 [38;5;3m[38;5;242m(length=2)[0m[0m
    function [38;5;242m=>[0m [38;5;208mstring[0m process [38;5;3m[38;5;242m(length=7)[0m[0m
    class [38;5;242m=>[0m [38;5;208mstring[0m Chevere\VarDump\VarDump [38;5;3m[38;5;242m(length=23)[0m[0m
    object [38;5;242m=>[0m [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#15[0m
@@ -31,7 +31,7 @@ Arg#1 [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#2[0m
     [38;5;170mprivate[0m [38;5;39mdebugBacktrace[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=1)[0m[0m
      0 [38;5;242m=>[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=7)[0m[0m
       file [38;5;242m=>[0m [38;5;208mstring[0m /var/www/html/demo.php [38;5;3m[38;5;242m(length=49)[0m[0m
-      line [38;5;242m=>[0m [38;5;208mint[0m 38 [38;5;3m[38;5;242m(length=2)[0m[0m
+      line [38;5;242m=>[0m [38;5;208mint[0m 33 [38;5;3m[38;5;242m(length=2)[0m[0m
       function [38;5;242m=>[0m [38;5;208mstring[0m process [38;5;3m[38;5;242m(length=7)[0m[0m
       class [38;5;242m=>[0m [38;5;208mstring[0m Chevere\VarDump\VarDump [38;5;3m[38;5;242m(length=23)[0m[0m
       object [38;5;242m=>[0m [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#15[0m [38;5;3m[38;5;242m(circular reference #15)[0m[0m

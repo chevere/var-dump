@@ -21,11 +21,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 function stripLocal(string $document): string
 {
-    return str_replace(
-        dirname(__DIR__) . '/demo/',
-        '/var/www/html/',
-        $document
-    );
 }
 foreach ([
     'console.log' => varDumpConsole(),
@@ -36,7 +31,11 @@ foreach ([
     $varDump
         ->withVariables($varDump)
         ->process($writer);
-    $dumping = stripLocal($writer->__toString());
+    $dumping = str_replace(
+        __DIR__,
+        '/var/www/html',
+        $writer->__toString()
+    );
     if ($filename === 'console.log') {
         echo $dumping;
     }

@@ -57,7 +57,11 @@ $writer = new StreamWriter(streamTemp(''));
 $varDump
     ->withVariables($array)
     ->process($writer);
-$dumping = $writer->__toString();
+$dumping = str_replace(
+    __DIR__,
+    '/var/www/html',
+    $writer->__toString()
+);
 file_put_contents(__DIR__ . '/output/' . $filename, $dumping);
 
 var_dump($array);
