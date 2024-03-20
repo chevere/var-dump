@@ -18,8 +18,6 @@
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=chevere_var-dump&metric=sqale_index)](https://sonarcloud.io/dashboard?id=chevere_var-dump)
 [![CodeFactor](https://www.codefactor.io/repository/github/chevere/var-dump/badge)](https://www.codefactor.io/repository/github/chevere/var-dump)
 
-![VarDump](.github/banner/var-dump-logo.svg)
-
 ## Summary
 
 Multi-purpose colorful modern alternative to [var_dump](https://www.php.net/manual/function.var-dump.php).
