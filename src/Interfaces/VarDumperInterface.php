@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Interfaces;
 
-use Chevere\DataStructure\Interfaces\VectorInterface;
 use Chevere\Parameter\Interfaces\TypeInterface;
+use Chevere\VarDump\ObjectReferences;
 use Chevere\VarDump\Processors\ArrayProcessor;
 use Chevere\VarDump\Processors\BoolProcessor;
 use Chevere\VarDump\Processors\FloatProcessor;
@@ -107,23 +107,9 @@ interface VarDumperInterface
     public function depth(): int;
 
     /**
-     * Return an instance with the specified object ids.
-     *
-     * This method MUST retain the state of the current instance, and return
-     * an instance that contains the specified object ids.
-     *
-     * @param VectorInterface<int> $ids
-     */
-    public function withKnownObjectsId(VectorInterface $ids): self;
-
-    /**
-     * Provides access to the known objects.
-     * @return VectorInterface<int>
-     */
-    public function knownObjectsId(): VectorInterface;
-
-    /**
      * Process the dump.
      */
     public function withProcess(): self;
+
+    public function objectReferences(): ObjectReferences;
 }

@@ -15,10 +15,11 @@ namespace Chevere\Tests\Traits;
 
 use Chevere\VarDump\Formats\PlainFormat;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
+use Chevere\VarDump\ObjectReferences;
 use Chevere\VarDump\VarDumpable;
 use Chevere\VarDump\VarDumper;
-use function Chevere\Writer\streamTemp;
 use Chevere\Writer\StreamWriter;
+use function Chevere\Writer\streamTemp;
 
 trait VarDumperTrait
 {
@@ -27,7 +28,8 @@ trait VarDumperTrait
         return (new VarDumper(
             new StreamWriter(streamTemp()),
             new PlainFormat(),
-            new VarDumpable($var)
+            new VarDumpable($var),
+            new ObjectReferences()
         ))->withProcess();
     }
 

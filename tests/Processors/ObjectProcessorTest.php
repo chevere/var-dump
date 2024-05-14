@@ -96,6 +96,29 @@ final class ObjectProcessorTest extends TestCase
         );
     }
 
+    // public function testStdClass(): void
+    // {
+    //     $var = new stdClass();
+    //     $ref = new stdClass();
+    //     $ref->scalar = 'REF';
+    //     $ref->circular = $ref;
+    //     $ref->var = $var;
+    //     $var->scalar = 'VAR';
+    //     $var->ref = $ref;
+    //     $var->circular = $var;
+    //     $var->refArr = [$ref];
+    //     $var->circularArr = [$var];
+    //     $varDumper = $this->getVarDumper($var);
+    //     var_dump("\n" . $varDumper->writer()->__toString());
+    //     exit();
+    //     // $id = strval(spl_object_id($object));
+    //     // $varDumper = $this->getVarDumper($object);
+    //     // $this->assertSame(
+    //     //     'stdClass#' . $id,
+    //     //     $varDumper->writer()->__toString()
+    //     // );
+    // }
+
     public function testAnonClass(): void
     {
         $object = new class() {

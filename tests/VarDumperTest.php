@@ -13,10 +13,9 @@ declare(strict_types=1);
 
 namespace Chevere\Tests;
 
-use Chevere\DataStructure\Interfaces\VectorInterface;
-use Chevere\DataStructure\Vector;
 use Chevere\VarDump\Formats\PlainFormat;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
+use Chevere\VarDump\ObjectReferences;
 use Chevere\VarDump\VarDumpable;
 use Chevere\VarDump\VarDumper;
 use Chevere\Writer\StreamWriter;
@@ -38,7 +37,8 @@ final class VarDumperTest extends TestCase
         $varDumper = new VarDumper(
             writer: $writer,
             format: $format,
-            dumpable: $dumpable
+            dumpable: $dumpable,
+            objectReferences: new ObjectReferences()
         );
         $this->assertSame($writer, $varDumper->writer());
         $this->assertSame($format, $varDumper->format());
@@ -46,7 +46,7 @@ final class VarDumperTest extends TestCase
         $this->assertSame($defaultIndent, $varDumper->indent());
         $this->assertSame($defaultDepth, $varDumper->depth());
         $this->assertSame($defaultIndentSting, $varDumper->indentString());
-        $this->assertCount(0, $varDumper->knownObjectsId());
+        $this->assertCount(0, $varDumper->objectReferences());
         for ($int = 1; $int <= 5; $int++) {
             $this->hookTestWithIndent($varDumper, $int);
             $this->hookTestWithDepth($varDumper, $int);
@@ -55,13 +55,12 @@ final class VarDumperTest extends TestCase
                 $int
             );
         }
-        $object1 = new stdClass();
-        $object2 = new stdClass();
-        $vector = new Vector(spl_object_id($object1), spl_object_id($object2));
-        $this->hookTestWithKnownObjectIds(
-            $varDumper,
-            $vector
-        );
+        // $object1 = new stdClass();
+        // $object2 = new stdClass();
+        // $vector = new ObjectReferences();
+        // $vector->push(spl_object_id($object1));
+        // $vector->push(spl_object_id($object2));
+        // $this->hookTestWithKnownObjectIds($varDumper, $vector);
     }
 
     public function hookTestWithIndent(VarDumperInterface $varDumper, int $indent): void
@@ -84,14 +83,17 @@ final class VarDumperTest extends TestCase
         $this->assertSame($depth, $varDumperWithDepth->depth());
     }
 
-    public function hookTestWithKnownObjectIds(
-        VarDumperInterface $varDumper,
-        VectorInterface $known
-    ): void {
-        $withKnownObjectIds = $varDumper->withKnownObjectsId($known);
-        $this->assertNotSame($varDumper, $withKnownObjectIds);
-        $this->assertSame($known, $withKnownObjectIds->knownObjectsId());
-    }
+    // public function hookTestWithKnownObjectIds(
+    //     VarDumperInterface $varDumper,
+    //     ObjectReferences $known
+    // ): void {
+    //     $objectReferences = $varDumper->objectReferences();
+    //     foreach ($known as $objectId) {
+    //         $objectReferences->push($objectId);
+    //     }
+    //     $this->assertNotSame($varDumper, $objectReferences);
+    //     $this->assertEquals($known, $objectReferences);
+    // }
 
     public function hookTestWithProcess(
         VarDumperInterface $varDumper,

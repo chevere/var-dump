@@ -20,6 +20,8 @@ use Chevere\Writer\Interfaces\WriterInterface;
 
 final class VarOutput implements VarOutputInterface
 {
+    private ObjectReferences $objectReferences;
+
     /**
      * @param array<array<string, mixed>> $trace
      */
@@ -28,6 +30,7 @@ final class VarOutput implements VarOutputInterface
         private array $trace,
         private FormatInterface $format,
     ) {
+        $this->objectReferences = new ObjectReferences();
     }
 
     public function process(OutputInterface $output, mixed ...$variables): void
@@ -50,7 +53,8 @@ final class VarOutput implements VarOutputInterface
             $varDumper = new VarDumper(
                 $this->writer,
                 $this->format,
-                new VarDumpable($value)
+                new VarDumpable($value),
+                $this->objectReferences
             );
             $this->writer->write(
                 str_repeat("\n", (int) ($aux === 1 ?: 2))

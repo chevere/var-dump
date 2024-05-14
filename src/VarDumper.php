@@ -38,10 +38,16 @@ final class VarDumper implements VarDumperInterface
     public function __construct(
         private WriterInterface $writer,
         private FormatInterface $format,
-        private VarDumpableInterface $dumpable
+        private VarDumpableInterface $dumpable,
+        private ObjectReferences $objectReferences
     ) {
         $this->knownObjectsId = new Vector();
         ++$this->depth;
+    }
+
+    public function objectReferences(): ObjectReferences
+    {
+        return $this->objectReferences;
     }
 
     public function writer(): WriterInterface
@@ -89,19 +95,6 @@ final class VarDumper implements VarDumperInterface
     public function depth(): int
     {
         return $this->depth;
-    }
-
-    public function withKnownObjectsId(VectorInterface $ids): VarDumperInterface
-    {
-        $new = clone $this;
-        $new->knownObjectsId = $ids;
-
-        return $new;
-    }
-
-    public function knownObjectsId(): VectorInterface
-    {
-        return $this->knownObjectsId;
     }
 
     public function withProcess(): VarDumperInterface

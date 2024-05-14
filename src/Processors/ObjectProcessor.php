@@ -68,7 +68,7 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
                     '#' . strval($this->objectId)
                 )
         );
-        if ($this->varDumper->knownObjectsId()->find($this->objectId) !== null) {
+        if ($this->varDumper->objectReferences()->has($this->objectId)) {
             $this->varDumper->writer()->write(
                 <<<STRING
                  {$this->highlightParentheses(
@@ -79,6 +79,7 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
 
             return;
         }
+        $this->varDumper->objectReferences()->push($this->objectId);
         if ($this->depth > self::MAX_DEPTH) {
             $this->varDumper->writer()->write(
                 <<<STRING
@@ -88,18 +89,19 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
 
             return;
         }
-        $this->varDumper = $this->varDumper->withKnownObjectsId(
-            $this->varDumper->knownObjectsId()->withPush($this->objectId)
-        );
         $this->setProperties(new ReflectionObject($this->var));
     }
 
     private function setProperties(ReflectionObject $reflection): void
     {
         $properties = [];
-        $properties = $reflection->isInternal()
-            ? $this->getPublicProperties()
-            : $this->getExternalProperties($reflection);
+        // $properties = $reflection->isInternal()
+        //     ? $this->getPublicProperties()
+        //     : $this->getExternalProperties($reflection);
+        $properties = $this->getExternalProperties($reflection);
+        if ($properties === [] && $reflection->isInternal()) {
+            $properties = $this->getPublicProperties();
+        }
         $keys = array_keys($properties);
         foreach ($keys as $name) {
             $name = strval($name);

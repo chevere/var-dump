@@ -39,12 +39,10 @@ trait HandleDepthTrait
             $this->varDumper->writer(),
             $this->varDumper->format(),
             new VarDumpable($variable),
+            $this->varDumper->objectReferences()
         ))
             ->withDepth($deep)
             ->withIndent($this->varDumper->indent())
-            ->withKnownObjectsId(
-                $this->varDumper->knownObjectsId()
-            )
             ->withProcess();
     }
 }
