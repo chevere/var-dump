@@ -88,14 +88,6 @@ final class ArrayProcessor implements ProcessorInterface, ProcessorNestedInterfa
             if (is_array($var)) {
                 return $this->isCircularRef($var);
             }
-            // if (is_object($var)) {
-            //     $objectId = spl_object_id($var);
-            //     if ($this->varDumper->knownObjectsId()->find($objectId) !== null) {
-            //         // $this->varDumper->writer()->write('->[known]');
-
-            //         return true;
-            //     }
-            // }
         }
 
         return false;

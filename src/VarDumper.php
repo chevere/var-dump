@@ -17,6 +17,7 @@ use Chevere\DataStructure\Interfaces\VectorInterface;
 use Chevere\DataStructure\Vector;
 use Chevere\Parameter\Interfaces\TypeInterface;
 use Chevere\VarDump\Interfaces\FormatInterface;
+use Chevere\VarDump\Interfaces\ObjectReferencesInterface;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\VarDumpableInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
@@ -39,13 +40,13 @@ final class VarDumper implements VarDumperInterface
         private WriterInterface $writer,
         private FormatInterface $format,
         private VarDumpableInterface $dumpable,
-        private ObjectReferences $objectReferences
+        private ObjectReferencesInterface $objectReferences
     ) {
         $this->knownObjectsId = new Vector();
         ++$this->depth;
     }
 
-    public function objectReferences(): ObjectReferences
+    public function objectReferences(): ObjectReferencesInterface
     {
         return $this->objectReferences;
     }

@@ -95,13 +95,12 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
     private function setProperties(ReflectionObject $reflection): void
     {
         $properties = [];
-        // $properties = $reflection->isInternal()
-        //     ? $this->getPublicProperties()
-        //     : $this->getExternalProperties($reflection);
-        $properties = $this->getExternalProperties($reflection);
+        $properties = $this->getProperties($reflection);
+        // @codeCoverageIgnoreStart
         if ($properties === [] && $reflection->isInternal()) {
             $properties = $this->getPublicProperties();
         }
+        // @codeCoverageIgnoreEnd
         $keys = array_keys($properties);
         foreach ($keys as $name) {
             $name = strval($name);
@@ -113,6 +112,7 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
 
     /**
      * @return array<string, array<mixed>>
+     * @codeCoverageIgnore
      */
     private function getPublicProperties(): array
     {
@@ -129,7 +129,7 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
     /**
      * @return array<string, array<mixed>>
      */
-    private function getExternalProperties(
+    private function getProperties(
         ReflectionObject $reflection
     ): array {
         $properties = [];

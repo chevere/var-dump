@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Chevere\VarDump\Interfaces;
 
 use Chevere\Parameter\Interfaces\TypeInterface;
-use Chevere\VarDump\ObjectReferences;
 use Chevere\VarDump\Processors\ArrayProcessor;
 use Chevere\VarDump\Processors\BoolProcessor;
 use Chevere\VarDump\Processors\FloatProcessor;
@@ -111,5 +110,5 @@ interface VarDumperInterface
      */
     public function withProcess(): self;
 
-    public function objectReferences(): ObjectReferences;
+    public function objectReferences(): ObjectReferencesInterface;
 }

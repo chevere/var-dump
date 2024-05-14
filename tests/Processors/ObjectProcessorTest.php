@@ -96,28 +96,39 @@ final class ObjectProcessorTest extends TestCase
         );
     }
 
-    // public function testStdClass(): void
-    // {
-    //     $var = new stdClass();
-    //     $ref = new stdClass();
-    //     $ref->scalar = 'REF';
-    //     $ref->circular = $ref;
-    //     $ref->var = $var;
-    //     $var->scalar = 'VAR';
-    //     $var->ref = $ref;
-    //     $var->circular = $var;
-    //     $var->refArr = [$ref];
-    //     $var->circularArr = [$var];
-    //     $varDumper = $this->getVarDumper($var);
-    //     var_dump("\n" . $varDumper->writer()->__toString());
-    //     exit();
-    //     // $id = strval(spl_object_id($object));
-    //     // $varDumper = $this->getVarDumper($object);
-    //     // $this->assertSame(
-    //     //     'stdClass#' . $id,
-    //     //     $varDumper->writer()->__toString()
-    //     // );
-    // }
+    public function testCircularReferences(): void
+    {
+        $var = new stdClass();
+        $ref = new stdClass();
+        $ref->scalar = 'REF';
+        $ref->circular = $ref;
+        $ref->var = $var;
+        $var->scalar = 'VAR';
+        $var->ref = $ref;
+        $var->circular = $var;
+        $var->refArr = [$ref];
+        $var->circularArr = [$var];
+        $varDumper = $this->getVarDumper($var);
+        $varId = strval(spl_object_id($var));
+        $refId = strval(spl_object_id($ref));
+        $dump = <<<EOT
+        stdClass#{$varId}
+        public scalar string VAR (length=3)
+        public ref stdClass#{$refId}
+         public scalar string REF (length=3)
+         public circular stdClass#{$refId} (circular reference #{$refId})
+         public var stdClass#{$varId} (circular reference #{$varId})
+        public circular stdClass#{$varId} (circular reference #{$varId})
+        public refArr array (size=1)
+         0 => stdClass#{$refId} (circular reference #{$refId})
+        public circularArr array (size=1)
+         0 => stdClass#{$varId} (circular reference #{$varId})
+        EOT;
+        $this->assertSame(
+            $dump,
+            $varDumper->writer()->__toString()
+        );
+    }
 
     public function testAnonClass(): void
     {

@@ -13,19 +13,13 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump;
 
-use Chevere\DataStructure\Interfaces\VectoredInterface;
 use Chevere\DataStructure\Traits\VectorTrait;
+use Chevere\VarDump\Interfaces\ObjectReferencesInterface;
 
-/**
- * @implements VectoredInterface<int>
- */
-final class ObjectReferences implements VectoredInterface
+final class ObjectReferences implements ObjectReferencesInterface
 {
     use VectorTrait;
 
-    /**
-     * @return array<int> $array
-     */
     public function toArray(): array
     {
         return $this->vector->toArray();
