@@ -30,7 +30,6 @@ final class VarOutput implements VarOutputInterface
         private array $trace,
         private FormatInterface $format,
     ) {
-        $this->objectReferences = new ObjectReferences();
     }
 
     public function process(OutputInterface $output, mixed ...$variables): void
@@ -46,6 +45,7 @@ final class VarOutput implements VarOutputInterface
     {
         $aux = 0;
         foreach ($variables as $name => $value) {
+            $this->objectReferences = new ObjectReferences();
             $aux++;
             if (is_int($name)) {
                 $name = $aux;

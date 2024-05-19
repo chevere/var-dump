@@ -36,27 +36,63 @@ final class VarDumpTest extends TestCase
     {
         $stream = $this->getStream();
         $writer = new StreamWriter($stream);
-        $variable = new stdClass();
+        $var = new stdClass();
         $varDump = $this->getVarDump();
-        $varDumpWithVariables = $varDump->withVariables($variable);
+        $varDumpWithVariables = $varDump->withVariables($var);
         $this->assertNotSame($varDump, $varDumpWithVariables);
         $this->assertEqualsCanonicalizing(
-            [$variable],
+            [$var],
             $varDumpWithVariables->variables()
         );
         $varDumpWithVariables->process($writer);
         $line = strval(__LINE__ - 1);
-        $hrLine = str_repeat('-', 60);
-        $expectedString = "\n"
-            . $varDump::class . '->process()'
-            . "\n"
-            . $hrLine
-            . "\n"
-            . __FILE__ . ':' . $line
-            . "\n\n"
-            . 'Arg#1 stdClass#' . spl_object_id($variable)
-            . "\n" . $hrLine
-            . "\n";
+        $className = $varDump::class;
+        $fileLine = __FILE__ . ':' . $line;
+        $objectId = spl_object_id($var);
+        $expectedString = <<<PLAIN
+
+        {$className}->process()
+        ------------------------------------------------------------
+        {$fileLine}
+
+        Arg#1 stdClass#{$objectId}
+        ------------------------------------------------------------
+
+        PLAIN;
+        $this->assertSame($expectedString, $writer->__toString());
+    }
+
+    public function testCircularReferenceArguments(): void
+    {
+        $var = new stdClass();
+        $var->circular = $var;
+        $var->string = 'test';
+        $varDump = $this->getVarDump();
+        $varDumpWithVariables = $varDump->withVariables($var, [$var]);
+        $stream = $this->getStream();
+        $writer = new StreamWriter($stream);
+        $varDumpWithVariables->process($writer);
+        $line = strval(__LINE__ - 1);
+        $className = $varDump::class;
+        $fileLine = __FILE__ . ':' . $line;
+        $objectId = spl_object_id($var);
+        $expectedString = <<<PLAIN
+
+        {$className}->process()
+        ------------------------------------------------------------
+        {$fileLine}
+
+        Arg#1 stdClass#{$objectId}
+        public circular stdClass#{$objectId} (circular reference #{$objectId})
+        public string string test (length=4)
+
+        Arg#2 array (size=1)
+        0 => stdClass#{$objectId}
+         public circular stdClass#{$objectId} (circular reference #{$objectId})
+         public string string test (length=4)
+        ------------------------------------------------------------
+
+        PLAIN;
         $this->assertSame($expectedString, $writer->__toString());
     }
 
