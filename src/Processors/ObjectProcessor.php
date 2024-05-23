@@ -135,6 +135,9 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
         $properties = [];
         do {
             foreach ($reflection->getProperties() as $property) {
+                if ($property->isStatic()) {
+                    continue;
+                }
                 $isUnset = false;
 
                 try {

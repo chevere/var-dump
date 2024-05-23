@@ -18,6 +18,10 @@ use stdClass;
 
 abstract class BaseClass
 {
+    public const CONSTANT = 'constant';
+
+    public static string $static = 'static';
+
     public int $code = 101;
 
     public object $public;
