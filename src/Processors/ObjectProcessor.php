@@ -21,7 +21,6 @@ use Chevere\VarDump\Processors\Traits\HandleDepthTrait;
 use Chevere\VarDump\Processors\Traits\ProcessorTrait;
 use Reflection;
 use ReflectionObject;
-use Throwable;
 
 final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterface
 {
@@ -89,13 +88,14 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
 
             return;
         }
-        $this->setProperties(new ReflectionObject($this->var));
+        $this->setProperties($this->var);
     }
 
-    private function setProperties(ReflectionObject $reflection): void
+    private function setProperties(object $object): void
     {
+        $reflection = new ReflectionObject($object);
         $properties = [];
-        $properties = $this->getProperties($reflection);
+        $properties = $this->getProperties($object, $reflection);
         // @codeCoverageIgnoreStart
         if ($properties === [] && $reflection->isInternal()) {
             $properties = $this->getPublicProperties();
@@ -130,6 +130,7 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
      * @return array<string, array<mixed>>
      */
     private function getProperties(
+        object $object,
         ReflectionObject $reflection
     ): array {
         $properties = [];
@@ -139,12 +140,15 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
                     continue;
                 }
                 $isUnset = false;
-
-                try {
+                if (! $property->isInitialized($object)) {
+                    if ($property->hasDefaultValue()) {
+                        $value = $property->getDefaultValue();
+                    } else {
+                        $value = '';
+                        $isUnset = true;
+                    }
+                } else {
                     $value = $property->getValue($this->var);
-                } catch (Throwable) {
-                    $value = '';
-                    $isUnset = true;
                 }
                 $properties[$property->getName()] = [
                     implode(
