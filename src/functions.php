@@ -76,7 +76,7 @@ namespace Chevere\VarDump {
                     new StreamWriter(streamFor('php://output', 'w'))
                 )
                 ->withError(
-                    new StreamWriter(streamFor('php://stderr', 'r+'))
+                    new StreamWriter(streamFor('php://stderr', 'w'))
                 );
         }
     }
