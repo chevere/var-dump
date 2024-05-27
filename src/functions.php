@@ -60,7 +60,9 @@ namespace Chevere\VarDump {
         try {
             return VarDumpInstance::get();
         } catch (LogicException $e) {
-            return varDumpConsole();
+            return PHP_SAPI === 'cli'
+                ? varDumpConsole()
+                : varDumpHtml();
         }
     }
 
@@ -71,7 +73,7 @@ namespace Chevere\VarDump {
         } catch (LogicException $e) {
             return (new Writers())
                 ->withOutput(
-                    new StreamWriter(streamFor('php://stdout', 'r+'))
+                    new StreamWriter(streamFor('php://output', 'w'))
                 )
                 ->withError(
                     new StreamWriter(streamFor('php://stderr', 'r+'))
