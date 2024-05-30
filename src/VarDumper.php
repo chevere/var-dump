@@ -30,13 +30,13 @@ final class VarDumper implements VarDumperInterface
      */
     public VectorInterface $knownObjectsId;
 
-    public static bool $needsPull;
+    public static bool $needsPull = false;
 
     private int $indent = 0;
 
     private string $indentString = '';
 
-    private int $depth = -1;
+    private int $depth = 0;
 
     public function __construct(
         private WriterInterface $writer,
@@ -45,7 +45,6 @@ final class VarDumper implements VarDumperInterface
         private ObjectReferencesInterface $objectReferences,
     ) {
         $this->knownObjectsId = new Vector();
-        ++$this->depth;
         self::$needsPull = false;
     }
 
@@ -115,12 +114,12 @@ final class VarDumper implements VarDumperInterface
         return $new;
     }
 
-    public function needsPull(): bool
+    public function needsPullUp(): bool
     {
         return self::$needsPull;
     }
 
-    public function withNeedsPull(bool $needsPull): VarDumperInterface
+    public function withNeedsPullUp(bool $needsPull): VarDumperInterface
     {
         $new = clone $this;
         self::$needsPull = $needsPull;

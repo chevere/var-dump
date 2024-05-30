@@ -100,19 +100,20 @@ final class ArrayProcessor implements ProcessorInterface, ProcessorNestedInterfa
         foreach ($this->var as $key => $value) {
             $aux++;
             if ($aux === 1) {
-                $open = $this->varDumper->depth() === 0;
                 $this->varDumper->writer()->write(
-                    $this->varDumper->format()->detailsOpen($open)
+                    $this->varDumper->format()->detailsOpen(
+                        $this->varDumper->depth() === 0
+                    )
                 );
                 if ($this->varDumper->format()->detailsClose() === '') {
                     $this->varDumper->writer()->write("\n");
                 }
             } else {
-                if ($this->varDumper->needsPull()) {
+                if ($this->varDumper->needsPullUp()) {
                     $this->varDumper->writer()->write(
                         $this->varDumper->format()->detailsPullUp()
                     );
-                    $this->varDumper = $this->varDumper->withNeedsPull(false);
+                    $this->varDumper = $this->varDumper->withNeedsPullUp(false);
                 }
                 $this->varDumper->writer()->write("\n");
             }
@@ -126,7 +127,7 @@ final class ArrayProcessor implements ProcessorInterface, ProcessorNestedInterfa
             $this->varDumper->writer()->write(
                 $this->varDumper->format()->detailsClose()
             );
-            $this->varDumper = $this->varDumper->withNeedsPull(true);
+            $this->varDumper = $this->varDumper->withNeedsPullUp(true);
         }
     }
 }

@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Formats\Traits;
 
+/**
+ * @codeCoverageIgnore
+ */
 trait DetailsTrait
 {
     public function detailsOpen(bool $open = false): string

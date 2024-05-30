@@ -40,7 +40,7 @@ interface FormatInterface
      */
     public function highlight(string $key, string $string): string;
 
-    public function detailsOpen(bool $open = false): string;
+    public function detailsOpen(bool $open): string;
 
     public function detailsClose(): string;
 

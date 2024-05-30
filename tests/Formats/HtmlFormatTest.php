@@ -57,7 +57,35 @@ final class HtmlFormatTest extends TestCase
     public function testHighlight(): void
     {
         $string = 'string';
-        $highlighted = (new HtmlFormat())->highlight(HighlightInterface::KEYS[0], $string);
+        $highlighted = (new HtmlFormat())
+            ->highlight(HighlightInterface::KEYS[0], $string);
         $this->assertTrue(strlen($highlighted) > strlen($string));
+    }
+
+    public function testDetailsOpen(): void
+    {
+        $this->assertStringContainsString(
+            '<details ',
+            (new HtmlFormat())->detailsOpen(true)
+        );
+        $this->assertStringContainsString(
+            ' open>',
+            (new HtmlFormat())->detailsOpen(true)
+        );
+    }
+
+    public function testDetailsClose(): void
+    {
+        $this->assertSame(
+            '</details>',
+            (new HtmlFormat())->detailsClose()
+        );
+    }
+
+    public function testDetailsPullUp(): void
+    {
+        $needle = '<div ';
+        $details = (new HtmlFormat())->detailsPullUp();
+        $this->assertStringContainsString($needle, $details);
     }
 }

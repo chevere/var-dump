@@ -23,6 +23,14 @@ final class HtmlFormat implements FormatInterface
 
     public const HTML_EMPHASIS = '<em>%s</em>';
 
+    public const HTML_DETAILS_OPEN = '<details style="line-height: normal; display: block; margin-top: -1.2em;"%s>';
+
+    public const HTML_DETAILS_CLOSE = '</details>';
+
+    public const HTML_SUMMARY = '<summary style="line-height: 1em; height: 1.2em; left: -0.9em; position: relative;"></summary>';
+
+    public const DETAILS_PULL_UP = '<div style="margin-top: -1.2em; height: 0;"></div>';
+
     public function indent(int $indent): string
     {
         // @infection-ignore-all
@@ -48,20 +56,18 @@ final class HtmlFormat implements FormatInterface
         return (new HtmlHighlight($key))->highlight($string);
     }
 
-    public function detailsOpen(bool $open = false): string
+    public function detailsOpen(bool $open): string
     {
-        $open = $open ? ' open' : '';
-
-        return '<details style="line-height: normal; display: block; margin-top: -1.2em;"' . $open . '><summary style="line-height: 1em; height: 1.2em; left: -0.9em; position: relative;"></summary>';
+        return sprintf(self::HTML_DETAILS_OPEN, $open ? ' open' : '') . self::HTML_SUMMARY;
     }
 
     public function detailsClose(): string
     {
-        return '</details>';
+        return self::HTML_DETAILS_CLOSE;
     }
 
     public function detailsPullUp(): string
     {
-        return '<div style="margin-top: -1.2em; height: 0;"></div>';
+        return self::DETAILS_PULL_UP;
     }
 }

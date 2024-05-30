@@ -46,4 +46,13 @@ final class PlainFormatTest extends TestCase
         $highlighted = (new PlainFormat())->highlight(HighlightInterface::KEYS[0], $string);
         $this->assertSame($string, $highlighted);
     }
+
+    public function testDetails(): void
+    {
+        $this->assertSame('', (new PlainFormat())->detailsOpen());
+        $this->assertSame('', (new PlainFormat())->detailsOpen(true));
+        $this->assertSame('', (new PlainFormat())->detailsOpen(false));
+        $this->assertSame('', (new PlainFormat())->detailsClose());
+        $this->assertSame('', (new PlainFormat())->detailsPullUp());
+    }
 }

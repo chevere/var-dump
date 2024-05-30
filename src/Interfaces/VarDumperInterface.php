@@ -112,7 +112,7 @@ interface VarDumperInterface
 
     public function objectReferences(): ObjectReferencesInterface;
 
-    public function needsPull(): bool;
+    public function needsPullUp(): bool;
 
-    public function withNeedsPull(bool $needsPull): self;
+    public function withNeedsPullUp(bool $needsPull): self;
 }

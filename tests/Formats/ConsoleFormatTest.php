@@ -47,4 +47,13 @@ final class ConsoleFormatTest extends TestCase
             ->highlight(HighlightInterface::KEYS[0], $string);
         $this->assertTrue(strlen($highlighted) >= strlen($string));
     }
+
+    public function testDetails(): void
+    {
+        $this->assertSame('', (new ConsoleFormat())->detailsOpen());
+        $this->assertSame('', (new ConsoleFormat())->detailsOpen(true));
+        $this->assertSame('', (new ConsoleFormat())->detailsOpen(false));
+        $this->assertSame('', (new ConsoleFormat())->detailsClose());
+        $this->assertSame('', (new ConsoleFormat())->detailsPullUp());
+    }
 }
