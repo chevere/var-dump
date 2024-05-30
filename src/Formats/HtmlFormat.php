@@ -27,7 +27,7 @@ final class HtmlFormat implements FormatInterface
 
     public const HTML_DETAILS_CLOSE = '</details>';
 
-    public const HTML_SUMMARY = '<summary style="line-height: 1em; height: 1.2em; left: -0.9em; position: relative;"></summary>';
+    public const HTML_SUMMARY = '<summary style="height: 1.2em; margin-left: -0.8em; position: relative;"></summary>';
 
     public const DETAILS_PULL_UP = '<div style="margin-top: -1.2em; height: 0;"></div>';
 
