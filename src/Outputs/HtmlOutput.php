@@ -23,10 +23,10 @@ final class HtmlOutput extends Output
      * @var string Dump style, no double quotes.
      */
     public const STYLE = 'font-size:14px;'
-        . "font-family:'Fira Code Retina','Operator Mono',Inconsolata,Consolas,monospace,sans-serif;"
+        . "font-family:'Fira Code Retina','Operator Mono',Inconsolata,Menlo,Monaco,Consolas,monospace;"
         . 'line-height:normal;'
         . 'color:#ecf0f1;'
-        . 'padding:15px;'
+        . 'padding:1.25em;'
         . 'margin:10px 0;'
         . 'word-break:break-word;'
         . 'white-space:pre-wrap;'

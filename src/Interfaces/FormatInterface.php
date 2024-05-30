@@ -21,22 +21,28 @@ interface FormatInterface
     /**
      * Get indent for the given `$indent` size.
      */
-    public function getIndent(int $indent): string;
+    public function indent(int $indent): string;
 
     /**
      * Get emphasis for the given `$string`.
      */
-    public function getEmphasis(string $string): string;
+    public function emphasis(string $string): string;
 
     /**
      * Get `$string` without encoded chars.
      */
-    public function getFilterEncodedChars(string $string): string;
+    public function filterEncodedChars(string $string): string;
 
     /**
      * Get highlighted `$string` identified by `$key`.
      *
      * @see HighlightInterface
      */
-    public function getHighlight(string $key, string $string): string;
+    public function highlight(string $key, string $string): string;
+
+    public function detailsOpen(bool $open = false): string;
+
+    public function detailsClose(): string;
+
+    public function detailsPullUp(): string;
 }

@@ -22,21 +22,21 @@ final class ConsoleFormatTest extends TestCase
     public function testIndent(): void
     {
         $indent = 5;
-        $indented = (new ConsoleFormat())->getIndent($indent);
+        $indented = (new ConsoleFormat())->indent($indent);
         $this->assertSame($indent, strlen($indented));
     }
 
     public function testEmphasis(): void
     {
         $string = 'string';
-        $emphasized = (new ConsoleFormat())->getEmphasis($string);
+        $emphasized = (new ConsoleFormat())->emphasis($string);
         $this->assertTrue(strlen($emphasized) >= strlen($string));
     }
 
     public function testFilterEncodedChars(): void
     {
         $string = 'string</a>';
-        $filtered = (new ConsoleFormat())->getFilterEncodedChars($string);
+        $filtered = (new ConsoleFormat())->filterEncodedChars($string);
         $this->assertSame($string, $filtered);
     }
 
@@ -44,7 +44,7 @@ final class ConsoleFormatTest extends TestCase
     {
         $string = 'string';
         $highlighted = (new ConsoleFormat())
-            ->getHighlight(HighlightInterface::KEYS[0], $string);
+            ->highlight(HighlightInterface::KEYS[0], $string);
         $this->assertTrue(strlen($highlighted) >= strlen($string));
     }
 }

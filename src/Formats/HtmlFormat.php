@@ -23,28 +23,45 @@ final class HtmlFormat implements FormatInterface
 
     public const HTML_EMPHASIS = '<em>%s</em>';
 
-    public function getIndent(int $indent): string
+    public function indent(int $indent): string
     {
         // @infection-ignore-all
         return str_repeat(' ' . self::HTML_INLINE_PREFIX . ' ', $indent);
     }
 
-    public function getEmphasis(string $string): string
+    public function emphasis(string $string): string
     {
         return sprintf(
             self::HTML_EMPHASIS,
             (new HtmlHighlight(VarDumperInterface::EMPHASIS))
-                ->getHighlight($string)
+                ->highlight($string)
         );
     }
 
-    public function getFilterEncodedChars(string $string): string
+    public function filterEncodedChars(string $string): string
     {
         return htmlspecialchars($string);
     }
 
-    public function getHighlight(string $key, string $string): string
+    public function highlight(string $key, string $string): string
     {
-        return (new HtmlHighlight($key))->getHighlight($string);
+        return (new HtmlHighlight($key))->highlight($string);
+    }
+
+    public function detailsOpen(bool $open = false): string
+    {
+        $open = $open ? ' open' : '';
+
+        return '<details style="line-height: normal; display: block; margin-top: -1.2em;"' . $open . '><summary style="line-height: 1em; height: 1.2em; left: -0.9em; position: relative;"></summary>';
+    }
+
+    public function detailsClose(): string
+    {
+        return '</details>';
+    }
+
+    public function detailsPullUp(): string
+    {
+        return '<div style="margin-top: -1.2em; height: 0;"></div>';
     }
 }

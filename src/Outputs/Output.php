@@ -47,7 +47,7 @@ abstract class Output implements OutputInterface
         $item = $this->trace[0] ?? null;
         if (isset($item['file'])) {
             $fileLine = $item['file'] . ':' . $item['line'];
-            $highlight = $format->getHighlight('_file', $fileLine);
+            $highlight = $format->highlight('_file', $fileLine);
             $this->writer->write(
                 <<<PLAIN
 

@@ -42,7 +42,7 @@ final class ConsoleHighlight implements HighlightInterface
     /**
      * @infection-ignore-all
      */
-    public function getHighlight(string $dump): string
+    public function highlight(string $dump): string
     {
         foreach ($this->style as $style) {
             try {

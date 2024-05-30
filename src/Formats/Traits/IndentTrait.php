@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Formats\Traits;
 
-trait GetFilterEncodedCharsTrait
+trait IndentTrait
 {
-    public function getFilterEncodedChars(string $string): string
+    public function indent(int $indent): string
     {
-        return $string;
+        return str_repeat(' ', $indent);
     }
 }

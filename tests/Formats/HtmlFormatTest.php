@@ -25,7 +25,7 @@ final class HtmlFormatTest extends TestCase
     public function testIndent(int $indent): void
     {
         $prefix = HtmlFormat::HTML_INLINE_PREFIX;
-        $indented = (new HtmlFormat())->getIndent($indent);
+        $indented = (new HtmlFormat())->indent($indent);
         $stripped = strip_tags($indented);
         $expected = str_repeat('  ', $indent);
         $this->assertSame($expected, $stripped);
@@ -43,21 +43,21 @@ final class HtmlFormatTest extends TestCase
     public function testEmphasis(): void
     {
         $string = 'string';
-        $emphasized = (new HtmlFormat())->getEmphasis($string);
+        $emphasized = (new HtmlFormat())->emphasis($string);
         $this->assertTrue(strlen($emphasized) > strlen($string));
     }
 
     public function testFilterEncodedChars(): void
     {
         $string = 'string</a>';
-        $filtered = (new HtmlFormat())->getFilterEncodedChars($string);
+        $filtered = (new HtmlFormat())->filterEncodedChars($string);
         $this->assertTrue(strlen($filtered) > strlen($string));
     }
 
     public function testHighlight(): void
     {
         $string = 'string';
-        $highlighted = (new HtmlFormat())->getHighlight(HighlightInterface::KEYS[0], $string);
+        $highlighted = (new HtmlFormat())->highlight(HighlightInterface::KEYS[0], $string);
         $this->assertTrue(strlen($highlighted) > strlen($string));
     }
 }

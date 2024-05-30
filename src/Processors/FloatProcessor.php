@@ -44,7 +44,7 @@ final class FloatProcessor implements ProcessorInterface
         $this->varDumper->writer()->write(
             implode(' ', [
                 $this->typeHighlighted(),
-                $this->varDumper->format()->getFilterEncodedChars($this->stringVar),
+                $this->varDumper->format()->filterEncodedChars($this->stringVar),
                 $this->highlightParentheses($this->info),
             ])
         );

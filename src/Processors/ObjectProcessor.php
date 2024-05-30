@@ -56,13 +56,13 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
     {
         $this->varDumper->writer()->write(
             $this->varDumper->format()
-                ->getHighlight(
+                ->highlight(
                     VarDumperInterface::CLASS_REG,
                     $this->className
                 )
             .
             $this->varDumper->format()
-                ->getHighlight(
+                ->highlight(
                     VarDumperInterface::OPERATOR,
                     '#' . strval($this->objectId)
                 )
@@ -102,11 +102,21 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
         }
         // @codeCoverageIgnoreEnd
         $keys = array_keys($properties);
+        $aux = 0;
         foreach ($keys as $name) {
+            $aux++;
             $name = strval($name);
             /** @var string[] */
             $property = $properties[$name];
+            $property[] = $aux;
+            // @phpstan-ignore-next-line
             $this->processProperty($name, ...$property);
+        }
+        if ($aux > 0) {
+            $this->varDumper->writer()->write(
+                $this->varDumper->format()->detailsClose()
+            );
+            $this->varDumper = $this->varDumper->withNeedsPull(true);
         }
     }
 
@@ -168,22 +178,40 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
         string $name,
         string $modifier,
         mixed $value,
-        bool $isUnset
+        bool $isUnset,
+        int $aux
     ): void {
+        if ($aux === 1) {
+            $open = $this->varDumper->depth() === 0;
+            $this->varDumper->writer()->write(
+                $this->varDumper->format()->detailsOpen($open)
+            );
+            if ($this->varDumper->format()->detailsClose() === '') {
+                $this->varDumper->writer()->write("\n");
+            }
+        } else {
+            if ($this->varDumper->needsPull()) {
+                $this->varDumper->writer()->write(
+                    $this->varDumper->format()->detailsPullUp()
+                );
+                $this->varDumper = $this->varDumper->withNeedsPull(false);
+            }
+            $this->varDumper->writer()->write("\n");
+        }
         $indentString = $this->varDumper->indentString();
-        $modifier = $this->varDumper->format()->getHighlight(
+        $modifier = $this->varDumper->format()->highlight(
             VarDumperInterface::MODIFIERS,
             $modifier
         );
-        $variable = $this->varDumper->format()->getHighlight(
+        $variable = $this->varDumper->format()->highlight(
             VarDumperInterface::VARIABLE,
-            $this->varDumper->format()->getFilterEncodedChars($name)
+            $this->varDumper->format()->filterEncodedChars($name)
         );
         $this->varDumper->writer()->write(
-            "\n{$indentString}{$modifier} {$variable} "
+            "{$indentString}{$modifier} {$variable} "
         );
         if ($isUnset) {
-            $unset = $this->varDumper->format()->getHighlight(
+            $unset = $this->varDumper->format()->highlight(
                 VarDumperInterface::EMPHASIS,
                 'uninitialized'
             );

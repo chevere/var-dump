@@ -95,16 +95,38 @@ final class ArrayProcessor implements ProcessorInterface, ProcessorNestedInterfa
 
     private function processMembers(): void
     {
+        $aux = 0;
         $operator = $this->highlightOperator('=>');
         foreach ($this->var as $key => $value) {
-            $indentString = $this->varDumper->indentString();
-            $format = $this->varDumper->format()
-                ->getFilterEncodedChars((string) $key);
-            $this->varDumper->writer()->write(
-                "\n{$indentString}{$format} {$operator} "
-            );
+            $aux++;
+            if ($aux === 1) {
+                $open = $this->varDumper->depth() === 0;
+                $this->varDumper->writer()->write(
+                    $this->varDumper->format()->detailsOpen($open)
+                );
+                if ($this->varDumper->format()->detailsClose() === '') {
+                    $this->varDumper->writer()->write("\n");
+                }
+            } else {
+                if ($this->varDumper->needsPull()) {
+                    $this->varDumper->writer()->write(
+                        $this->varDumper->format()->detailsPullUp()
+                    );
+                    $this->varDumper = $this->varDumper->withNeedsPull(false);
+                }
+                $this->varDumper->writer()->write("\n");
+            }
 
+            $indentString = $this->varDumper->indentString();
+            $format = $this->varDumper->format()->filterEncodedChars((string) $key);
+            $this->varDumper->writer()->write("{$indentString}{$format} {$operator} ");
             $this->handleDepth($value);
+        }
+        if ($aux > 0) {
+            $this->varDumper->writer()->write(
+                $this->varDumper->format()->detailsClose()
+            );
+            $this->varDumper = $this->varDumper->withNeedsPull(true);
         }
     }
 }

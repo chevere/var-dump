@@ -13,10 +13,20 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Formats\Traits;
 
-trait GetIndentTrait
+trait DetailsTrait
 {
-    public function getIndent(int $indent): string
+    public function detailsOpen(bool $open = false): string
     {
-        return str_repeat(' ', $indent);
+        return '';
+    }
+
+    public function detailsClose(): string
+    {
+        return '';
+    }
+
+    public function detailsPullUp(): string
+    {
+        return '';
     }
 }

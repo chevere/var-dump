@@ -54,7 +54,7 @@ final class StringProcessor implements ProcessorInterface
             implode(' ', [
                 $this->typeHighlighted(),
                 $this->varDumper->format()
-                    ->getFilterEncodedChars($this->string),
+                    ->filterEncodedChars($this->string),
                 $this->highlightParentheses($this->info),
             ])
         );

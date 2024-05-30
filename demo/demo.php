@@ -19,9 +19,6 @@ use function Chevere\Writer\streamTemp;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-function stripLocal(string $document): string
-{
-}
 foreach ([
     'console.log' => varDumpConsole(),
     'plain.txt' => varDumpPlain(),

@@ -31,7 +31,7 @@ final class ResourceProcessor implements ProcessorInterface
         /** @var resource $resource */
         $resource = $this->varDumper->dumpable()->var();
         $this->info = 'type=' . get_resource_type($resource);
-        $this->stringVar = $this->varDumper->format()->getHighlight(
+        $this->stringVar = $this->varDumper->format()->highlight(
             $this->type(),
             strval($resource)
         );

@@ -31,7 +31,7 @@ final class HtmlHighlight implements HighlightInterface
         $this->color = $this->palette()[$this->key] ?? 'inherit';
     }
 
-    public function getHighlight(string $dump): string
+    public function highlight(string $dump): string
     {
         return '<span style="color:' . $this->color . '">' . $dump . '</span>';
     }

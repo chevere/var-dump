@@ -48,7 +48,7 @@ interface HighlightInterface
     /**
      * Highlights `$string`.
      */
-    public function getHighlight(string $string): string;
+    public function highlight(string $string): string;
 
     /**
      * Provide access to the color palette.

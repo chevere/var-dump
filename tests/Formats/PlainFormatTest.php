@@ -22,28 +22,28 @@ final class PlainFormatTest extends TestCase
     public function testIndent(): void
     {
         $indent = 5;
-        $indented = (new PlainFormat())->getIndent($indent);
+        $indented = (new PlainFormat())->indent($indent);
         $this->assertSame($indent, strlen($indented));
     }
 
     public function testEmphasis(): void
     {
         $string = 'string';
-        $emphasized = (new PlainFormat())->getEmphasis($string);
+        $emphasized = (new PlainFormat())->emphasis($string);
         $this->assertSame($string, $emphasized);
     }
 
     public function testFilterEncodedChars(): void
     {
         $string = 'string</a>';
-        $filtered = (new PlainFormat())->getFilterEncodedChars($string);
+        $filtered = (new PlainFormat())->filterEncodedChars($string);
         $this->assertSame($string, $filtered);
     }
 
     public function testHighlight(): void
     {
         $string = 'string';
-        $highlighted = (new PlainFormat())->getHighlight(HighlightInterface::KEYS[0], $string);
+        $highlighted = (new PlainFormat())->highlight(HighlightInterface::KEYS[0], $string);
         $this->assertSame($string, $highlighted);
     }
 }
