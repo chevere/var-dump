@@ -47,10 +47,19 @@ final class HtmlOutput extends Output
         display: block;
         margin-top: -1.2em;
     }
+    pre.chv-dump > details:not(:last-child) {
+        margin-bottom: -1.2em;
+    }
     .chv-dump-summary {
         height: 1.2em;
         margin-left: -0.8em;
         position: relative;
+    }
+    .chv-dump-summary:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    .chv-dump-summary::-webkit-details-marker {
+        margin-top: 0.3em;
     }
     .chv-details-pull-up {
         margin-top: -1.2em;

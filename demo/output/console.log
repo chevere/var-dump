@@ -1,47 +1,47 @@
 
-[31m[1mChevere\VarDump\VarDump->process()[0m[0m
-[34m------------------------------------------------------------[0m
-[38;5;111m/var/www/html/demo.php:30[0m
+Chevere\VarDump\VarDump->process()
+------------------------------------------------------------
+/var/www/html/demo.php:30
 
-Arg#1 [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#2[0m
-[38;5;170mprivate[0m [38;5;39mvariables[0m [38;5;41marray[0m [] [38;5;3m[38;5;242m(size=0)[0m[0m
-[38;5;170mprivate[0m [38;5;39mshift[0m [38;5;208mint[0m 0 [38;5;3m[38;5;242m(length=1)[0m[0m
-[38;5;170mprivate[0m [38;5;39mdebugBacktrace[0m [38;5;41marray[0m [] [38;5;3m[38;5;242m(size=0)[0m[0m
-[38;5;170mprivate[0m [38;5;39mformat[0m [38;5;221mChevere\VarDump\Formats\ConsoleFormat[0m[38;5;242m#5[0m
-[38;5;170mprivate[0m [38;5;39moutput[0m [38;5;221mChevere\VarDump\Outputs\ConsoleOutput[0m[38;5;242m#6[0m
- [38;5;170mprivate[0m [38;5;39moutputHr[0m [38;5;208mstring[0m [34m------------------------------------------------------------[0m [38;5;3m[38;5;242m(length=69)[0m[0m
- [38;5;170mprivate[0m [38;5;39mwriter[0m [38;5;221mChevere\Writer\StreamWriter[0m[38;5;242m#13[0m
-  [38;5;170mprivate[0m [38;5;39mstream[0m [38;5;221mNyholm\Psr7\Stream[0m[38;5;242m#14[0m
-   [38;5;170mprivate[0m [38;5;39mstream[0m [38;5;203mResource id #47[0m [38;5;3m[38;5;242m(type=stream)[0m[0m
-   [38;5;170mprivate[0m [38;5;39mseekable[0m [38;5;208mbool[0m true
-   [38;5;170mprivate[0m [38;5;39mreadable[0m [38;5;208mbool[0m true
-   [38;5;170mprivate[0m [38;5;39mwritable[0m [38;5;208mbool[0m true
-   [38;5;170mprivate[0m [38;5;39muri[0m [38;5;208mnull[0m
-   [38;5;170mprivate[0m [38;5;39msize[0m [38;5;208mnull[0m
- [38;5;170mprivate[0m [38;5;39mtrace[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=1)[0m[0m
-  0 [38;5;242m=>[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=7)[0m[0m
-   file [38;5;242m=>[0m [38;5;208mstring[0m /var/www/html/demo.php [38;5;3m[38;5;242m(length=49)[0m[0m
-   line [38;5;242m=>[0m [38;5;208mint[0m 30 [38;5;3m[38;5;242m(length=2)[0m[0m
-   function [38;5;242m=>[0m [38;5;208mstring[0m process [38;5;3m[38;5;242m(length=7)[0m[0m
-   class [38;5;242m=>[0m [38;5;208mstring[0m Chevere\VarDump\VarDump [38;5;3m[38;5;242m(length=23)[0m[0m
-   object [38;5;242m=>[0m [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#15[0m
-    [38;5;170mprivate[0m [38;5;39mvariables[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=1)[0m[0m
-     0 [38;5;242m=>[0m [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#2[0m [38;5;3m[38;5;242m(circular reference #2)[0m[0m
-    [38;5;170mprivate[0m [38;5;39mshift[0m [38;5;208mint[0m 0 [38;5;3m[38;5;242m(length=1)[0m[0m
-    [38;5;170mprivate[0m [38;5;39mdebugBacktrace[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=1)[0m[0m
-     0 [38;5;242m=>[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=7)[0m[0m
-      file [38;5;242m=>[0m [38;5;208mstring[0m /var/www/html/demo.php [38;5;3m[38;5;242m(length=49)[0m[0m
-      line [38;5;242m=>[0m [38;5;208mint[0m 30 [38;5;3m[38;5;242m(length=2)[0m[0m
-      function [38;5;242m=>[0m [38;5;208mstring[0m process [38;5;3m[38;5;242m(length=7)[0m[0m
-      class [38;5;242m=>[0m [38;5;208mstring[0m Chevere\VarDump\VarDump [38;5;3m[38;5;242m(length=23)[0m[0m
-      object [38;5;242m=>[0m [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#15[0m [38;5;3m[38;5;242m(circular reference #15)[0m[0m
-      type [38;5;242m=>[0m [38;5;208mstring[0m -> [38;5;3m[38;5;242m(length=2)[0m[0m
-      args [38;5;242m=>[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=1)[0m[0m
-       0 [38;5;242m=>[0m [38;5;221mChevere\Writer\StreamWriter[0m[38;5;242m#13[0m [38;5;3m[38;5;242m(circular reference #13)[0m[0m
-    [38;5;170mprivate[0m [38;5;39mformat[0m [38;5;221mChevere\VarDump\Formats\ConsoleFormat[0m[38;5;242m#5[0m [38;5;3m[38;5;242m(circular reference #5)[0m[0m
-    [38;5;170mprivate[0m [38;5;39moutput[0m [38;5;221mChevere\VarDump\Outputs\ConsoleOutput[0m[38;5;242m#6[0m [38;5;3m[38;5;242m(circular reference #6)[0m[0m
-   type [38;5;242m=>[0m [38;5;208mstring[0m -> [38;5;3m[38;5;242m(length=2)[0m[0m
-   args [38;5;242m=>[0m [38;5;41marray[0m [38;5;3m[38;5;242m(size=1)[0m[0m
-    0 [38;5;242m=>[0m [38;5;221mChevere\Writer\StreamWriter[0m[38;5;242m#13[0m [38;5;3m[38;5;242m(circular reference #13)[0m[0m
- [38;5;170mprivate[0m [38;5;39mcaller[0m [38;5;208mstring[0m Chevere\VarDump\VarDump->process() [38;5;3m[38;5;242m(length=34)[0m[0m
-[34m------------------------------------------------------------[0m
+Arg#1 Chevere\VarDump\VarDump#2
+private variables array [] (size=0)
+private shift int 0 (length=1)
+private debugBacktrace array [] (size=0)
+private format Chevere\VarDump\Formats\ConsoleFormat#5
+private output Chevere\VarDump\Outputs\ConsoleOutput#6
+ private outputHr string ------------------------------------------------------------ (length=60)
+ private writer Chevere\Writer\StreamWriter#13
+  private stream Nyholm\Psr7\Stream#14
+   private stream Resource id #2 (type=stream)
+   private seekable bool true
+   private readable bool true
+   private writable bool true
+   private uri null
+   private size null
+ private trace array (size=1)
+  0 => array (size=7)
+   file => string /var/www/html/demo.php (length=49)
+   line => int 30 (length=2)
+   function => string process (length=7)
+   class => string Chevere\VarDump\VarDump (length=23)
+   object => Chevere\VarDump\VarDump#15
+    private variables array (size=1)
+     0 => Chevere\VarDump\VarDump#2 (circular reference #2)
+    private shift int 0 (length=1)
+    private debugBacktrace array (size=1)
+     0 => array (size=7)
+      file => string /var/www/html/demo.php (length=49)
+      line => int 30 (length=2)
+      function => string process (length=7)
+      class => string Chevere\VarDump\VarDump (length=23)
+      object => Chevere\VarDump\VarDump#15 (circular reference #15)
+      type => string -> (length=2)
+      args => array (size=1)
+       0 => Chevere\Writer\StreamWriter#13 (circular reference #13)
+    private format Chevere\VarDump\Formats\ConsoleFormat#5 (circular reference #5)
+    private output Chevere\VarDump\Outputs\ConsoleOutput#6 (circular reference #6)
+   type => string -> (length=2)
+   args => array (size=1)
+    0 => Chevere\Writer\StreamWriter#13 (circular reference #13)
+ private caller string Chevere\VarDump\VarDump->process() (length=34)
+------------------------------------------------------------
