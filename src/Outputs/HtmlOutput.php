@@ -47,7 +47,7 @@ final class HtmlOutput extends Output
         display: block;
         margin-top: -1.2em;
     }
-    pre.chv-dump > details:not(:last-child) {
+    * > .chv-dump-details:not(:last-child) {
         margin-bottom: -1.2em;
     }
     .chv-dump-summary {
