@@ -81,11 +81,4 @@ final class HtmlFormatTest extends TestCase
             (new HtmlFormat())->detailsClose()
         );
     }
-
-    public function testDetailsPullUp(): void
-    {
-        $needle = '<div ';
-        $details = (new HtmlFormat())->detailsPullUp();
-        $this->assertStringContainsString($needle, $details);
-    }
 }

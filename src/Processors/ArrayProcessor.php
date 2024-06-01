@@ -109,12 +109,6 @@ final class ArrayProcessor implements ProcessorInterface, ProcessorNestedInterfa
                     $this->varDumper->writer()->write("\n");
                 }
             } else {
-                if ($this->varDumper->needsPullUp()) {
-                    $this->varDumper->writer()->write(
-                        $this->varDumper->format()->detailsPullUp()
-                    );
-                    $this->varDumper = $this->varDumper->withNeedsPullUp(false);
-                }
                 $this->varDumper->writer()->write("\n");
             }
 
@@ -127,7 +121,6 @@ final class ArrayProcessor implements ProcessorInterface, ProcessorNestedInterfa
             $this->varDumper->writer()->write(
                 $this->varDumper->format()->detailsClose()
             );
-            $this->varDumper = $this->varDumper->withNeedsPullUp(true);
         }
     }
 }

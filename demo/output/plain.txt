@@ -24,7 +24,7 @@ private output Chevere\VarDump\Outputs\PlainOutput#9
    line => int 30 (length=2)
    function => string process (length=7)
    class => string Chevere\VarDump\VarDump (length=23)
-   object => Chevere\VarDump\VarDump#44
+   object => Chevere\VarDump\VarDump#45
     private variables array (size=1)
      0 => Chevere\VarDump\VarDump#7 (circular reference #7)
     private shift int 0 (length=1)
@@ -34,7 +34,7 @@ private output Chevere\VarDump\Outputs\PlainOutput#9
       line => int 30 (length=2)
       function => string process (length=7)
       class => string Chevere\VarDump\VarDump (length=23)
-      object => Chevere\VarDump\VarDump#44 (circular reference #44)
+      object => Chevere\VarDump\VarDump#45 (circular reference #45)
       type => string -> (length=2)
       args => array (size=1)
        0 => Chevere\Writer\StreamWriter#16 (circular reference #16)

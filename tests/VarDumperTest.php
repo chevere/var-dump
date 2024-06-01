@@ -47,7 +47,6 @@ final class VarDumperTest extends TestCase
         $this->assertSame($defaultDepth, $varDumper->depth());
         $this->assertSame($defaultIndentSting, $varDumper->indentString());
         $this->assertCount(0, $varDumper->objectReferences());
-        $this->assertSame(false, $varDumper->needsPullUp());
         for ($int = 1; $int <= 5; $int++) {
             $this->hookTestWithIndent($varDumper, $int);
             $this->hookTestWithDepth($varDumper, $int);
@@ -56,23 +55,6 @@ final class VarDumperTest extends TestCase
                 $int
             );
         }
-    }
-
-    public function testWithNeedsPull(): void
-    {
-        $varDumper = new VarDumper(
-            writer: new StreamWriter(streamTemp('')),
-            format: new PlainFormat(),
-            dumpable: new VarDumpable(['foo']),
-            objectReferences: new ObjectReferences()
-        );
-        $this->assertFalse($varDumper->needsPullUp());
-        $with = $varDumper->withNeedsPullUp(true);
-        $this->assertNotSame($varDumper, $with);
-        $this->assertTrue($with->needsPullUp());
-        $with = $varDumper->withNeedsPullUp(false);
-        $this->assertNotSame($varDumper, $with);
-        $this->assertFalse($with->needsPullUp());
     }
 
     public function hookTestWithIndent(VarDumperInterface $varDumper, int $indent): void

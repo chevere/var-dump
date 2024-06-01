@@ -111,8 +111,4 @@ interface VarDumperInterface
     public function withProcess(): self;
 
     public function objectReferences(): ObjectReferencesInterface;
-
-    public function needsPullUp(): bool;
-
-    public function withNeedsPullUp(bool $needsPull): self;
 }

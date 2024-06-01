@@ -41,7 +41,6 @@ trait HandleDepthTrait
             new VarDumpable($variable),
             $this->varDumper->objectReferences(),
         ))
-            ->withNeedsPullUp($this->varDumper->needsPullUp())
             ->withDepth($deep)
             ->withIndent($this->varDumper->indent())
             ->withProcess();

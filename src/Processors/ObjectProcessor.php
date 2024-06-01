@@ -116,7 +116,6 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
             $this->varDumper->writer()->write(
                 $this->varDumper->format()->detailsClose()
             );
-            $this->varDumper = $this->varDumper->withNeedsPullUp(true);
         }
     }
 
@@ -191,12 +190,6 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
                 $this->varDumper->writer()->write("\n");
             }
         } else {
-            if ($this->varDumper->needsPullUp()) {
-                $this->varDumper->writer()->write(
-                    $this->varDumper->format()->detailsPullUp()
-                );
-                $this->varDumper = $this->varDumper->withNeedsPullUp(false);
-            }
             $this->varDumper->writer()->write("\n");
         }
         $indentString = $this->varDumper->indentString();

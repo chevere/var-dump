@@ -43,6 +43,4 @@ interface FormatInterface
     public function detailsOpen(bool $open): string;
 
     public function detailsClose(): string;
-
-    public function detailsPullUp(): string;
 }

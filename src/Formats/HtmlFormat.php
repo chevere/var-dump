@@ -29,8 +29,6 @@ final class HtmlFormat implements FormatInterface
 
     public const HTML_SUMMARY = '<summary class="chv-dump-summary"></summary>';
 
-    public const DETAILS_PULL_UP = '<div class="chv-details-pull-up"></div>';
-
     public function indent(int $indent): string
     {
         // @infection-ignore-all
@@ -64,10 +62,5 @@ final class HtmlFormat implements FormatInterface
     public function detailsClose(): string
     {
         return self::HTML_DETAILS_CLOSE;
-    }
-
-    public function detailsPullUp(): string
-    {
-        return self::DETAILS_PULL_UP;
     }
 }

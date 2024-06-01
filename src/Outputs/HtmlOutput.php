@@ -76,10 +76,6 @@ final class HtmlOutput extends Output
     .chv-dump-summary::-webkit-details-marker {
         margin-top: 0.3em;
     }
-    .chv-details-pull-up {
-        margin-top: -1.242857em;
-        height: 0;
-    }
     .chv-dump-float {
         color: #ff8700;
     }
