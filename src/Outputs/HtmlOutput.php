@@ -18,19 +18,33 @@ use Chevere\VarDump\Interfaces\FormatInterface;
 final class HtmlOutput extends Output
 {
     public const CSS = <<<CSS
+    @media (prefers-color-scheme: light) {
+        :root {
+            --textColor: #24292f;
+            --backgroundColor: #f2f5f8;
+            --inlineColor: #c4c5c7;
+        }
+    }
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --textColor: #ecf0f1;
+            --backgroundColor: #132537;
+            --inlineColor: #323e4a;
+        }
+    }
     html.chv-dump {
-        background: #132537;
+        background: var(--backgroundColor);
     }
     pre.chv-dump {
         font-size: 14px;
         font-family: 'Fira Code Retina', 'Operator Mono', Inconsolata, Menlo, Monaco, Consolas, monospace;
         line-height: normal;
-        color: #ecf0f1;
+        color: var(--textColor);
         padding: 1.25em;
         margin: 0.8em 0;
         word-break: break-word;
         white-space: pre-wrap;
-        background:  #132537;
+        background: var(--backgroundColor);
         display: block;
         text-align: left;
         border: none;
@@ -40,18 +54,19 @@ final class HtmlOutput extends Output
         opacity: 0.25;
     }
     .chv-dump-inline {
-        border-left: 1px solid rgba(108 108 108 / 35%);
+        border-left: 1px solid var(--inlineColor);
+
     }
     .chv-dump-details {
         line-height: normal;
         display: block;
-        margin-top: -1.2em;
+        margin-top: -1.242857em;
     }
     * > .chv-dump-details:not(:last-child) {
-        margin-bottom: -1.2em;
+        margin-bottom: -1.242857em;
     }
     .chv-dump-summary {
-        height: 1.2em;
+        height: 1.242857em;
         margin-left: -0.8em;
         position: relative;
     }
@@ -62,7 +77,7 @@ final class HtmlOutput extends Output
         margin-top: 0.3em;
     }
     .chv-details-pull-up {
-        margin-top: -1.2em;
+        margin-top: -1.242857em;
         height: 0;
     }
     .chv-dump-float {
