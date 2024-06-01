@@ -54,7 +54,7 @@ final class HtmlHighlight implements HighlightInterface
             TypeInterface::ARRAY => 'array',
             TypeInterface::RESOURCE => 'resource',
             VarDumperInterface::FILE => 'file',
-            VarDumperInterface::CLASS_REG => 'class-reg',
+            VarDumperInterface::CLASS_REG => 'class',
             VarDumperInterface::OPERATOR => 'operator',
             VarDumperInterface::FUNCTION => 'function',
             VarDumperInterface::VARIABLE => 'variable',

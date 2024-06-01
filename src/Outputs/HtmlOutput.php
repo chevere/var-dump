@@ -92,7 +92,7 @@ final class HtmlOutput extends Output
     .chv-dump-file {
         color: #87afff;
     }
-    .chv-dump-class-reg {
+    .chv-dump-class {
         color: #fabb00;
     }
     .chv-dump-operator {
@@ -114,7 +114,7 @@ final class HtmlOutput extends Output
 
     private bool $hasHeader = false;
 
-    private static $isStyleWritten = false;
+    private static bool $isStyleWritten = false;
 
     public function tearDown(): void
     {
