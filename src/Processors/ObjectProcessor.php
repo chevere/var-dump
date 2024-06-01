@@ -201,7 +201,7 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
         }
         $indentString = $this->varDumper->indentString();
         $modifier = $this->varDumper->format()->highlight(
-            VarDumperInterface::MODIFIERS,
+            VarDumperInterface::MODIFIER,
             $modifier
         );
         $variable = $this->varDumper->format()->highlight(

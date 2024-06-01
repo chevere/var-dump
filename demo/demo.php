@@ -33,7 +33,11 @@ foreach ([
         '/var/www/html',
         $writer->__toString()
     );
-    if ($filename === 'console.log') {
+    if (PHP_SAPI === 'cli') {
+        if ($filename === 'console.log') {
+            echo $dumping;
+        }
+    } elseif ($filename === 'html.html') {
         echo $dumping;
     }
     file_put_contents(__DIR__ . '/output/' . $filename, $dumping);

@@ -33,7 +33,7 @@ interface HighlightInterface
         VarDumperInterface::CLASS_REG,
         VarDumperInterface::OPERATOR,
         VarDumperInterface::FUNCTION,
-        VarDumperInterface::MODIFIERS,
+        VarDumperInterface::MODIFIER,
         VarDumperInterface::VARIABLE,
         VarDumperInterface::EMPHASIS,
     ];

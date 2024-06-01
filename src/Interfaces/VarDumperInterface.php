@@ -39,7 +39,7 @@ interface VarDumperInterface
 
     public const FUNCTION = '_function';
 
-    public const MODIFIERS = '_modifiers';
+    public const MODIFIER = '_modifier';
 
     public const VARIABLE = '_variable';
 

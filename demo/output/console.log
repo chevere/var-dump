@@ -12,7 +12,7 @@ Arg#1 [38;5;221mChevere\VarDump\VarDump[0m[38;5;242m#2[0m
  [38;5;170mprivate[0m [38;5;39moutputHr[0m [38;5;208mstring[0m [34m------------------------------------------------------------[0m [38;5;3m[38;5;242m(length=69)[0m[0m
  [38;5;170mprivate[0m [38;5;39mwriter[0m [38;5;221mChevere\Writer\StreamWriter[0m[38;5;242m#13[0m
   [38;5;170mprivate[0m [38;5;39mstream[0m [38;5;221mNyholm\Psr7\Stream[0m[38;5;242m#14[0m
-   [38;5;170mprivate[0m [38;5;39mstream[0m [38;5;203mResource id #43[0m [38;5;3m[38;5;242m(type=stream)[0m[0m
+   [38;5;170mprivate[0m [38;5;39mstream[0m [38;5;203mResource id #47[0m [38;5;3m[38;5;242m(type=stream)[0m[0m
    [38;5;170mprivate[0m [38;5;39mseekable[0m [38;5;208mbool[0m true
    [38;5;170mprivate[0m [38;5;39mreadable[0m [38;5;208mbool[0m true
    [38;5;170mprivate[0m [38;5;39mwritable[0m [38;5;208mbool[0m true

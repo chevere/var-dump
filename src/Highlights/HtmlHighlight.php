@@ -22,18 +22,21 @@ final class HtmlHighlight implements HighlightInterface
 {
     use AssertKeyTrait;
 
-    private string $color;
+    private string $class;
 
     public function __construct(
         private string $key
     ) {
         $this->assertKey($key);
-        $this->color = $this->palette()[$this->key] ?? 'inherit';
+        $this->class = $this->palette()[$this->key]
+            ?? '';
     }
 
     public function highlight(string $dump): string
     {
-        return '<span style="color:' . $this->color . '">' . $dump . '</span>';
+        return <<<HTML
+        <span class="chv-dump-{$this->class}">{$dump}</span>
+        HTML;
     }
 
     /**
@@ -42,21 +45,21 @@ final class HtmlHighlight implements HighlightInterface
     public static function palette(): array
     {
         return [
-            TypeInterface::STRING => '#ff8700',
-            TypeInterface::FLOAT => '#ff8700',
-            TypeInterface::INT => '#ff8700',
-            TypeInterface::BOOL => '#ff8700',
-            TypeInterface::NULL => '#ff8700',
-            TypeInterface::OBJECT => '#fabb00',
-            TypeInterface::ARRAY => '#27ae60',
-            TypeInterface::RESOURCE => '#ff5f5f',
-            VarDumperInterface::FILE => '#87afff',
-            VarDumperInterface::CLASS_REG => '#fabb00',
-            VarDumperInterface::OPERATOR => '#6c6c6c',
-            VarDumperInterface::FUNCTION => '#00afff',
-            VarDumperInterface::VARIABLE => '#00afff',
-            VarDumperInterface::MODIFIERS => '#d75fd7',
-            VarDumperInterface::EMPHASIS => 'rgb(108 108 108 / 65%);',
+            TypeInterface::STRING => 'string',
+            TypeInterface::FLOAT => 'float',
+            TypeInterface::INT => 'int',
+            TypeInterface::BOOL => 'bool',
+            TypeInterface::NULL => 'null',
+            TypeInterface::OBJECT => 'object',
+            TypeInterface::ARRAY => 'array',
+            TypeInterface::RESOURCE => 'resource',
+            VarDumperInterface::FILE => 'file',
+            VarDumperInterface::CLASS_REG => 'class-reg',
+            VarDumperInterface::OPERATOR => 'operator',
+            VarDumperInterface::FUNCTION => 'function',
+            VarDumperInterface::VARIABLE => 'variable',
+            VarDumperInterface::MODIFIER => 'modifier',
+            VarDumperInterface::EMPHASIS => 'emphasis',
         ];
     }
 }

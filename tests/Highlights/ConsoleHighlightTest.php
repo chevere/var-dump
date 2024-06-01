@@ -50,7 +50,7 @@ final class ConsoleHighlightTest extends TestCase
             VarDumperInterface::CLASS_REG => '%c0%m' . $dump,
             VarDumperInterface::OPERATOR => '%c0%m' . $dump,
             VarDumperInterface::FUNCTION => '%c0%m' . $dump,
-            VarDumperInterface::MODIFIERS => '%c0%m' . $dump,
+            VarDumperInterface::MODIFIER => '%c0%m' . $dump,
             VarDumperInterface::VARIABLE => '%c0%m' . $dump,
             VarDumperInterface::EMPHASIS => '%c1%m' . $open . '%c0%m' . $dump . $close,
         ];

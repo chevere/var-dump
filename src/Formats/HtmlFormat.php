@@ -19,17 +19,17 @@ use Chevere\VarDump\Interfaces\VarDumperInterface;
 
 final class HtmlFormat implements FormatInterface
 {
-    public const HTML_INLINE_PREFIX = '<span style="border-left: 1px solid rgba(108 108 108 / 35%);"></span>';
+    public const HTML_INLINE_PREFIX = '<span class="chv-dump-inline"></span>';
 
     public const HTML_EMPHASIS = '<em>%s</em>';
 
-    public const HTML_DETAILS_OPEN = '<details style="line-height: normal; display: block; margin-top: -1.2em;"%s>';
+    public const HTML_DETAILS_OPEN = '<details class="chv-dump-details"%s>';
 
     public const HTML_DETAILS_CLOSE = '</details>';
 
-    public const HTML_SUMMARY = '<summary style="height: 1.2em; margin-left: -0.8em; position: relative;"></summary>';
+    public const HTML_SUMMARY = '<summary class="chv-dump-summary"></summary>';
 
-    public const DETAILS_PULL_UP = '<div style="margin-top: -1.2em; height: 0;"></div>';
+    public const DETAILS_PULL_UP = '<div class="chv-details-pull-up"></div>';
 
     public function indent(int $indent): string
     {

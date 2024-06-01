@@ -44,18 +44,17 @@ abstract class Output implements OutputInterface
 
     public function writeCallerFile(FormatInterface $format): void
     {
-        $item = $this->trace[0] ?? null;
-        if (isset($item['file'])) {
-            $fileLine = $item['file'] . ':' . $item['line'];
-            $highlight = $format->highlight('_file', $fileLine);
-            $this->writer->write(
-                <<<PLAIN
-
-                {$highlight}
-
-                PLAIN
-            );
+        $highlight = $this->getCallerFile($format);
+        if ($highlight === '') {
+            return;
         }
+        $this->writer()->write(
+            <<<PLAIN
+
+            {$highlight}
+
+            PLAIN
+        );
     }
 
     final public function trace(): array
@@ -66,6 +65,17 @@ abstract class Output implements OutputInterface
     final public function caller(): string
     {
         return $this->caller;
+    }
+
+    protected function getCallerFile(FormatInterface $format): string
+    {
+        $item = $this->trace[0] ?? null;
+        if (! isset($item['file'])) {
+            return '';
+        }
+        $fileLine = $item['file'] . ':' . $item['line'];
+
+        return $format->highlight('_file', $fileLine);
     }
 
     final protected function writer(): WriterInterface

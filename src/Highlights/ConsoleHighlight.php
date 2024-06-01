@@ -84,7 +84,7 @@ final class ConsoleHighlight implements HighlightInterface
             VarDumperInterface::FUNCTION => ['39'],
             VarDumperInterface::VARIABLE => ['39'],
             // Orchid
-            VarDumperInterface::MODIFIERS => ['170'],
+            VarDumperInterface::MODIFIER => ['170'],
             // dark gray italic
             VarDumperInterface::EMPHASIS => ['242', '3'],
         ];
