@@ -42,7 +42,9 @@ vdd($myVar); // var dump and die
 
 ## Demo
 
-![HTML demo](demo/demo.svg)
+![HTML demo dark](demo/demo-dark.png)
+
+![HTML demo light](demo/demo-light.png)
 
 * [HTML](https://chevere.github.io/var-dump/demo/output/html.html)
 * [Plain text](https://chevere.github.io/var-dump/demo/output/plain.txt)

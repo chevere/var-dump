@@ -12,7 +12,7 @@ private output Chevere\VarDump\Outputs\ConsoleOutput#6
  private outputHr string ------------------------------------------------------------ (length=60)
  private writer Chevere\Writer\StreamWriter#13
   private stream Nyholm\Psr7\Stream#14
-   private stream Resource id #3 (type=stream)
+   private stream Resource id #2 (type=stream)
    private seekable bool true
    private readable bool true
    private writable bool true
