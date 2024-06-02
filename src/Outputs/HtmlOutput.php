@@ -127,7 +127,7 @@ final class HtmlOutput extends Output
 
     private static bool $isStyleWritten = false;
 
-    public function tearDown(): void
+    public function finalize(): void
     {
         $this->writer()->write('</pre>');
         if ($this->hasHeader) {
@@ -160,14 +160,16 @@ final class HtmlOutput extends Output
     public function writeCallerFile(FormatInterface $format): void
     {
         $highlight = $this->getCallerFile($format);
-        if ($highlight === '') {
-            return;
-        }
         $this->writer()->write(
             <<<HTML
             {$highlight}
 
             HTML
         );
+    }
+
+    public function isStyleWritten(): bool
+    {
+        return self::$isStyleWritten;
     }
 }

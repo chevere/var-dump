@@ -19,7 +19,7 @@ use Chevere\DataStructure\Interfaces\VectoredInterface;
  * Describes the component in charge of holding object references.
  * @extends VectoredInterface<int>
  */
-interface ObjectReferencesInterface extends VectoredInterface
+interface ObjectIdsInterface extends VectoredInterface
 {
     /**
      * @return array<int> $array

@@ -75,7 +75,6 @@ final class ObjectProcessorTest extends TestCase
         $className = $object::class;
         $id = strval(spl_object_id($object));
         $pubId = strval(spl_object_id($object->public));
-        $varDumper = $this->getVarDumper($object);
         $dump = <<<EOT
         {$className}#{$id}
         public code int 101 (length=3)
@@ -90,7 +89,19 @@ final class ObjectProcessorTest extends TestCase
         private circularReference uninitialized
         private deep uninitialized
         EOT;
+        $varDumper = $this->getVarDumper($object);
         $this->assertSame(
+            $dump,
+            $varDumper->writer()->__toString()
+        );
+        $dump = <<<EOT
+        {$className}#{$id}
+        public code int 102 (length=3)
+        public public stdClass#{$pubId}
+        EOT;
+        $object->code = 102;
+        $varDumper = $this->getVarDumper($object);
+        $this->assertStringStartsWith(
             $dump,
             $varDumper->writer()->__toString()
         );

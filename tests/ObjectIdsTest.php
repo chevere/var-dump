@@ -13,14 +13,14 @@ declare(strict_types=1);
 
 namespace Chevere\Tests;
 
-use Chevere\VarDump\ObjectReferences;
+use Chevere\VarDump\ObjectIds;
 use PHPUnit\Framework\TestCase;
 
-final class ObjectReferencesTest extends TestCase
+final class ObjectIdsTest extends TestCase
 {
     public function testToArray(): void
     {
-        $objectReferences = new ObjectReferences();
+        $objectReferences = new ObjectIds();
         $this->assertSame([], $objectReferences->toArray());
         $objectReferences->push(1);
         $this->assertSame([1], $objectReferences->toArray());
@@ -28,7 +28,7 @@ final class ObjectReferencesTest extends TestCase
 
     public function testPushHas(): void
     {
-        $objectReferences = new ObjectReferences();
+        $objectReferences = new ObjectIds();
         $objectReferences->push(1);
         $this->assertTrue($objectReferences->has(1));
         $objectReferences->push(1);

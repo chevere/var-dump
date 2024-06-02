@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace Chevere\VarDump;
 
 use Chevere\DataStructure\Traits\VectorTrait;
-use Chevere\VarDump\Interfaces\ObjectReferencesInterface;
+use Chevere\VarDump\Interfaces\ObjectIdsInterface;
 
-final class ObjectReferences implements ObjectReferencesInterface
+final class ObjectIds implements ObjectIdsInterface
 {
     use VectorTrait;
 

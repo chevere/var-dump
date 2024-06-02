@@ -15,7 +15,7 @@ namespace Chevere\Tests;
 
 use Chevere\VarDump\Formats\PlainFormat;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
-use Chevere\VarDump\ObjectReferences;
+use Chevere\VarDump\ObjectIds;
 use Chevere\VarDump\VarDumpable;
 use Chevere\VarDump\VarDumper;
 use Chevere\Writer\StreamWriter;
@@ -38,7 +38,7 @@ final class VarDumperTest extends TestCase
             writer: $writer,
             format: $format,
             dumpable: $dumpable,
-            objectReferences: new ObjectReferences()
+            objectReferences: new ObjectIds()
         );
         $this->assertSame($writer, $varDumper->writer());
         $this->assertSame($format, $varDumper->format());

@@ -20,7 +20,7 @@ use Chevere\Writer\Interfaces\WriterInterface;
 
 final class VarOutput implements VarOutputInterface
 {
-    private ObjectReferences $objectReferences;
+    private ObjectIds $objectReferences;
 
     /**
      * @param array<array<string, mixed>> $trace
@@ -38,14 +38,14 @@ final class VarOutput implements VarOutputInterface
         $output->prepare();
         $output->writeCallerFile($this->format);
         $this->handleArgs(...$variables);
-        $output->tearDown();
+        $output->finalize();
     }
 
     private function handleArgs(mixed ...$variables): void
     {
         $aux = 0;
         foreach ($variables as $name => $value) {
-            $this->objectReferences = new ObjectReferences();
+            $this->objectReferences = new ObjectIds();
             $aux++;
             if (is_int($name)) {
                 $name = $aux;

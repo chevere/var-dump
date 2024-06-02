@@ -15,6 +15,7 @@ namespace Chevere\VarDump\Outputs;
 
 use Chevere\VarDump\Interfaces\FormatInterface;
 use Chevere\VarDump\Interfaces\OutputInterface;
+use Chevere\VarDump\Interfaces\VarDumperInterface;
 use Chevere\Writer\Interfaces\WriterInterface;
 
 abstract class Output implements OutputInterface
@@ -45,9 +46,6 @@ abstract class Output implements OutputInterface
     public function writeCallerFile(FormatInterface $format): void
     {
         $highlight = $this->getCallerFile($format);
-        if ($highlight === '') {
-            return;
-        }
         $this->writer()->write(
             <<<PLAIN
 
@@ -70,12 +68,17 @@ abstract class Output implements OutputInterface
     protected function getCallerFile(FormatInterface $format): string
     {
         $item = $this->trace[0] ?? null;
+        // @codeCoverageIgnoreStart
         if (! isset($item['file'])) {
-            return '';
+            return '@';
         }
+        // @codeCoverageIgnoreEnd
         $fileLine = $item['file'] . ':' . $item['line'];
 
-        return $format->highlight('_file', $fileLine);
+        return $format->highlight(
+            VarDumperInterface::FILE,
+            $fileLine
+        );
     }
 
     final protected function writer(): WriterInterface

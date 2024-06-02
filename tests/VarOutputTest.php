@@ -79,9 +79,12 @@ final class VarOutputTest extends TestCase
             trace: $trace,
             format: new HtmlFormat(),
         );
-        $varOutput->process(new HtmlOutput(), name: null);
+        $htmlOutput = new HtmlOutput();
+        $this->assertFalse($htmlOutput->isStyleWritten());
+        $varOutput->process($htmlOutput, name: null);
         $parsed = $this->getParsed($trace, 'output-html');
         $this->assertSame($parsed, $writer->__toString());
+        $this->assertTrue($htmlOutput->isStyleWritten());
     }
 
     private function getParsed(array $trace, string $name): string

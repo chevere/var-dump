@@ -29,7 +29,7 @@ interface OutputInterface
     /**
      * Ends the output.
      */
-    public function tearDown(): void;
+    public function finalize(): void;
 
     /**
      * Writes the caller file using the target formatter.
@@ -48,7 +48,7 @@ interface OutputInterface
     public function caller(): string;
 
     /**
-     * This method is executed before `tearDown()`.
+     * This method is executed before `finalize()`.
      */
     public function prepare(): void;
 }

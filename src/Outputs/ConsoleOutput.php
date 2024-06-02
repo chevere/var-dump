@@ -20,7 +20,7 @@ final class ConsoleOutput extends Output
 {
     private string $outputHr;
 
-    public function tearDown(): void
+    public function finalize(): void
     {
         $this->writer()->write("\n" . $this->outputHr . "\n");
     }

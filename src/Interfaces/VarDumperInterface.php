@@ -110,5 +110,5 @@ interface VarDumperInterface
      */
     public function withProcess(): self;
 
-    public function objectReferences(): ObjectReferencesInterface;
+    public function objectReferences(): ObjectIdsInterface;
 }

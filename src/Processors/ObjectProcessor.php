@@ -150,12 +150,8 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
                 }
                 $isUnset = false;
                 if (! $property->isInitialized($object)) {
-                    if ($property->hasDefaultValue()) {
-                        $value = $property->getDefaultValue();
-                    } else {
-                        $value = '';
-                        $isUnset = true;
-                    }
+                    $value = '';
+                    $isUnset = true;
                 } else {
                     $value = $property->getValue($this->var);
                 }

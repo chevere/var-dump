@@ -28,8 +28,7 @@ final class HtmlHighlight implements HighlightInterface
         private string $key
     ) {
         $this->assertKey($key);
-        $this->class = $this->palette()[$this->key]
-            ?? '';
+        $this->class = $this->palette()[$this->key] ?? '';
     }
 
     public function highlight(string $dump): string
