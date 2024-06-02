@@ -20,7 +20,17 @@
 
 ## Summary
 
-Multi-purpose colorful modern alternative to [var_dump](https://www.php.net/manual/function.var-dump.php).
+Multi-purpose colorful modern alternative to [var_dump](https://www.php.net/manual/function.var-dump.php). It's a PHP library that provides an alternative to `var_dump` and `dump` functions. It's designed to be used in development environments to help you debug your code.
+
+## Features
+
+* Colorful output with automatic light/dark modes
+* HTML, Console, and Plain text output
+* No JavaScript required
+* Displays modifiers, types, values, references, and more
+* Recursive detection
+* Foldable arrays and objects with indentation display
+* Lightweight codebase
 
 ## Installing
 
