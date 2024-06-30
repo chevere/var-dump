@@ -58,7 +58,7 @@ final class VarOutput implements VarOutputInterface
             );
             $this->writer->write(
                 str_repeat("\n", (int) ($aux === 1 ?: 2))
-                . 'Arg#' . strval($name) . ' '
+                . strval($name) . ': '
             );
             $varDumper->withProcess();
         }

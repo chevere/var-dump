@@ -3,7 +3,7 @@ Chevere\VarDump\VarDump->process()
 ------------------------------------------------------------
 /var/www/html/demo.php:30
 
-Arg#1 Chevere\VarDump\VarDump#7
+1: Chevere\VarDump\VarDump#7
 private variables array [] (size=0)
 private shift int 0 (length=1)
 private debugBacktrace array [] (size=0)
@@ -12,7 +12,7 @@ private output Chevere\VarDump\Outputs\PlainOutput#9
  private outputHr string ------------------------------------------------------------ (length=60)
  private writer Chevere\Writer\StreamWriter#16
   private stream Nyholm\Psr7\Stream#17
-   private stream Resource id #74 (type=stream)
+   private stream Resource id #76 (type=stream)
    private seekable bool true
    private readable bool true
    private writable bool true
