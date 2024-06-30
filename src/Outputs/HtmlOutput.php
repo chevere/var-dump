@@ -15,7 +15,7 @@ namespace Chevere\VarDump\Outputs;
 
 use Chevere\VarDump\Interfaces\FormatInterface;
 
-final class HtmlOutput extends Output
+class HtmlOutput extends Output
 {
     public const CSS = <<<CSS
     @media (prefers-color-scheme: light) {

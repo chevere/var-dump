@@ -20,7 +20,7 @@ use Chevere\VarDump\Highlights\ConsoleHighlight;
 use Chevere\VarDump\Interfaces\FormatInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 
-final class ConsoleFormat implements FormatInterface
+class ConsoleFormat implements FormatInterface
 {
     use DetailsTrait;
     use IndentTrait;

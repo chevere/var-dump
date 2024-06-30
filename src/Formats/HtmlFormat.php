@@ -17,7 +17,7 @@ use Chevere\VarDump\Highlights\HtmlHighlight;
 use Chevere\VarDump\Interfaces\FormatInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 
-final class HtmlFormat implements FormatInterface
+class HtmlFormat implements FormatInterface
 {
     public const HTML_INLINE_PREFIX = '<span class="chv-dump-inline"></span>';
 

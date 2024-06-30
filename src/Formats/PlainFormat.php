@@ -18,7 +18,7 @@ use Chevere\VarDump\Formats\Traits\FilterEncodedCharsTrait;
 use Chevere\VarDump\Formats\Traits\IndentTrait;
 use Chevere\VarDump\Interfaces\FormatInterface;
 
-final class PlainFormat implements FormatInterface
+class PlainFormat implements FormatInterface
 {
     use DetailsTrait;
     use IndentTrait;

@@ -16,7 +16,7 @@ namespace Chevere\VarDump\Outputs;
 use Colors\Color;
 use Throwable;
 
-final class ConsoleOutput extends Output
+class ConsoleOutput extends Output
 {
     private string $outputHr;
 

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Outputs;
 
-final class PlainOutput extends Output
+class PlainOutput extends Output
 {
     private string $outputHr = '------------------------------------------------------------';
 
