@@ -18,7 +18,7 @@ use Throwable;
 
 class ConsoleOutput extends Output
 {
-    private string $outputHr;
+    protected string $outputHr;
 
     public function finalize(): void
     {

@@ -123,9 +123,9 @@ class HtmlOutput extends Output
     }
     CSS;
 
-    private bool $hasHeader = false;
+    protected bool $hasHeader = false;
 
-    private static bool $isStyleWritten = false;
+    protected static bool $isStyleWritten = false;
 
     public function finalize(): void
     {

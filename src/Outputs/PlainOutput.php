@@ -15,7 +15,7 @@ namespace Chevere\VarDump\Outputs;
 
 class PlainOutput extends Output
 {
-    private string $outputHr = '------------------------------------------------------------';
+    protected string $outputHr = '------------------------------------------------------------';
 
     public function finalize(): void
     {
