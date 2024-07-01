@@ -44,6 +44,11 @@ interface VarDumpInterface
     public function process(WriterInterface $writer): void;
 
     /**
+     * Export the dump as a string.
+     */
+    public function export(): string;
+
+    /**
      * Provides access to the dump variables.
      * @return array<mixed>
      */

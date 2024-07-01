@@ -17,6 +17,8 @@ use Chevere\VarDump\Interfaces\FormatInterface;
 use Chevere\VarDump\Interfaces\OutputInterface;
 use Chevere\VarDump\Interfaces\VarDumpInterface;
 use Chevere\Writer\Interfaces\WriterInterface;
+use Chevere\Writer\StreamWriter;
+use function Chevere\Writer\streamTemp;
 
 final class VarDump implements VarDumpInterface
 {
@@ -66,6 +68,15 @@ final class VarDump implements VarDumpInterface
             $this->format,
         ))
             ->process($this->output, ...$this->variables);
+    }
+
+    public function export(): string
+    {
+        $temp = streamTemp();
+        $tempWriter = new StreamWriter($temp);
+        $this->process($tempWriter);
+
+        return $tempWriter->__toString();
     }
 
     public function variables(): array
