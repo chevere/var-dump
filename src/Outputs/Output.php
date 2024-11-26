@@ -34,9 +34,12 @@ abstract class Output implements OutputInterface
         $this->writer = $writer;
         $this->trace = $trace;
         $frame = $this->trace[0] ?? [];
+        /** @var string $class */
         $class = $frame['class'] ?? '';
+        /** @var string $type */
         $type = $frame['type'] ?? '';
         $this->caller = $class . $type;
+        /** @var ?string $function */
         $function = $frame['function'] ?? null;
         if ($function !== null) {
             $this->caller .= $function . '()';
@@ -67,13 +70,15 @@ abstract class Output implements OutputInterface
 
     protected function getCallerFile(FormatInterface $format): string
     {
-        $item = $this->trace[0] ?? null;
+        $item = $this->trace[0] ?? [];
         // @codeCoverageIgnoreStart
         if (! isset($item['file'])) {
             return '@';
         }
         // @codeCoverageIgnoreEnd
-        $fileLine = $item['file'] . ':' . $item['line'];
+        $fileLine = $item['file'] // @phpstan-ignore-line
+            . ':'
+            . $item['line'];
 
         return $format->highlight(
             VarDumperInterface::FILE,

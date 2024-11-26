@@ -24,7 +24,7 @@
         "kevinlebrun/colors.php": "^1.0"
     },
     "require-dev": {
-        "phpstan/phpstan": "^1.9",
+        "phpstan/phpstan": "^2.0",
         "phpunit/phpunit": "^9.5",
         "symplify/easy-coding-standard": "^11.1"
     },
