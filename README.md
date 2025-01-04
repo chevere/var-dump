@@ -34,9 +34,33 @@ Multi-purpose colorful modern alternative to [var_dump](https://www.php.net/manu
 
 VarDump is available through [Packagist](https://packagist.org/packages/chevere/var-dump) and the repository source is at [chevere/var-dump](https://github.com/chevere/var-dump).
 
+Run the following command to install VarDump as a development dependency of your project:
+
 ```sh
 composer require --dev chevere/var-dump
 ```
+
+### Global installation
+
+To make the `vd()` function available globally in any PHP code, install VarDump globally:
+
+```sh
+composer global require chevere/var-dump
+```
+
+If not already configured, add the global Composer dependencies to your `php.ini`:
+
+```ini
+auto_prepend_file = ${HOME}/.composer/vendor/autoload.php
+```
+
+Run the following command to select and update the `auto_prepend_file` directive in your `php.ini`:
+
+```sh
+bash <(curl -sL chevere.org/bin/composer/global-prepend.sh)
+```
+
+You can now use VarDump in any PHP script without requiring the library for each project.
 
 ## Quick start
 
