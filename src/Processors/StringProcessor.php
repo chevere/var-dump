@@ -22,6 +22,17 @@ final class StringProcessor implements ProcessorInterface
 {
     use ProcessorTrait;
 
+    public const CONTROL_CHARS = [
+        "\t" => '\t',
+        "\n" => '\n',
+        "\v" => '\v',
+        "\f" => '\f',
+        "\r" => '\r',
+        "\033" => '\e',
+    ];
+
+    public const CONTROL_CHARS_RX = '/[\x00-\x1F\x7F]+/';
+
     private string $charset = '';
 
     private string $string = '';
@@ -82,8 +93,32 @@ final class StringProcessor implements ProcessorInterface
             return; // @codeCoverageIgnore
         }
         $this->string = <<<STRING
-        b"{$this->utf8Encode($this->string)}"
+        b"{$this->binaryDisplay($this->utf8Encode($this->string))}"
         STRING;
+    }
+
+    private function binaryDisplay(string $value): string
+    {
+        $map = static::CONTROL_CHARS;
+        $startChar = '';
+        $endChar = '';
+        $value = preg_replace_callback(
+            static::CONTROL_CHARS_RX,
+            function ($c) use ($map, $startChar, $endChar) {
+                $s = $startChar;
+                $c = $c[$i = 0];
+                do {
+                    $s .= $map[$c[$i]] ?? sprintf('\x%02X', ord($c[$i]));
+                } while (isset($c[++$i]));
+
+                return $s . $endChar;
+            },
+            $value,
+            -1,
+            $charCount
+        );
+
+        return $value ?? '';
     }
 
     /**

@@ -34,6 +34,7 @@ final class StringProcessorTest extends TestCase
             ['😀'],
             ['€'],
             [chr(128), 'b"€"'],
+            [hex2bin('ae0f3d'), 'b"®\x0F="'],
         ];
     }
 
