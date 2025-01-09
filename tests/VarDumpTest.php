@@ -83,13 +83,13 @@ final class VarDumpTest extends TestCase
         {$fileLine}
 
         1: stdClass#{$objectId}
-        public circular stdClass#{$objectId} (circular reference #{$objectId})
-        public string string test (length=4)
-
-        2: array (size=1)
-        0 => stdClass#{$objectId}
          public circular stdClass#{$objectId} (circular reference #{$objectId})
          public string string test (length=4)
+
+        2: array (size=1)
+         0 => stdClass#{$objectId}
+          public circular stdClass#{$objectId} (circular reference #{$objectId})
+          public string string test (length=4)
         ------------------------------------------------------------
 
         PLAIN;
@@ -140,22 +140,22 @@ final class VarDumpTest extends TestCase
         1: array [] (size=0)
 
         2: array (size=2)
-        0 => int 0 (length=1)
-        1 => int 1 (length=1)
+         0 => int 0 (length=1)
+         1 => int 1 (length=1)
 
         3: array (size=4)
-        0 => array (size=1)
-         0 => int 1 (length=1)
-        1 => null
-        3 => array (size=1)
          0 => array (size=1)
+          0 => int 1 (length=1)
+         1 => null
+         3 => array (size=1)
           0 => array (size=1)
-           0 => int 5 (length=1)
-        2 => array (size=1)
-         0 => int 2 (length=1)
+           0 => array (size=1)
+            0 => int 5 (length=1)
+         2 => array (size=1)
+          0 => int 2 (length=1)
 
         4: array (size=1)
-        key => string value (length=5)
+         key => string value (length=5)
 
         5: null
         ------------------------------------------------------------
@@ -178,15 +178,15 @@ final class VarDumpTest extends TestCase
 
         1: <span class="chv-dump-array">array</span> [] <em><span class="chv-dump-emphasis">(size=0)</span></em>
 
-        2: <span class="chv-dump-array">array</span> <em><span class="chv-dump-emphasis">(size=2)</span></em><details class="chv-dump-details" open><summary class="chv-dump-summary"></summary>0 <span class="chv-dump-operator">=></span> <span class="chv-dump-int">int</span> 0 <em><span class="chv-dump-emphasis">(length=1)</span></em>
-        1 <span class="chv-dump-operator">=></span> <span class="chv-dump-int">int</span> 1 <em><span class="chv-dump-emphasis">(length=1)</span></em></details>
+        2: <span class="chv-dump-array">array</span> <em><span class="chv-dump-emphasis">(size=2)</span></em><details class="chv-dump-details" open><summary class="chv-dump-summary"></summary> 0 <span class="chv-dump-operator">=></span> <span class="chv-dump-int">int</span> 0 <em><span class="chv-dump-emphasis">(length=1)</span></em>
+         1 <span class="chv-dump-operator">=></span> <span class="chv-dump-int">int</span> 1 <em><span class="chv-dump-emphasis">(length=1)</span></em></details>
 
-        3: <span class="chv-dump-array">array</span> <em><span class="chv-dump-emphasis">(size=4)</span></em><details class="chv-dump-details" open><summary class="chv-dump-summary"></summary>0 <span class="chv-dump-operator">=></span> <span class="chv-dump-array">array</span> <em><span class="chv-dump-emphasis">(size=1)</span></em><details class="chv-dump-details"><summary class="chv-dump-summary"></summary> <span class="chv-dump-inline"></span> 0 <span class="chv-dump-operator">=></span> <span class="chv-dump-int">int</span> 1 <em><span class="chv-dump-emphasis">(length=1)</span></em></details>
-        1 <span class="chv-dump-operator">=></span> <span class="chv-dump-null">null</span>
-        3 <span class="chv-dump-operator">=></span> <span class="chv-dump-array">array</span> <em><span class="chv-dump-emphasis">(size=1)</span></em><details class="chv-dump-details"><summary class="chv-dump-summary"></summary> <span class="chv-dump-inline"></span> 0 <span class="chv-dump-operator">=></span> <span class="chv-dump-array">array</span> <em><span class="chv-dump-emphasis">(size=1)</span></em><details class="chv-dump-details"><summary class="chv-dump-summary"></summary> <span class="chv-dump-inline"></span>  <span class="chv-dump-inline"></span> 0 <span class="chv-dump-operator">=></span> <span class="chv-dump-array">array</span> <em><span class="chv-dump-emphasis">(size=1)</span></em><details class="chv-dump-details"><summary class="chv-dump-summary"></summary> <span class="chv-dump-inline"></span>  <span class="chv-dump-inline"></span>  <span class="chv-dump-inline"></span> 0 <span class="chv-dump-operator">=></span> <span class="chv-dump-int">int</span> 5 <em><span class="chv-dump-emphasis">(length=1)</span></em></details></details></details>
-        2 <span class="chv-dump-operator">=></span> <span class="chv-dump-array">array</span> <em><span class="chv-dump-emphasis">(size=1)</span></em><details class="chv-dump-details"><summary class="chv-dump-summary"></summary> <span class="chv-dump-inline"></span> 0 <span class="chv-dump-operator">=></span> <span class="chv-dump-int">int</span> 2 <em><span class="chv-dump-emphasis">(length=1)</span></em></details></details>
+        3: <span class="chv-dump-array">array</span> <em><span class="chv-dump-emphasis">(size=4)</span></em><details class="chv-dump-details" open><summary class="chv-dump-summary"></summary> 0 <span class="chv-dump-operator">=></span> <span class="chv-dump-array">array</span> <em><span class="chv-dump-emphasis">(size=1)</span></em><details class="chv-dump-details"><summary class="chv-dump-summary"></summary>  <span class="chv-dump-inline"></span> 0 <span class="chv-dump-operator">=></span> <span class="chv-dump-int">int</span> 1 <em><span class="chv-dump-emphasis">(length=1)</span></em></details>
+         1 <span class="chv-dump-operator">=></span> <span class="chv-dump-null">null</span>
+         3 <span class="chv-dump-operator">=></span> <span class="chv-dump-array">array</span> <em><span class="chv-dump-emphasis">(size=1)</span></em><details class="chv-dump-details"><summary class="chv-dump-summary"></summary>  <span class="chv-dump-inline"></span> 0 <span class="chv-dump-operator">=></span> <span class="chv-dump-array">array</span> <em><span class="chv-dump-emphasis">(size=1)</span></em><details class="chv-dump-details"><summary class="chv-dump-summary"></summary>  <span class="chv-dump-inline"></span>  <span class="chv-dump-inline"></span> 0 <span class="chv-dump-operator">=></span> <span class="chv-dump-array">array</span> <em><span class="chv-dump-emphasis">(size=1)</span></em><details class="chv-dump-details"><summary class="chv-dump-summary"></summary>  <span class="chv-dump-inline"></span>  <span class="chv-dump-inline"></span>  <span class="chv-dump-inline"></span> 0 <span class="chv-dump-operator">=></span> <span class="chv-dump-int">int</span> 5 <em><span class="chv-dump-emphasis">(length=1)</span></em></details></details></details>
+         2 <span class="chv-dump-operator">=></span> <span class="chv-dump-array">array</span> <em><span class="chv-dump-emphasis">(size=1)</span></em><details class="chv-dump-details"><summary class="chv-dump-summary"></summary>  <span class="chv-dump-inline"></span> 0 <span class="chv-dump-operator">=></span> <span class="chv-dump-int">int</span> 2 <em><span class="chv-dump-emphasis">(length=1)</span></em></details></details>
 
-        4: <span class="chv-dump-array">array</span> <em><span class="chv-dump-emphasis">(size=1)</span></em><details class="chv-dump-details" open><summary class="chv-dump-summary"></summary>key <span class="chv-dump-operator">=></span> <span class="chv-dump-string">string</span> value <em><span class="chv-dump-emphasis">(length=5)</span></em></details>
+        4: <span class="chv-dump-array">array</span> <em><span class="chv-dump-emphasis">(size=1)</span></em><details class="chv-dump-details" open><summary class="chv-dump-summary"></summary> key <span class="chv-dump-operator">=></span> <span class="chv-dump-string">string</span> value <em><span class="chv-dump-emphasis">(length=5)</span></em></details>
 
         5: <span class="chv-dump-null">null</span>
         ------------------------------------------------------------
@@ -232,15 +232,15 @@ final class VarDumpTest extends TestCase
         1: stdClass#{$oneId}
 
         2: stdClass#{$twoId}
-        public zero int 0 (length=1)
-        public one int 1 (length=1)
-
-        3: stdClass#{$threeId}
-        public nested stdClass#{$nestedId}
-        public two stdClass#{$twoId}
          public zero int 0 (length=1)
          public one int 1 (length=1)
-        public three bool false
+
+        3: stdClass#{$threeId}
+         public nested stdClass#{$nestedId}
+         public two stdClass#{$twoId}
+          public zero int 0 (length=1)
+          public one int 1 (length=1)
+         public three bool false
         ------------------------------------------------------------
 
         PLAIN;
@@ -261,13 +261,13 @@ final class VarDumpTest extends TestCase
 
         1: <span class="chv-dump-class">stdClass</span><span class="chv-dump-operator">#{$oneId}</span>
 
-        2: <span class="chv-dump-class">stdClass</span><span class="chv-dump-operator">#{$twoId}</span><details class="chv-dump-details" open><summary class="chv-dump-summary"></summary><span class="chv-dump-modifier">public</span> <span class="chv-dump-variable">zero</span> <span class="chv-dump-int">int</span> 0 <em><span class="chv-dump-emphasis">(length=1)</span></em>
-        <span class="chv-dump-modifier">public</span> <span class="chv-dump-variable">one</span> <span class="chv-dump-int">int</span> 1 <em><span class="chv-dump-emphasis">(length=1)</span></em></details>
+        2: <span class="chv-dump-class">stdClass</span><span class="chv-dump-operator">#{$twoId}</span><details class="chv-dump-details" open><summary class="chv-dump-summary"></summary> <span class="chv-dump-modifier">public</span> <span class="chv-dump-variable">zero</span> <span class="chv-dump-int">int</span> 0 <em><span class="chv-dump-emphasis">(length=1)</span></em>
+         <span class="chv-dump-modifier">public</span> <span class="chv-dump-variable">one</span> <span class="chv-dump-int">int</span> 1 <em><span class="chv-dump-emphasis">(length=1)</span></em></details>
 
-        3: <span class="chv-dump-class">stdClass</span><span class="chv-dump-operator">#{$threeId}</span><details class="chv-dump-details" open><summary class="chv-dump-summary"></summary><span class="chv-dump-modifier">public</span> <span class="chv-dump-variable">nested</span> <span class="chv-dump-class">stdClass</span><span class="chv-dump-operator">#{$nestedId}</span>
-        <span class="chv-dump-modifier">public</span> <span class="chv-dump-variable">two</span> <span class="chv-dump-class">stdClass</span><span class="chv-dump-operator">#{$twoId}</span><details class="chv-dump-details"><summary class="chv-dump-summary"></summary> <span class="chv-dump-inline"></span> <span class="chv-dump-modifier">public</span> <span class="chv-dump-variable">zero</span> <span class="chv-dump-int">int</span> 0 <em><span class="chv-dump-emphasis">(length=1)</span></em>
-         <span class="chv-dump-inline"></span> <span class="chv-dump-modifier">public</span> <span class="chv-dump-variable">one</span> <span class="chv-dump-int">int</span> 1 <em><span class="chv-dump-emphasis">(length=1)</span></em></details>
-        <span class="chv-dump-modifier">public</span> <span class="chv-dump-variable">three</span> <span class="chv-dump-bool">bool</span> false</details>
+        3: <span class="chv-dump-class">stdClass</span><span class="chv-dump-operator">#{$threeId}</span><details class="chv-dump-details" open><summary class="chv-dump-summary"></summary> <span class="chv-dump-modifier">public</span> <span class="chv-dump-variable">nested</span> <span class="chv-dump-class">stdClass</span><span class="chv-dump-operator">#{$nestedId}</span>
+         <span class="chv-dump-modifier">public</span> <span class="chv-dump-variable">two</span> <span class="chv-dump-class">stdClass</span><span class="chv-dump-operator">#{$twoId}</span><details class="chv-dump-details"><summary class="chv-dump-summary"></summary>  <span class="chv-dump-inline"></span> <span class="chv-dump-modifier">public</span> <span class="chv-dump-variable">zero</span> <span class="chv-dump-int">int</span> 0 <em><span class="chv-dump-emphasis">(length=1)</span></em>
+          <span class="chv-dump-inline"></span> <span class="chv-dump-modifier">public</span> <span class="chv-dump-variable">one</span> <span class="chv-dump-int">int</span> 1 <em><span class="chv-dump-emphasis">(length=1)</span></em></details>
+         <span class="chv-dump-modifier">public</span> <span class="chv-dump-variable">three</span> <span class="chv-dump-bool">bool</span> false</details>
         ------------------------------------------------------------
 
         PLAIN;

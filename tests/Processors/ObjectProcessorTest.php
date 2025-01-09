@@ -55,13 +55,13 @@ final class ObjectProcessorTest extends TestCase
         $this->assertSame(DummyClass::class . '#' . $id, $processor->info());
         $dump = <<<EOT
         {$className}#{$id}
-        public code int 101 (length=3)
-        public public uninitialized
-        public readonly readonly uninitialized
-        private private uninitialized
-        private protected uninitialized
-        private circularReference uninitialized
-        private deep uninitialized
+         public code int 101 (length=3)
+         public public uninitialized
+         public readonly readonly uninitialized
+         private private uninitialized
+         private protected uninitialized
+         private circularReference uninitialized
+         private deep uninitialized
         EOT;
         $this->assertSame(
             $dump,
@@ -77,17 +77,17 @@ final class ObjectProcessorTest extends TestCase
         $pubId = strval(spl_object_id($object->public));
         $dump = <<<EOT
         {$className}#{$id}
-        public code int 101 (length=3)
-        public public stdClass#{$pubId}
-         public string string string (length=6)
-         public array array [] (size=0)
-         public int int 1 (length=1)
-         public bool bool true
-        public readonly readonly uninitialized
-        private private uninitialized
-        private protected uninitialized
-        private circularReference uninitialized
-        private deep uninitialized
+         public code int 101 (length=3)
+         public public stdClass#{$pubId}
+          public string string string (length=6)
+          public array array [] (size=0)
+          public int int 1 (length=1)
+          public bool bool true
+         public readonly readonly uninitialized
+         private private uninitialized
+         private protected uninitialized
+         private circularReference uninitialized
+         private deep uninitialized
         EOT;
         $varDumper = $this->getVarDumper($object);
         $this->assertSame(
@@ -96,8 +96,8 @@ final class ObjectProcessorTest extends TestCase
         );
         $dump = <<<EOT
         {$className}#{$id}
-        public code int 102 (length=3)
-        public public stdClass#{$pubId}
+         public code int 102 (length=3)
+         public public stdClass#{$pubId}
         EOT;
         $object->code = 102;
         $varDumper = $this->getVarDumper($object);
@@ -124,16 +124,16 @@ final class ObjectProcessorTest extends TestCase
         $refId = strval(spl_object_id($ref));
         $dump = <<<EOT
         stdClass#{$varId}
-        public scalar string VAR (length=3)
-        public ref stdClass#{$refId}
-         public scalar string REF (length=3)
-         public circular stdClass#{$refId} (circular reference #{$refId})
-         public var stdClass#{$varId} (circular reference #{$varId})
-        public circular stdClass#{$varId} (circular reference #{$varId})
-        public refArr array (size=1)
-         0 => stdClass#{$refId} (circular reference #{$refId})
-        public circularArr array (size=1)
-         0 => stdClass#{$varId} (circular reference #{$varId})
+         public scalar string VAR (length=3)
+         public ref stdClass#{$refId}
+          public scalar string REF (length=3)
+          public circular stdClass#{$refId} (circular reference #{$refId})
+          public var stdClass#{$varId} (circular reference #{$varId})
+         public circular stdClass#{$varId} (circular reference #{$varId})
+         public refArr array (size=1)
+          0 => stdClass#{$refId} (circular reference #{$refId})
+         public circularArr array (size=1)
+          0 => stdClass#{$varId} (circular reference #{$varId})
         EOT;
         $this->assertSame(
             $dump,
@@ -161,13 +161,13 @@ final class ObjectProcessorTest extends TestCase
         $varDumper = $this->getVarDumper($object);
         $dump = <<<EOT
         {$className}#{$id}
-        public code int 101 (length=3)
-        public public uninitialized
-        public readonly readonly uninitialized
-        private private uninitialized
-        private protected uninitialized
-        private circularReference {$className}#{$id} (circular reference #{$id})
-        private deep uninitialized
+         public code int 101 (length=3)
+         public public uninitialized
+         public readonly readonly uninitialized
+         private private uninitialized
+         private protected uninitialized
+         private circularReference {$className}#{$id} (circular reference #{$id})
+         private deep uninitialized
         EOT;
         $this->assertSame(
             $dump,
@@ -195,13 +195,13 @@ final class ObjectProcessorTest extends TestCase
         $varDumper = $this->getVarDumper($object);
         $stringEls = <<<EOT
         {$className}#{$id}
-        public code int 101 (length=3)
-        public public uninitialized
-        public readonly readonly uninitialized
-        private private uninitialized
-        private protected uninitialized
-        private circularReference uninitialized
-        private deep class@anonymous#{$objectIds[0]}
+         public code int 101 (length=3)
+         public public uninitialized
+         public readonly readonly uninitialized
+         private private uninitialized
+         private protected uninitialized
+         private circularReference uninitialized
+         private deep class@anonymous#{$objectIds[0]}
         EOT;
         $toString = $varDumper->writer()->__toString();
         $this->assertStringStartsWith($stringEls, $toString);

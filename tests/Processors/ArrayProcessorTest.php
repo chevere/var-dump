@@ -92,7 +92,7 @@ final class ArrayProcessorTest extends TestCase
         $this->assertStringStartsWith(
             <<<PLAIN
             array (size=1)
-            0 => array (size=1)
+             0 => array (size=1)
             PLAIN,
             $toString
         );
@@ -117,7 +117,7 @@ final class ArrayProcessorTest extends TestCase
         $this->assertStringStartsWith(
             <<<PLAIN
             array (size=1)
-            0 => array (size=1)
+             0 => array (size=1)
             PLAIN,
             $toString
         );

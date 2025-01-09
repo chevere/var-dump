@@ -3,45 +3,45 @@ Chevere\VarDump\VarDump->process()
 ------------------------------------------------------------
 /var/www/html/demo.php:30
 
-1: Chevere\VarDump\VarDump#7
-private variables array [] (size=0)
-private shift int 0 (length=1)
-private debugBacktrace array [] (size=0)
-private format Chevere\VarDump\Formats\PlainFormat#8
-private output Chevere\VarDump\Outputs\PlainOutput#9
- private outputHr string ------------------------------------------------------------ (length=60)
- private writer Chevere\Writer\StreamWriter#16
-  private stream Nyholm\Psr7\Stream#17
-   private stream Resource id #76 (type=stream)
-   private seekable bool true
-   private readable bool true
-   private writable bool true
-   private uri null
-   private size null
- private trace array (size=1)
-  0 => array (size=7)
-   file => string /var/www/html/demo.php (length=49)
-   line => int 30 (length=2)
-   function => string process (length=7)
-   class => string Chevere\VarDump\VarDump (length=23)
-   object => Chevere\VarDump\VarDump#45
-    private variables array (size=1)
-     0 => Chevere\VarDump\VarDump#7 (circular reference #7)
-    private shift int 0 (length=1)
-    private debugBacktrace array (size=1)
-     0 => array (size=7)
-      file => string /var/www/html/demo.php (length=49)
-      line => int 30 (length=2)
-      function => string process (length=7)
-      class => string Chevere\VarDump\VarDump (length=23)
-      object => Chevere\VarDump\VarDump#45 (circular reference #45)
-      type => string -> (length=2)
-      args => array (size=1)
-       0 => Chevere\Writer\StreamWriter#16 (circular reference #16)
-    private format Chevere\VarDump\Formats\PlainFormat#8 (circular reference #8)
-    private output Chevere\VarDump\Outputs\PlainOutput#9 (circular reference #9)
-   type => string -> (length=2)
-   args => array (size=1)
-    0 => Chevere\Writer\StreamWriter#16 (circular reference #16)
- private caller string Chevere\VarDump\VarDump->process() (length=34)
+1: Chevere\VarDump\VarDump#8
+ private variables array [] (size=0)
+ private shift int 0 (length=1)
+ private debugBacktrace array [] (size=0)
+ private format Chevere\VarDump\Formats\PlainFormat#9
+ private output Chevere\VarDump\Outputs\PlainOutput#10
+  protected outputHr string ------------------------------------------------------------ (length=60)
+  private writer Chevere\Writer\StreamWriter#17
+   private stream Chevere\Writer\Stream#18
+    private stream Resource id #90 (type=stream)
+    private seekable bool true
+    private readable bool true
+    private writable bool true
+    private uri null
+    private size null
+  private trace array (size=1)
+   0 => array (size=7)
+    file => string /var/www/html/demo.php (length=49)
+    line => int 30 (length=2)
+    function => string process (length=7)
+    class => string Chevere\VarDump\VarDump (length=23)
+    object => Chevere\VarDump\VarDump#46
+     private variables array (size=1)
+      0 => Chevere\VarDump\VarDump#8 (circular reference #8)
+     private shift int 0 (length=1)
+     private debugBacktrace array (size=1)
+      0 => array (size=7)
+       file => string /var/www/html/demo.php (length=49)
+       line => int 30 (length=2)
+       function => string process (length=7)
+       class => string Chevere\VarDump\VarDump (length=23)
+       object => Chevere\VarDump\VarDump#46 (circular reference #46)
+       type => string -> (length=2)
+       args => array (size=1)
+        0 => Chevere\Writer\StreamWriter#17 (circular reference #17)
+     private format Chevere\VarDump\Formats\PlainFormat#9 (circular reference #9)
+     private output Chevere\VarDump\Outputs\PlainOutput#10 (circular reference #10)
+    type => string -> (length=2)
+    args => array (size=1)
+     0 => Chevere\Writer\StreamWriter#17 (circular reference #17)
+  private caller string Chevere\VarDump\VarDump->process() (length=34)
 ------------------------------------------------------------

@@ -114,7 +114,7 @@ final class ArrayProcessor implements ProcessorInterface, ProcessorNestedInterfa
 
             $indentString = $this->varDumper->indentString();
             $format = $this->varDumper->format()->filterEncodedChars((string) $key);
-            $this->varDumper->writer()->write("{$indentString}{$format} {$operator} ");
+            $this->varDumper->writer()->write(" {$indentString}{$format} {$operator} ");
             $this->handleDepth($value);
         }
         if ($aux > 0) {

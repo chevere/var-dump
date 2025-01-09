@@ -198,7 +198,7 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
             $this->varDumper->format()->filterEncodedChars($name)
         );
         $this->varDumper->writer()->write(
-            "{$indentString}{$modifier} {$variable} "
+            " {$indentString}{$modifier} {$variable} "
         );
         if ($isUnset) {
             $unset = $this->varDumper->format()->highlight(
