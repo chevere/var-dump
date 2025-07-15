@@ -17,6 +17,7 @@ use Chevere\Parameter\Interfaces\TypeInterface;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use Chevere\VarDump\Processors\Traits\ProcessorTrait;
+use Throwable;
 
 final class StringProcessor implements ProcessorInterface
 {
@@ -126,17 +127,32 @@ final class StringProcessor implements ProcessorInterface
      */
     private function utf8Encode(string $string): string
     {
-        $converted = @iconv($this->charset, 'UTF-8', $string);
+        try {
+            $converted = iconv($this->charset, 'UTF-8', $string);
+        } catch (Throwable) {
+            $converted = false;
+        }
         // @codeCoverageIgnoreStart
         if ($converted !== false) {
             return $converted;
         }
-        $converted = @iconv('CP1252', 'UTF-8', $string);
+
+        try {
+            $converted = iconv('CP1252', 'UTF-8', $string);
+        } catch (Throwable) {
+            $converted = false;
+        }
         if ($converted !== false && $this->charset !== 'CP1252') {
             return $converted;
         }
 
-        return @iconv('CP850', 'UTF-8', $string) ?: $string;
+        try {
+            $converted = iconv('CP850', 'UTF-8', $string) ?: $string;
+        } catch (Throwable) {
+            $converted = $string;
+        }
+
+        return $converted;
         // @codeCoverageIgnoreEnd
     }
 }
