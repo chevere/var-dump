@@ -128,7 +128,7 @@ final class StringProcessor implements ProcessorInterface
     private function utf8Encode(string $string): string
     {
         try {
-            $converted = iconv($this->charset, 'UTF-8', $string);
+            $converted = @iconv($this->charset, 'UTF-8', $string);
         } catch (Throwable) {
             $converted = false;
         }
@@ -138,7 +138,7 @@ final class StringProcessor implements ProcessorInterface
         }
 
         try {
-            $converted = iconv('CP1252', 'UTF-8', $string);
+            $converted = @iconv('CP1252', 'UTF-8', $string);
         } catch (Throwable) {
             $converted = false;
         }
@@ -147,7 +147,7 @@ final class StringProcessor implements ProcessorInterface
         }
 
         try {
-            $converted = iconv('CP850', 'UTF-8', $string) ?: $string;
+            $converted = @iconv('CP850', 'UTF-8', $string) ?: $string;
         } catch (Throwable) {
             $converted = $string;
         }
