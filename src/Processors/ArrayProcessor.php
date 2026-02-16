@@ -49,6 +49,11 @@ final class ArrayProcessor implements ProcessorInterface, ProcessorNestedInterfa
         return TypeInterface::ARRAY;
     }
 
+    public function validator(): callable
+    {
+        return 'is_array';
+    }
+
     public function write(): void
     {
         $this->varDumper->writer()->write(

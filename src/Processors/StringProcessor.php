@@ -60,6 +60,11 @@ final class StringProcessor implements ProcessorInterface
         return TypeInterface::STRING;
     }
 
+    public function validator(): callable
+    {
+        return 'is_string';
+    }
+
     public function write(): void
     {
         $this->varDumper->writer()->write(

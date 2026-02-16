@@ -39,6 +39,11 @@ final class IntProcessor implements ProcessorInterface
         return TypeInterface::INT;
     }
 
+    public function validator(): callable
+    {
+        return 'is_int';
+    }
+
     public function write(): void
     {
         $this->varDumper->writer()->write(

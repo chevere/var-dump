@@ -52,6 +52,11 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
         return TypeInterface::OBJECT;
     }
 
+    public function validator(): callable
+    {
+        return 'is_object';
+    }
+
     public function write(): void
     {
         $this->varDumper->writer()->write(

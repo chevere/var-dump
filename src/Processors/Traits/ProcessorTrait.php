@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Processors\Traits;
 
-use Chevere\Parameter\Type;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use InvalidArgumentException;
 use function Chevere\Message\message;
@@ -64,8 +63,7 @@ trait ProcessorTrait
 
     private function assertType(): void
     {
-        $type = new Type($this->type());
-        if ($type->validate($this->varDumper->dumpable()->var())) {
+        if ($this->validator()($this->varDumper->dumpable()->var())) {
             return;
         }
         $provided = getType($this->varDumper->dumpable()->var());

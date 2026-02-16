@@ -47,4 +47,9 @@ interface ProcessorInterface
      * Write the dump to the stream.
      */
     public function write(): void;
+
+    /**
+     * Provides a validator closure that checks if the variable is of the expected type.
+     */
+    public function validator(): callable;
 }

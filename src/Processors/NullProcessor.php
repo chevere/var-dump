@@ -34,6 +34,11 @@ final class NullProcessor implements ProcessorInterface
         return TypeInterface::NULL;
     }
 
+    public function validator(): callable
+    {
+        return 'is_null';
+    }
+
     public function write(): void
     {
         $this->varDumper->writer()->write(

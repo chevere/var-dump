@@ -42,6 +42,11 @@ final class ResourceProcessor implements ProcessorInterface
         return TypeInterface::RESOURCE;
     }
 
+    public function validator(): callable
+    {
+        return 'is_resource';
+    }
+
     public function write(): void
     {
         $this->varDumper->writer()->write(

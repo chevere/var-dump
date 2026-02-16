@@ -39,6 +39,11 @@ final class FloatProcessor implements ProcessorInterface
         return TypeInterface::FLOAT;
     }
 
+    public function validator(): callable
+    {
+        return 'is_float';
+    }
+
     public function write(): void
     {
         $this->varDumper->writer()->write(

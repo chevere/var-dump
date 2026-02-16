@@ -34,6 +34,11 @@ final class BoolProcessor implements ProcessorInterface
         return TypeInterface::BOOL;
     }
 
+    public function validator(): callable
+    {
+        return 'is_bool';
+    }
+
     public function write(): void
     {
         $this->varDumper->writer()->write(
