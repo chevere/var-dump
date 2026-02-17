@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Interfaces;
 
-use Chevere\Parameter\Interfaces\TypeInterface;
 use Chevere\VarDump\Processors\ArrayProcessor;
 use Chevere\VarDump\Processors\BoolProcessor;
 use Chevere\VarDump\Processors\FloatProcessor;
@@ -49,14 +48,14 @@ interface VarDumperInterface
      * @var array<string, string>
      */
     public const PROCESSORS = [
-        TypeInterface::BOOL => BoolProcessor::class,
-        TypeInterface::ARRAY => ArrayProcessor::class,
-        TypeInterface::OBJECT => ObjectProcessor::class,
-        TypeInterface::INT => IntProcessor::class,
-        TypeInterface::STRING => StringProcessor::class,
-        TypeInterface::FLOAT => FloatProcessor::class,
-        TypeInterface::NULL => NullProcessor::class,
-        TypeInterface::RESOURCE => ResourceProcessor::class,
+        'bool' => BoolProcessor::class,
+        'array' => ArrayProcessor::class,
+        'object' => ObjectProcessor::class,
+        'int' => IntProcessor::class,
+        'string' => StringProcessor::class,
+        'float' => FloatProcessor::class,
+        'null' => NullProcessor::class,
+        'resource' => ResourceProcessor::class,
     ];
 
     /**

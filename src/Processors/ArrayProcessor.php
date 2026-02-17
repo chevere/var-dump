@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Processors;
 
-use Chevere\Parameter\Interfaces\TypeInterface;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\ProcessorNestedInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
@@ -33,9 +32,8 @@ final class ArrayProcessor implements ProcessorInterface, ProcessorNestedInterfa
     private int $count = 0;
 
     public function __construct(
-        private VarDumperInterface $varDumper
+        private VarDumperInterface $varDumper,
     ) {
-        $this->assertType();
         /** @var array<mixed> $array */
         $array = $this->varDumper->dumpable()->var();
         $this->var = $array;
@@ -46,12 +44,7 @@ final class ArrayProcessor implements ProcessorInterface, ProcessorNestedInterfa
 
     public function type(): string
     {
-        return TypeInterface::ARRAY;
-    }
-
-    public function validator(): callable
-    {
-        return 'is_array';
+        return 'array';
     }
 
     public function write(): void

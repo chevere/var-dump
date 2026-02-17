@@ -15,7 +15,6 @@ namespace Chevere\Tests\Processors;
 
 use Chevere\Tests\Traits\VarDumperTrait;
 use Chevere\VarDump\Processors\FloatProcessor;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 final class FloatProcessorTest extends TestCase
@@ -36,11 +35,5 @@ final class FloatProcessorTest extends TestCase
                 $varDumper->writer()->__toString()
             );
         }
-    }
-
-    public function testInvalidArgument(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        new FloatProcessor($this->getVarDumper(100));
     }
 }

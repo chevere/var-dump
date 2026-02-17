@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Processors;
 
-use Chevere\Parameter\Interfaces\TypeInterface;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use Chevere\VarDump\Processors\Traits\ProcessorTrait;
@@ -27,7 +26,6 @@ final class IntProcessor implements ProcessorInterface
     public function __construct(
         private VarDumperInterface $varDumper
     ) {
-        $this->assertType();
         /** @var int $int */
         $int = $this->varDumper->dumpable()->var();
         $this->stringVar = strval($int);
@@ -36,12 +34,7 @@ final class IntProcessor implements ProcessorInterface
 
     public function type(): string
     {
-        return TypeInterface::INT;
-    }
-
-    public function validator(): callable
-    {
-        return 'is_int';
+        return 'int';
     }
 
     public function write(): void

@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Processors;
 
-use Chevere\Parameter\Interfaces\TypeInterface;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\ProcessorNestedInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
@@ -36,7 +35,6 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
     public function __construct(
         private VarDumperInterface $varDumper
     ) {
-        $this->assertType();
         /** @var object $object */
         $object = $this->varDumper->dumpable()->var();
         $this->var = $object;
@@ -49,12 +47,7 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
 
     public function type(): string
     {
-        return TypeInterface::OBJECT;
-    }
-
-    public function validator(): callable
-    {
-        return 'is_object';
+        return 'object';
     }
 
     public function write(): void

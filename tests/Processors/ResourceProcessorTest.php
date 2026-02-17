@@ -15,7 +15,6 @@ namespace Chevere\Tests\Processors;
 
 use Chevere\Tests\Traits\VarDumperTrait;
 use Chevere\VarDump\Processors\ResourceProcessor;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 final class ResourceProcessorTest extends TestCase
@@ -40,11 +39,5 @@ final class ResourceProcessorTest extends TestCase
         );
         /** @var resource $resource */
         fclose($resource);
-    }
-
-    public function testInvalidArgument(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        new ResourceProcessor($this->getVarDumper(null));
     }
 }

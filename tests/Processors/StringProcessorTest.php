@@ -15,7 +15,6 @@ namespace Chevere\Tests\Processors;
 
 use Chevere\Tests\Traits\VarDumperTrait;
 use Chevere\VarDump\Processors\StringProcessor;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 final class StringProcessorTest extends TestCase
@@ -67,12 +66,5 @@ final class StringProcessorTest extends TestCase
         $processor = new StringProcessor($varDumper);
         $this->assertSame('8BIT', $processor->charset());
         ini_set('default_charset', $defaultCharset);
-    }
-
-    public function testTypeError(): void
-    {
-        $varDumper = $this->getVarDumper(123);
-        $this->expectException(InvalidArgumentException::class);
-        new StringProcessor($varDumper);
     }
 }

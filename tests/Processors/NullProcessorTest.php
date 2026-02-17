@@ -15,7 +15,6 @@ namespace Chevere\Tests\Processors;
 
 use Chevere\Tests\Traits\VarDumperTrait;
 use Chevere\VarDump\Processors\NullProcessor;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 final class NullProcessorTest extends TestCase
@@ -30,11 +29,5 @@ final class NullProcessorTest extends TestCase
         $processor = new NullProcessor($varDumper);
         $this->assertSame('', $processor->info());
         $this->assertSame('null', $varDumper->writer()->__toString());
-    }
-
-    public function testInvalidArgument(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        new NullProcessor($this->getVarDumper(''));
     }
 }

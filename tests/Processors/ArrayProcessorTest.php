@@ -15,19 +15,20 @@ namespace Chevere\Tests\Processors;
 
 use Chevere\Tests\Traits\VarDumperTrait;
 use Chevere\VarDump\Processors\ArrayProcessor;
-use Chevere\VarDump\VarDumper;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use TypeError;
 
 final class ArrayProcessorTest extends TestCase
 {
     use VarDumperTrait;
 
-    public function testInvalidArgument(): void
+    public function testTypeError(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(TypeError::class);
         $this->expectExceptionMessage(
-            'type `array` for the return value of `' . VarDumper::class . '::var()`'
+            <<<PLAIN
+            Cannot assign null to property Chevere\VarDump\Processors\ArrayProcessor::\$var of type array
+            PLAIN
         );
         new ArrayProcessor($this->getVarDumper(null));
     }

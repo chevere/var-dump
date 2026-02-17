@@ -17,7 +17,6 @@ use Chevere\VarDump\Interfaces\VarDumpableInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use LogicException;
 use function Chevere\Message\message;
-use function Chevere\Parameter\getType;
 
 final class VarDumpable implements VarDumpableInterface
 {
@@ -28,7 +27,14 @@ final class VarDumpable implements VarDumpableInterface
     public function __construct(
         private mixed $var
     ) {
-        $this->type = getType($this->var);
+        $type = gettype($var);
+        $this->type = match ($type) {
+            'integer' => 'int',
+            'boolean' => 'bool',
+            'double' => 'float',
+            'NULL' => 'null',
+            default => $type,
+        };
         $this->assertSetProcessorName();
     }
 

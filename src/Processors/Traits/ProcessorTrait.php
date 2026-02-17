@@ -14,9 +14,6 @@ declare(strict_types=1);
 namespace Chevere\VarDump\Processors\Traits;
 
 use Chevere\VarDump\Interfaces\VarDumperInterface;
-use InvalidArgumentException;
-use function Chevere\Message\message;
-use function Chevere\Parameter\getType;
 
 trait ProcessorTrait
 {
@@ -59,26 +56,5 @@ trait ProcessorTrait
     public function maxDepthReached(): string
     {
         return 'max depth reached';
-    }
-
-    private function assertType(): void
-    {
-        if ($this->validator()($this->varDumper->dumpable()->var())) {
-            return;
-        }
-        $provided = getType($this->varDumper->dumpable()->var());
-        $method = $this->varDumper::class . '::var()';
-
-        throw new InvalidArgumentException(
-            (string) message(
-                <<<PLAIN
-                Instance of `%className%` expects type `%expected%` for the return value of `%method%`, type `%provided%` returned
-                PLAIN,
-                className: static::class,
-                expected: $this->type(),
-                method: $method,
-                provided: $provided,
-            )
-        );
     }
 }

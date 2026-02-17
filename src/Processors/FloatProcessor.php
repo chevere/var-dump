@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Processors;
 
-use Chevere\Parameter\Interfaces\TypeInterface;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use Chevere\VarDump\Processors\Traits\ProcessorTrait;
@@ -22,26 +21,23 @@ final class FloatProcessor implements ProcessorInterface
 {
     use ProcessorTrait;
 
+    private float $var;
+
     private string $stringVar = '';
 
     public function __construct(
         private VarDumperInterface $varDumper
     ) {
-        $this->assertType();
         /** @var float $float */
         $float = $this->varDumper->dumpable()->var();
+        $this->var = $float;
         $this->stringVar = strval($float);
         $this->info = 'length=' . strlen($this->stringVar);
     }
 
     public function type(): string
     {
-        return TypeInterface::FLOAT;
-    }
-
-    public function validator(): callable
-    {
-        return 'is_float';
+        return 'float';
     }
 
     public function write(): void

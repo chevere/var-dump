@@ -16,19 +16,12 @@ namespace Chevere\Tests\Processors;
 use Chevere\Tests\src\DummyClass;
 use Chevere\Tests\Traits\VarDumperTrait;
 use Chevere\VarDump\Processors\ObjectProcessor;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
 final class ObjectProcessorTest extends TestCase
 {
     use VarDumperTrait;
-
-    public function testInvalidArgument(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        new ObjectProcessor($this->getVarDumper(null));
-    }
 
     public function testEmptyObject(): void
     {

@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Chevere\Tests\Highlights;
 
-use Chevere\Parameter\Interfaces\TypeInterface;
 use Chevere\Tests\Traits\StripANSIColorsTrait;
 use Chevere\VarDump\Highlights\ConsoleHighlight;
 use Chevere\VarDump\Interfaces\HighlightInterface;
@@ -38,14 +37,14 @@ final class ConsoleHighlightTest extends TestCase
         $open = '[38;5;';
         $close = '[0m';
         $expect = [
-            TypeInterface::STRING => '%c0%m' . $dump,
-            TypeInterface::FLOAT => '%c0%m' . $dump,
-            TypeInterface::INT => '%c0%m' . $dump,
-            TypeInterface::BOOL => '%c0%m' . $dump,
-            TypeInterface::NULL => '%c0%m' . $dump,
-            TypeInterface::OBJECT => '%c0%m' . $dump,
-            TypeInterface::ARRAY => '%c0%m' . $dump,
-            TypeInterface::RESOURCE => '%c0%m' . $dump,
+            'string' => '%c0%m' . $dump,
+            'float' => '%c0%m' . $dump,
+            'int' => '%c0%m' . $dump,
+            'bool' => '%c0%m' . $dump,
+            'null' => '%c0%m' . $dump,
+            'object' => '%c0%m' . $dump,
+            'array' => '%c0%m' . $dump,
+            'resource' => '%c0%m' . $dump,
             VarDumperInterface::FILE => '%c0%m' . $dump,
             VarDumperInterface::CLASS_REG => '%c0%m' . $dump,
             VarDumperInterface::OPERATOR => '%c0%m' . $dump,

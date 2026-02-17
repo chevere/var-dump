@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Processors;
 
-use Chevere\Parameter\Interfaces\TypeInterface;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use Chevere\VarDump\Processors\Traits\ProcessorTrait;
@@ -25,18 +24,12 @@ final class BoolProcessor implements ProcessorInterface
     public function __construct(
         private VarDumperInterface $varDumper
     ) {
-        $this->assertType();
         $this->info = $this->varDumper->dumpable()->var() ? 'true' : 'false';
     }
 
     public function type(): string
     {
-        return TypeInterface::BOOL;
-    }
-
-    public function validator(): callable
-    {
-        return 'is_bool';
+        return 'bool';
     }
 
     public function write(): void

@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Highlights;
 
-use Chevere\Parameter\Interfaces\TypeInterface;
 use Chevere\VarDump\Highlights\Traits\AssertKeyTrait;
 use Chevere\VarDump\Interfaces\HighlightInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
@@ -44,14 +43,14 @@ final class HtmlHighlight implements HighlightInterface
     public static function palette(): array
     {
         return [
-            TypeInterface::STRING => 'string',
-            TypeInterface::FLOAT => 'float',
-            TypeInterface::INT => 'int',
-            TypeInterface::BOOL => 'bool',
-            TypeInterface::NULL => 'null',
-            TypeInterface::OBJECT => 'object',
-            TypeInterface::ARRAY => 'array',
-            TypeInterface::RESOURCE => 'resource',
+            'string' => 'string',
+            'float' => 'float',
+            'int' => 'int',
+            'bool' => 'bool',
+            'null' => 'null',
+            'object' => 'object',
+            'array' => 'array',
+            'resource' => 'resource',
             VarDumperInterface::FILE => 'file',
             VarDumperInterface::CLASS_REG => 'class',
             VarDumperInterface::OPERATOR => 'operator',

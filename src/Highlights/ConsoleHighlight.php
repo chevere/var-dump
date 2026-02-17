@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Highlights;
 
-use Chevere\Parameter\Interfaces\TypeInterface;
 use Chevere\VarDump\Highlights\Traits\AssertKeyTrait;
 use Chevere\VarDump\Interfaces\HighlightInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
@@ -63,17 +62,17 @@ final class ConsoleHighlight implements HighlightInterface
     {
         return [
             // DarkOrange
-            TypeInterface::STRING => ['208'],
-            TypeInterface::FLOAT => ['208'],
-            TypeInterface::INT => ['208'],
-            TypeInterface::BOOL => ['208'],
-            TypeInterface::NULL => ['208'],
+            'string' => ['208'],
+            'float' => ['208'],
+            'int' => ['208'],
+            'bool' => ['208'],
+            'null' => ['208'],
             // Gold1
-            TypeInterface::OBJECT => ['220'],
+            'object' => ['220'],
             // Green3
-            TypeInterface::ARRAY => ['41'],
+            'array' => ['41'],
             // IndianRed1
-            TypeInterface::RESOURCE => ['203'],
+            'resource' => ['203'],
             // SkyBlue2
             VarDumperInterface::FILE => ['111'],
             // light yellow

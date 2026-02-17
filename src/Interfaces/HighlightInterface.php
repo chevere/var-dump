@@ -13,22 +13,20 @@ declare(strict_types=1);
 
 namespace Chevere\VarDump\Interfaces;
 
-use Chevere\Parameter\Interfaces\TypeInterface;
-
 /**
  * Describes the component in charge of highlight the var dump strings.
  */
 interface HighlightInterface
 {
     public const KEYS = [
-        TypeInterface::STRING,
-        TypeInterface::FLOAT,
-        TypeInterface::INT,
-        TypeInterface::BOOL,
-        TypeInterface::NULL,
-        TypeInterface::OBJECT,
-        TypeInterface::ARRAY,
-        TypeInterface::RESOURCE,
+        'string',
+        'float',
+        'int',
+        'bool',
+        'null',
+        'object',
+        'array',
+        'resource',
         VarDumperInterface::FILE,
         VarDumperInterface::CLASS_REG,
         VarDumperInterface::OPERATOR,

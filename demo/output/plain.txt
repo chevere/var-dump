@@ -12,7 +12,7 @@ Chevere\VarDump\VarDump->process()
   protected outputHr string ------------------------------------------------------------ (length=60)
   private writer Chevere\Writer\StreamWriter#17
    private stream Chevere\Writer\Stream#18
-    private stream Resource id #90 (type=stream)
+    private stream Resource id #70 (type=stream)
     private seekable bool true
     private readable bool true
     private writable bool true

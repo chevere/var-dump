@@ -15,7 +15,6 @@ namespace Chevere\VarDump;
 
 use Chevere\DataStructure\Interfaces\VectorInterface;
 use Chevere\DataStructure\Vector;
-use Chevere\Parameter\Interfaces\TypeInterface;
 use Chevere\VarDump\Interfaces\FormatInterface;
 use Chevere\VarDump\Interfaces\ObjectIdsInterface;
 use Chevere\VarDump\Interfaces\ProcessorInterface;
@@ -101,11 +100,11 @@ final class VarDumper implements VarDumperInterface
     {
         $new = clone $this;
         $processorName = $new->dumpable->processorName();
-        if (in_array($new->dumpable->type(), [TypeInterface::ARRAY, TypeInterface::OBJECT], true)) {
+        if (in_array($new->dumpable->type(), ['array', 'object'], true)) {
             ++$new->indent;
         }
         /** @var ProcessorInterface $processor */
-        $processor = new $processorName($new);
+        $processor = new $processorName($new, $new->dumpable()->var());
         $processor->write();
 
         return $new;

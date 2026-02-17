@@ -15,7 +15,6 @@ namespace Chevere\Tests\Processors;
 
 use Chevere\Tests\Traits\VarDumperTrait;
 use Chevere\VarDump\Processors\BoolProcessor;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 final class BoolProcessorTest extends TestCase
@@ -37,11 +36,5 @@ final class BoolProcessorTest extends TestCase
                 $varDumper->writer()->__toString(),
             );
         }
-    }
-
-    public function testInvalidArgument(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        new BoolProcessor($this->getVarDumper(null));
     }
 }

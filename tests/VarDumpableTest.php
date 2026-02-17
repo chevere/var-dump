@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Chevere\Tests;
 
-use Chevere\Parameter\Interfaces\TypeInterface;
 use Chevere\VarDump\Processors\ArrayProcessor;
 use Chevere\VarDump\Processors\BoolProcessor;
 use Chevere\VarDump\Processors\FloatProcessor;
@@ -31,29 +30,29 @@ final class VarDumpableTest extends TestCase
     public function testConstruct(): void
     {
         $variables = [
-            TypeInterface::ARRAY => [
+            'array' => [
                 [], ArrayProcessor::class,
             ],
-            TypeInterface::BOOL => [
+            'bool' => [
                 true, BoolProcessor::class,
             ],
-            TypeInterface::FLOAT => [
+            'float' => [
                 1.1, FloatProcessor::class,
             ],
-            TypeInterface::INT => [
+            'int' => [
                 1, IntProcessor::class,
             ],
-            TypeInterface::NULL => [
+            'null' => [
                 null, NullProcessor::class,
             ],
-            TypeInterface::OBJECT => [
+            'object' => [
                 new stdClass(), ObjectProcessor::class,
             ],
-            TypeInterface::RESOURCE => [
+            'resource' => [
                 fopen(__FILE__, 'r'),
                 ResourceProcessor::class,
             ],
-            TypeInterface::STRING => [
+            'string' => [
                 '',
                 StringProcessor::class,
             ],
