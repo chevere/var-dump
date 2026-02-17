@@ -21,8 +21,6 @@ final class FloatProcessor implements ProcessorInterface
 {
     use ProcessorTrait;
 
-    private float $var;
-
     private string $stringVar = '';
 
     public function __construct(
@@ -30,7 +28,6 @@ final class FloatProcessor implements ProcessorInterface
     ) {
         /** @var float $float */
         $float = $this->varDumper->dumpable()->var();
-        $this->var = $float;
         $this->stringVar = strval($float);
         $this->info = 'length=' . strlen($this->stringVar);
     }
