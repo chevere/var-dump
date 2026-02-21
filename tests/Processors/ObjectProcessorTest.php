@@ -50,7 +50,7 @@ final class ObjectProcessorTest extends TestCase
         {$className}#{$id}
          public \$code int 101 (length=3)
          public \$public uninitialized
-         public readonly \$readonly uninitialized
+         public {$this->getReadOnlyModifier()} \$readonly uninitialized
          private \$private uninitialized
          private \$protected uninitialized
          private \$circularReference uninitialized
@@ -76,7 +76,7 @@ final class ObjectProcessorTest extends TestCase
           public \$array array [] (size=0)
           public \$int int 1 (length=1)
           public \$bool bool true
-         public readonly \$readonly uninitialized
+         public {$this->getReadOnlyModifier()} \$readonly uninitialized
          private \$private uninitialized
          private \$protected uninitialized
          private \$circularReference uninitialized
@@ -156,7 +156,7 @@ final class ObjectProcessorTest extends TestCase
         {$className}#{$id}
          public \$code int 101 (length=3)
          public \$public uninitialized
-         public readonly \$readonly uninitialized
+         public {$this->getReadOnlyModifier()} \$readonly uninitialized
          private \$private uninitialized
          private \$protected uninitialized
          private \$circularReference {$className}#{$id} (circular reference #{$id})
@@ -191,7 +191,7 @@ final class ObjectProcessorTest extends TestCase
         {$className}#{$id}
          public \$code int 101 (length=3)
          public \$public uninitialized
-         public readonly \$readonly uninitialized
+         public {$this->getReadOnlyModifier()} \$readonly uninitialized
          private \$private uninitialized
          private \$protected uninitialized
          private \$circularReference uninitialized
@@ -203,5 +203,13 @@ final class ObjectProcessorTest extends TestCase
         public \$deep class@anonymous#{$lastId} (max depth reached)
         EOT;
         $this->assertStringEndsWith($stringEls, $toString);
+    }
+
+    private function getReadOnlyModifier(): string
+    {
+        return match (true) {
+            version_compare(PHP_VERSION, '8.5.0') >= 0 => 'protected(set) readonly',
+            default => 'readonly',
+        };
     }
 }
