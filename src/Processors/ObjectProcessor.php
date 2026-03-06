@@ -94,11 +94,9 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
         $reflection = new ReflectionObject($object);
         $properties = [];
         $properties = $this->getProperties($object, $reflection);
-        // @codeCoverageIgnoreStart
         if ($properties === [] && $reflection->isInternal()) {
             $properties = $this->getPublicProperties();
         }
-        // @codeCoverageIgnoreEnd
         $keys = array_keys($properties);
         $aux = 0;
         foreach ($keys as $name) {

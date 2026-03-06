@@ -134,6 +134,22 @@ final class ObjectProcessorTest extends TestCase
         );
     }
 
+    public function testInternalObjectWithDynamicProperties(): void
+    {
+        $object = new stdClass();
+        $object->foo = 'bar';
+        $id = strval(spl_object_id($object));
+        $varDumper = $this->getVarDumper($object);
+        $this->assertProcessor(ObjectProcessor::class, $varDumper);
+        $this->assertSame(
+            <<<EOT
+            stdClass#{$id}
+             +\$foo string bar (length=3)
+            EOT,
+            $varDumper->writer()->__toString()
+        );
+    }
+
     public function testAnonClass(): void
     {
         $object = new class() {
