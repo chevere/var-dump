@@ -153,11 +153,18 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
                 } else {
                     $value = $property->getValue($this->var);
                 }
+                $modifiers = Reflection::getModifierNames($property->getModifiers());
+                $remove = ['public', 'protected', 'private'];
+                $withoutVisibility = array_diff($modifiers, $remove);
+                $visibility = match (true) {
+                    $property->isPublic() => '+',
+                    $property->isProtected() => '#',
+                    $property->isPrivate() => '-',
+                    default => '',
+                };
                 $properties[$property->getName()] = [
-                    implode(
-                        ' ',
-                        Reflection::getModifierNames($property->getModifiers())
-                    ),
+                    implode(' ', $withoutVisibility),
+                    $visibility,
                     $value ?? null,
                     $isUnset,
                 ];
@@ -170,6 +177,7 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
     private function processProperty(
         string $name,
         string $modifier,
+        string $visibility,
         mixed $value,
         bool $isUnset,
         int $aux
@@ -187,16 +195,22 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
             $this->varDumper->writer()->write("\n");
         }
         $indentString = $this->varDumper->indentString();
-        $modifier = $this->varDumper->format()->highlight(
+        if ($modifier !== '') {
+            $modifier = $this->varDumper->format()->highlight(
+                VarDumperInterface::MODIFIER,
+                " {$modifier}"
+            );
+        }
+        $visibility = $this->varDumper->format()->highlight(
             VarDumperInterface::MODIFIER,
-            $modifier
+            $visibility
         );
         $variable = $this->varDumper->format()->highlight(
             VarDumperInterface::VARIABLE,
             $this->varDumper->format()->filterEncodedChars("\${$name}")
         );
         $this->varDumper->writer()->write(
-            " {$indentString}{$modifier} {$variable} "
+            " {$indentString}{$visibility}{$variable}{$modifier} "
         );
         if ($isUnset) {
             $unset = $this->varDumper->format()->highlight(

@@ -28,9 +28,9 @@ abstract class BaseClass
 
     public readonly string $readonly;
 
-    private object $private;
+    protected object $protected;
 
-    private object $protected;
+    private object $private;
 
     private object $circularReference;
 
