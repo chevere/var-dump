@@ -127,7 +127,7 @@ final class ObjectProcessor implements ProcessorInterface, ProcessorNestedInterf
         $properties = json_decode(json_encode($this->var) ?: '', true) ?? [];
         foreach ($properties as $name => $value) {
             $name = strval($name);
-            $properties[$name] = ['public', $value, false];
+            $properties[$name] = ['', '+', $value, false];
         }
 
         return $properties;
