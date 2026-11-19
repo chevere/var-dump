@@ -18,10 +18,14 @@ use Chevere\VarDump\Interfaces\ObjectIdsInterface;
 
 final class ObjectIds implements ObjectIdsInterface
 {
+    /**
+     * @use VectorTrait<int>
+     */
     use VectorTrait;
 
     public function toArray(): array
     {
+        /** @var array<int> */
         return $this->vector->toArray();
     }
 
