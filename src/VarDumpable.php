@@ -16,7 +16,6 @@ namespace Chevere\VarDump;
 use Chevere\VarDump\Interfaces\VarDumpableInterface;
 use Chevere\VarDump\Interfaces\VarDumperInterface;
 use LogicException;
-use function Chevere\Message\message;
 
 final class VarDumpable implements VarDumpableInterface
 {
@@ -62,9 +61,9 @@ final class VarDumpable implements VarDumpableInterface
         $processorName = VarDumperInterface::PROCESSORS[$this->type] ?? null;
         if (! isset($processorName)) {
             throw new LogicException(
-                (string) message(
-                    'No processor for variable of type `%type%`',
-                    type: $this->type
+                sprintf(
+                    'No processor for variable of type `%s`',
+                    $this->type
                 )
             );
         }
